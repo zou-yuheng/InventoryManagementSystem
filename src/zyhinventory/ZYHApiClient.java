@@ -10,6 +10,10 @@ import java.net.URL;
  * API客户端类
  * 负责与远程服务器通信，获取和提交库存数据
  * 服务器地址：http://10.122.18.142:38080
+ *
+ * 注意：已改为纯本地模式，API代码已注释保留。
+ * 数据从 data/ 目录的JSON文件读取（ZYHLocalData）。
+ * 如需恢复远程API模式，取消注释相关代码即可。
  */
 public class ZYHApiClient {
     /** 数据查询接口URL */
@@ -27,6 +31,7 @@ public class ZYHApiClient {
      * @return 服务器返回的JSON数据
      */
     public static String queryData(String type, String filter, String date, String period) {
+        /* === 原始API代码 - 已注释，改为本地模式 ===
         StringBuilder jsonBuilder = new StringBuilder();
         jsonBuilder.append("{\"type\":\"").append(type).append("\"");
 
@@ -45,6 +50,10 @@ public class ZYHApiClient {
         jsonBuilder.append("}");
 
         return sendPostRequest(DATA_URL, jsonBuilder.toString());
+        === 原始API代码结束 === */
+
+        // 本地模式：直接从JSON文件读取
+        return ZYHLocalData.queryData(type);
     }
 
     /**
@@ -53,7 +62,12 @@ public class ZYHApiClient {
      * @return 服务器返回的JSON数据
      */
     public static String queryData(String type) {
+        /* === 原始API代码 - 已注释，改为本地模式 ===
         return queryData(type, null, null, null);
+        === 原始API代码结束 === */
+
+        // 本地模式：直接从JSON文件读取
+        return ZYHLocalData.queryData(type);
     }
 
     /**
@@ -68,6 +82,7 @@ public class ZYHApiClient {
      */
     public static String modifyInventory(String action, String recordId, String name,
             String barcode, Double buyPrice, Double sellPrice) {
+        /* === 原始API代码 - 已注释，改为只读模式 ===
         StringBuilder jsonBuilder = new StringBuilder();
         jsonBuilder.append("{\"type\":\"库存\",\"action\":\"").append(action).append("\"");
 
@@ -94,6 +109,10 @@ public class ZYHApiClient {
         jsonBuilder.append("}");
 
         return sendPostRequest(CHANGE_URL, jsonBuilder.toString());
+        === 原始API代码结束 === */
+
+        // 只读模式：返回成功，操作仅在内存中生效
+        return "{\"success\":true,\"message\":\"本地只读模式，操作仅在内存中生效\"}";
     }
 
     /**
@@ -109,6 +128,7 @@ public class ZYHApiClient {
      */
     public static String modifyStock(String type, String action, String recordId,
             String barcode, Integer quantity, String date, String itemName) {
+        /* === 原始API代码 - 已注释，改为只读模式 ===
         StringBuilder jsonBuilder = new StringBuilder();
         jsonBuilder.append("{\"type\":\"").append(type).append("\",\"action\":\"").append(action).append("\"");
 
@@ -139,6 +159,10 @@ public class ZYHApiClient {
         jsonBuilder.append("}");
 
         return sendPostRequest(CHANGE_URL, jsonBuilder.toString());
+        === 原始API代码结束 === */
+
+        // 只读模式：返回成功，操作仅在内存中生效
+        return "{\"success\":true,\"message\":\"本地只读模式，操作仅在内存中生效\"}";
     }
 
     /**
@@ -146,7 +170,12 @@ public class ZYHApiClient {
      * @return 服务器返回的JSON数据
      */
     public static String resetData() {
+        /* === 原始API代码 - 已注释，改为只读模式 ===
         return sendPostRequest(CHANGE_URL, "{\"action\":\"reset\"}");
+        === 原始API代码结束 === */
+
+        // 只读模式：返回成功
+        return "{\"success\":true,\"message\":\"本地只读模式，重置操作无效\"}";
     }
 
     /**
@@ -155,9 +184,14 @@ public class ZYHApiClient {
      * @return 服务器返回的JSON数据
      */
     public static String resetDataByType(String type) {
+        /* === 原始API代码 - 已注释，改为只读模式 ===
         StringBuilder jsonBuilder = new StringBuilder();
         jsonBuilder.append("{\"type\":\"").append(type).append("\",\"action\":\"reset\"}");
         return sendPostRequest(CHANGE_URL, jsonBuilder.toString());
+        === 原始API代码结束 === */
+
+        // 只读模式：返回成功
+        return "{\"success\":true,\"message\":\"本地只读模式，重置操作无效\"}";
     }
 
     /**
@@ -166,7 +200,9 @@ public class ZYHApiClient {
      * @param jsonBody JSON格式的请求体
      * @return 服务器响应内容
      */
+    @SuppressWarnings("unused")
     private static String sendPostRequest(String urlStr, String jsonBody) {
+        /* === 原始API代码 - 已注释，本地模式不使用网络请求 ===
         try {
             URL url = new URL(urlStr);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -210,5 +246,9 @@ public class ZYHApiClient {
             // 发生异常时返回错误JSON
             return "{\"error\":\"" + e.getMessage() + "\"}";
         }
+        === 原始API代码结束 === */
+
+        // 本地模式：不发送网络请求
+        return "{\"error\":\"本地模式，网络请求已禁用\"}";
     }
 }
