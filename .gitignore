@@ -1,0 +1,26 @@
+# 编译产物
+bin/
+out/
+*.class
+
+# IDE 文件
+.idea/
+*.iml
+.vscode/
+.settings/
+.classpath
+.project
+
+# 系统文件
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# 日志和临时文件
+*.log
+*.txt
+run_log.txt
+output.txt
+
+# 测试文件
+*Test*.java
