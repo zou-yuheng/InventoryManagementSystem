@@ -1592,7 +1592,9 @@ public class ZYHInventoryApp extends JFrame {
     }
 
     private void showBatchPriceDialog() {
-        JDialog dialog = new JDialog(this, "Batch Price Update", true);
+        JFrame dialog = new JFrame("Batch Price Update");
+        dialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        dialog.setResizable(true);
         dialog.setSize(1100, 700);
         dialog.setLocationRelativeTo(this);
 
@@ -1757,22 +1759,6 @@ public class ZYHInventoryApp extends JFrame {
         buttonPanel.add(okBtn);
         buttonPanel.add(cancelBtn);
 
-        final boolean[] isMaximized = {false};
-        final Dimension[] originalSize = {null};
-        JButton maximizeBtn = new JButton("Maximize");
-        maximizeBtn.addActionListener(e -> {
-            if (isMaximized[0]) {
-                dialog.setSize(originalSize[0]);
-                maximizeBtn.setText("Restore");
-            } else {
-                originalSize[0] = dialog.getSize();
-                dialog.setSize(Toolkit.getDefaultToolkit().getScreenSize());
-                maximizeBtn.setText("Restore");
-            }
-            isMaximized[0] = !isMaximized[0];
-        });
-        buttonPanel.add(maximizeBtn);
-
         mainPanel.add(topPanel, BorderLayout.NORTH);
         mainPanel.add(tableScroll, BorderLayout.CENTER);
         mainPanel.add(buttonPanel, BorderLayout.SOUTH);
@@ -1881,7 +1867,9 @@ public class ZYHInventoryApp extends JFrame {
     }
 
     private void showBatchInboundDialog() {
-        JDialog dialog = new JDialog(this, "Batch Inbound", true);
+        JFrame dialog = new JFrame("Batch Inbound");
+        dialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        dialog.setResizable(true);
         dialog.setSize(1000, 650);
         dialog.setLocationRelativeTo(this);
 
@@ -2039,22 +2027,6 @@ public class ZYHInventoryApp extends JFrame {
         buttonPanel.add(okBtn);
         buttonPanel.add(cancelBtn);
 
-        final boolean[] isMaximized2 = {false};
-        final Dimension[] originalSize2 = {null};
-        JButton maximizeBtn2 = new JButton("Maximize");
-        maximizeBtn2.addActionListener(e -> {
-            if (isMaximized2[0]) {
-                dialog.setSize(originalSize2[0]);
-                maximizeBtn2.setText("Restore");
-            } else {
-                originalSize2[0] = dialog.getSize();
-                dialog.setSize(Toolkit.getDefaultToolkit().getScreenSize());
-                maximizeBtn2.setText("Restore");
-            }
-            isMaximized2[0] = !isMaximized2[0];
-        });
-        buttonPanel.add(maximizeBtn2);
-
         mainPanel.add(topPanel, BorderLayout.NORTH);
         mainPanel.add(tableScroll, BorderLayout.CENTER);
         mainPanel.add(buttonPanel, BorderLayout.SOUTH);
@@ -2207,7 +2179,9 @@ public class ZYHInventoryApp extends JFrame {
     }
 
     private void showBatchOutboundDialog() {
-        JDialog dialog = new JDialog(this, "Batch Outbound", true);
+        JFrame dialog = new JFrame("Batch Outbound");
+        dialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        dialog.setResizable(true);
         dialog.setSize(1000, 650);
         dialog.setLocationRelativeTo(this);
 
@@ -2365,22 +2339,6 @@ public class ZYHInventoryApp extends JFrame {
         buttonPanel.add(removeRowBtn);
         buttonPanel.add(okBtn);
         buttonPanel.add(cancelBtn);
-
-        final boolean[] isMaximized3 = {false};
-        final Dimension[] originalSize3 = {null};
-        JButton maximizeBtn3 = new JButton("Maximize");
-        maximizeBtn3.addActionListener(e -> {
-            if (isMaximized3[0]) {
-                dialog.setSize(originalSize3[0]);
-                maximizeBtn3.setText("Restore");
-            } else {
-                originalSize3[0] = dialog.getSize();
-                dialog.setSize(Toolkit.getDefaultToolkit().getScreenSize());
-                maximizeBtn3.setText("Restore");
-            }
-            isMaximized3[0] = !isMaximized3[0];
-        });
-        buttonPanel.add(maximizeBtn3);
 
         mainPanel.add(topPanel, BorderLayout.NORTH);
         mainPanel.add(tableScroll, BorderLayout.CENTER);
@@ -3309,7 +3267,9 @@ public class ZYHInventoryApp extends JFrame {
      * Statistics for total inbound, total outbound, current stock of each product, and mark abnormal status
      */
     private void showAnalysisDialog() {
-        JDialog dialog = new JDialog(this, "Inventory Data Analysis", true);
+        JFrame dialog = new JFrame("Inventory Data Analysis");
+        dialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        dialog.setResizable(true);
         dialog.setSize(1200, 850);
         dialog.setLocationRelativeTo(this);
 
@@ -3420,26 +3380,7 @@ public class ZYHInventoryApp extends JFrame {
         summaryPanel.add(createSummaryCard("Backlog Products", String.valueOf(backlogCount), new Color(234, 179, 8)));
         summaryPanel.add(createSummaryCard("Total Stock", String.valueOf(analysisList.stream().mapToInt(d -> d.currentStock).sum()), COLOR_3));
 
-        final boolean[] isMaximized4 = {false};
-        final Dimension[] originalSize4 = {null};
-        JButton maximizeBtn4 = new JButton("Maximize");
-        maximizeBtn4.addActionListener(e -> {
-            if (isMaximized4[0]) {
-                dialog.setSize(originalSize4[0]);
-                maximizeBtn4.setText("Restore");
-            } else {
-                originalSize4[0] = dialog.getSize();
-                dialog.setSize(Toolkit.getDefaultToolkit().getScreenSize());
-                maximizeBtn4.setText("Restore");
-            }
-            isMaximized4[0] = !isMaximized4[0];
-        });
-        JPanel maximizePanel4 = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        maximizePanel4.setBackground(BACKGROUND);
-        maximizePanel4.add(maximizeBtn4);
-
         northWrapper.add(summaryPanel, BorderLayout.CENTER);
-        northWrapper.add(maximizePanel4, BorderLayout.EAST);
         mainPanel.add(northWrapper, BorderLayout.NORTH);
 
         // ===== Middle: Top Rankings and Warnings =====
@@ -3531,7 +3472,9 @@ public class ZYHInventoryApp extends JFrame {
     }
 
     private void showStockPredictionDialog() {
-        JDialog dialog = new JDialog(this, "Inventory Prediction Analysis", true);
+        JFrame dialog = new JFrame("Inventory Prediction Analysis");
+        dialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        dialog.setResizable(true);
         dialog.setSize(1200, 750);
         dialog.setLocationRelativeTo(this);
 
@@ -3547,22 +3490,6 @@ public class ZYHInventoryApp extends JFrame {
         topPanel.add(weeksCombo);
         JButton predictBtn = createActionButton("Start Prediction", COLOR_1);
         topPanel.add(predictBtn);
-
-        final boolean[] isMaximized5 = {false};
-        final Dimension[] originalSize5 = {null};
-        JButton maximizeBtn5 = new JButton("Maximize");
-        maximizeBtn5.addActionListener(e -> {
-            if (isMaximized5[0]) {
-                dialog.setSize(originalSize5[0]);
-                maximizeBtn5.setText("Restore");
-            } else {
-                originalSize5[0] = dialog.getSize();
-                dialog.setSize(Toolkit.getDefaultToolkit().getScreenSize());
-                maximizeBtn5.setText("Restore");
-            }
-            isMaximized5[0] = !isMaximized5[0];
-        });
-        topPanel.add(maximizeBtn5);
 
         String[] columnNames = {"Barcode", "Product Name", "Current Stock", "Weekly Avg Outbound", "Predicted Weekly Outbound", "Estimated Stockout Date", "Suggested Restock Qty", "Status"};
         java.util.List<Object[]> predictData = new java.util.ArrayList<>();

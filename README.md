@@ -18,9 +18,11 @@ This inventory management system is designed for personal learning and academic 
 1. Inventory Management (CRUD operations for products)
 2. Batch Stock-in Processing
 3. Batch Price Modification
-4. Stock-out Record Management
-5. Data Search and Filter
-6. Graphical User Interface (Java Swing)
+4. Batch Stock-out Processing
+5. Data Analysis and Stock Prediction
+6. Data Search and Filter
+7. Graphical User Interface (Java Swing, English-only)
+8. Native Window Controls (minimize/maximize/close)
 
 ## Data Structures Implemented
 
@@ -42,9 +44,11 @@ This project is built around custom implementations of the following data struct
 
 - **Language:** Java 8+
 - **GUI:** Java Swing (JFrame, JTable, JTabbedPane)
+- **Window Controls:** Native title bar (minimize/maximize/close)
 - **Data Format:** JSON (custom parser, no external dependencies)
-- **Data Source:** Local JSON files (originally Feishu/Lark Bitable API)
+- **Data Source:** Local JSON files (English product names)
 - **Build:** javac (no build tools required)
+- **Language Support:** English-only UI and code comments
 
 ## Development Process
 
@@ -89,9 +93,11 @@ src/
     ZYHLocalData.java          Local JSON data reader for offline mode
     ZYHSequentialList.java     Sequential list implementation (inventory storage)
     ZYHLinkedList.java         Linked list implementation (stock records)
-    ZYHQueue.java              Queue implementation (FIFO operations)
-    ZYHStack.java              Stack implementation (LIFO history)
-    ...
+    ZYHProduct.java            Product data model
+    ZYHInboundRecord.java      Stock-in record data model
+    ZYHOutboundRecord.java     Stock-out record data model
+    ZYHTransactionRecord.java  Transaction record data model
+    ZYHFilterDialog.java       Filter dialog with multi-condition search
 data/
   inventory.json              Inventory records (14 products)
   inbound.json                Stock-in records (30 entries)

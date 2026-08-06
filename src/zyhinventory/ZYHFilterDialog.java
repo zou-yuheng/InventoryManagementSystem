@@ -8,7 +8,7 @@ import java.awt.event.*;
 import java.util.*;
 import java.util.List;
 
-public class ZYHFilterDialog extends JDialog {
+public class ZYHFilterDialog extends JFrame {
     private String filterType;
     private ZYHDataManager dataManager;
     private JComboBox<String> fieldComboBox;
@@ -32,9 +32,6 @@ public class ZYHFilterDialog extends JDialog {
     private DefaultTableModel resultTableModel;
     private JLabel resultCountLabel;
     private JLabel timeCostLabel;
-
-    private boolean isMaximized = false;
-    private Dimension originalSize;
 
     private List<FilterCondition> conditions = new ArrayList<>();
 
@@ -69,10 +66,12 @@ public class ZYHFilterDialog extends JDialog {
     }
 
     public ZYHFilterDialog(Frame parent, String filterType, ZYHDataManager dataManager) {
-        super(parent, "Filter Data", true);
+        super("Filter Data");
         this.filterType = filterType;
         this.dataManager = dataManager;
         initComponents();
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setResizable(true);
         setSize(1250, 750);
         setLocationRelativeTo(parent);
     }
@@ -107,20 +106,6 @@ public class ZYHFilterDialog extends JDialog {
 
         actionButtonsPanel.add(startFilterBtn);
         actionButtonsPanel.add(cancelBtn);
-
-        JButton maximizeBtn = new JButton("Maximize");
-        maximizeBtn.addActionListener(e -> {
-            if (isMaximized) {
-                setSize(originalSize);
-                maximizeBtn.setText("Restore");
-            } else {
-                originalSize = getSize();
-                setSize(Toolkit.getDefaultToolkit().getScreenSize());
-                maximizeBtn.setText("Restore");
-            }
-            isMaximized = !isMaximized;
-        });
-        actionButtonsPanel.add(maximizeBtn);
 
         titlePanel.add(actionButtonsPanel, BorderLayout.EAST);
 
