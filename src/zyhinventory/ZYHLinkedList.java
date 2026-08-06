@@ -3,31 +3,32 @@ package zyhinventory;
 import java.util.Iterator;
 
 /**
- * 双向链表实现
- * 一种基于节点连接的数据结构，支持高效的插入和删除操作
- * 用于存储入库记录队列、出库记录栈、流水记录等需要频繁增删的数据
- * @param <T> 泛型类型
+ * Doubly Linked List Implementation
+ * A node-connection based data structure that supports efficient insertion and deletion
+ * Used to store inbound record queues, outbound record stacks, transaction records, etc.
+ * that require frequent addition and deletion
+ * @param <T> Generic type
  */
 public class ZYHLinkedList<T> implements Iterable<T> {
-    /** 头节点 */
+    /** Head node */
     private Node<T> head;
 
-    /** 尾节点 */
+    /** Tail node */
     private Node<T> tail;
 
-    /** 当前元素数量 */
+    /** Current number of elements */
     private int size;
 
     /**
-     * 节点内部类
-     * 包含数据域和前后指针
+     * Node inner class
+     * Contains data field and prev/next pointers
      */
     private static class Node<T> {
-        /** 节点数据 */
+        /** Node data */
         T data;
-        /** 指向下一个节点 */
+        /** Points to next node */
         Node<T> next;
-        /** 指向前一个节点 */
+        /** Points to previous node */
         Node<T> prev;
 
         Node(T data) {
@@ -38,7 +39,7 @@ public class ZYHLinkedList<T> implements Iterable<T> {
     }
 
     /**
-     * 默认构造函数
+     * Default constructor
      */
     public ZYHLinkedList() {
         head = null;
@@ -47,9 +48,9 @@ public class ZYHLinkedList<T> implements Iterable<T> {
     }
 
     /**
-     * 在链表头部添加元素
-     * 时间复杂度：O(1)
-     * @param element 要添加的元素
+     * Add element at the head of the list
+     * Time complexity: O(1)
+     * @param element Element to add
      */
     public void addFirst(T element) {
         Node<T> newNode = new Node<>(element);
@@ -64,9 +65,9 @@ public class ZYHLinkedList<T> implements Iterable<T> {
     }
 
     /**
-     * 在链表尾部添加元素
-     * 时间复杂度：O(1)
-     * @param element 要添加的元素
+     * Add element at the tail of the list
+     * Time complexity: O(1)
+     * @param element Element to add
      */
     public void addLast(T element) {
         Node<T> newNode = new Node<>(element);
@@ -81,14 +82,14 @@ public class ZYHLinkedList<T> implements Iterable<T> {
     }
 
     /**
-     * 在指定位置插入元素
-     * 时间复杂度：O(n)
-     * @param index 插入位置
-     * @param element 要插入的元素
+     * Insert element at specified position
+     * Time complexity: O(n)
+     * @param index Insert position
+     * @param element Element to insert
      */
     public void add(int index, T element) {
         if (index < 0 || index > size) {
-            throw new IndexOutOfBoundsException("索引越界: " + index);
+            throw new IndexOutOfBoundsException("Index out of bounds: " + index);
         }
         if (index == 0) {
             addFirst(element);
@@ -106,13 +107,13 @@ public class ZYHLinkedList<T> implements Iterable<T> {
     }
 
     /**
-     * 移除头部元素
-     * 时间复杂度：O(1)
-     * @return 被移除的元素
+     * Remove head element
+     * Time complexity: O(1)
+     * @return Removed element
      */
     public T removeFirst() {
         if (isEmpty()) {
-            throw new IndexOutOfBoundsException("链表为空");
+            throw new IndexOutOfBoundsException("Linked list is empty");
         }
         T result = head.data;
         if (head == tail) {
@@ -126,13 +127,13 @@ public class ZYHLinkedList<T> implements Iterable<T> {
     }
 
     /**
-     * 移除尾部元素
-     * 时间复杂度：O(1)
-     * @return 被移除的元素
+     * Remove tail element
+     * Time complexity: O(1)
+     * @return Removed element
      */
     public T removeLast() {
         if (isEmpty()) {
-            throw new IndexOutOfBoundsException("链表为空");
+            throw new IndexOutOfBoundsException("Linked list is empty");
         }
         T result = tail.data;
         if (head == tail) {
@@ -146,14 +147,14 @@ public class ZYHLinkedList<T> implements Iterable<T> {
     }
 
     /**
-     * 移除指定位置的元素
-     * 时间复杂度：O(n)
-     * @param index 元素位置
-     * @return 被移除的元素
+     * Remove element at specified position
+     * Time complexity: O(n)
+     * @param index Element position
+     * @return Removed element
      */
     public T remove(int index) {
         if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException("索引越界: " + index);
+            throw new IndexOutOfBoundsException("Index out of bounds: " + index);
         }
         Node<T> current = getNode(index);
         T result = current.data;
@@ -175,10 +176,10 @@ public class ZYHLinkedList<T> implements Iterable<T> {
     }
 
     /**
-     * 移除指定元素
-     * 时间复杂度：O(n)
-     * @param element 要移除的元素
-     * @return 是否移除成功
+     * Remove specified element
+     * Time complexity: O(n)
+     * @param element Element to remove
+     * @return Whether removal was successful
      */
     public boolean remove(T element) {
         Node<T> current = head;
@@ -203,52 +204,52 @@ public class ZYHLinkedList<T> implements Iterable<T> {
     }
 
     /**
-     * 获取头部元素
-     * 时间复杂度：O(1)
-     * @return 头部元素
+     * Get head element
+     * Time complexity: O(1)
+     * @return Head element
      */
     public T getFirst() {
         if (isEmpty()) {
-            throw new IndexOutOfBoundsException("链表为空");
+            throw new IndexOutOfBoundsException("Linked list is empty");
         }
         return head.data;
     }
 
     /**
-     * 获取尾部元素
-     * 时间复杂度：O(1)
-     * @return 尾部元素
+     * Get tail element
+     * Time complexity: O(1)
+     * @return Tail element
      */
     public T getLast() {
         if (isEmpty()) {
-            throw new IndexOutOfBoundsException("链表为空");
+            throw new IndexOutOfBoundsException("Linked list is empty");
         }
         return tail.data;
     }
 
     /**
-     * 获取指定位置的元素
-     * 时间复杂度：O(n)
-     * @param index 元素位置
-     * @return 指定位置的元素
+     * Get element at specified position
+     * Time complexity: O(n)
+     * @param index Element position
+     * @return Element at specified position
      */
     public T get(int index) {
         if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException("索引越界: " + index);
+            throw new IndexOutOfBoundsException("Index out of bounds: " + index);
         }
         return getNode(index).data;
     }
 
     /**
-     * 设置指定位置的元素
-     * 时间复杂度：O(n)
-     * @param index 要设置的位置
-     * @param element 新的元素
-     * @return 原来的元素
+     * Set element at specified position
+     * Time complexity: O(n)
+     * @param index Position to set
+     * @param element New element
+     * @return Original element
      */
     public T set(int index, T element) {
         if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException("索引越界: " + index);
+            throw new IndexOutOfBoundsException("Index out of bounds: " + index);
         }
         Node<T> current = getNode(index);
         T result = current.data;
@@ -257,10 +258,10 @@ public class ZYHLinkedList<T> implements Iterable<T> {
     }
 
     /**
-     * 查找元素的索引位置
-     * 时间复杂度：O(n)
-     * @param element 要查找的元素
-     * @return 元素索引，不存在则返回-1
+     * Find index position of element
+     * Time complexity: O(n)
+     * @param element Element to find
+     * @return Element index, returns -1 if not exists
      */
     public int indexOf(T element) {
         Node<T> current = head;
@@ -276,33 +277,33 @@ public class ZYHLinkedList<T> implements Iterable<T> {
     }
 
     /**
-     * 判断是否包含指定元素
-     * 时间复杂度：O(n)
-     * @param element 要判断的元素
-     * @return 是否包含
+     * Determine whether specified element is contained
+     * Time complexity: O(n)
+     * @param element Element to check
+     * @return Whether contained
      */
     public boolean contains(T element) {
         return indexOf(element) != -1;
     }
 
     /**
-     * 获取元素数量
-     * @return 当前元素数量
+     * Get number of elements
+     * @return Current number of elements
      */
     public int size() {
         return size;
     }
 
     /**
-     * 判断是否为空
-     * @return 是否为空
+     * Determine whether empty
+     * @return Whether empty
      */
     public boolean isEmpty() {
         return size == 0;
     }
 
     /**
-     * 清空所有元素
+     * Clear all elements
      */
     public void clear() {
         head = tail = null;
@@ -310,10 +311,10 @@ public class ZYHLinkedList<T> implements Iterable<T> {
     }
 
     /**
-     * 获取指定位置的节点
-     * 优化：从离目标位置更近的一端开始遍历
-     * @param index 节点位置
-     * @return 指定位置的节点
+     * Get node at specified position
+     * Optimization: traverse from the end closer to target position
+     * @param index Node position
+     * @return Node at specified position
      */
     private Node<T> getNode(int index) {
         Node<T> current;
@@ -332,7 +333,7 @@ public class ZYHLinkedList<T> implements Iterable<T> {
     }
 
     /**
-     * 返回迭代器
+     * Return iterator
      */
     @Override
     public Iterator<T> iterator() {
@@ -354,7 +355,7 @@ public class ZYHLinkedList<T> implements Iterable<T> {
     }
 
     /**
-     * 返回链表的字符串表示
+     * Return string representation of the linked list
      */
     @Override
     public String toString() {

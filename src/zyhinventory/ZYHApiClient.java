@@ -7,31 +7,31 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 /**
- * API客户端类
- * 负责与远程服务器通信，获取和提交库存数据
- * 服务器地址：http://10.122.18.142:38080
+ * API Client Class
+ * Responsible for communicating with the remote server, fetching and submitting inventory data
+ * Server address: http://10.122.18.142:38080
  *
- * 注意：已改为纯本地模式，API代码已注释保留。
- * 数据从 data/ 目录的JSON文件读取（ZYHLocalData）。
- * 如需恢复远程API模式，取消注释相关代码即可。
+ * Note: Switched to pure local mode, API code is commented out and retained.
+ * Data is read from JSON files in the data/ directory (ZYHLocalData).
+ * To restore remote API mode, uncomment the relevant code.
  */
 public class ZYHApiClient {
-    /** 数据查询接口URL */
+    /** Data query interface URL */
     private static final String DATA_URL = "http://10.122.18.142:38080/data";
 
-    /** 数据修改接口URL */
+    /** Data modification interface URL */
     private static final String CHANGE_URL = "http://10.122.18.142:38080/change";
 
     /**
-     * 查询数据（带完整参数）
-     * @param type 数据类型（商品/库存/入库/出库）
-     * @param filter 筛选条件（JSON格式）
-     * @param date 日期筛选
-     * @param period 时间段筛选
-     * @return 服务器返回的JSON数据
+     * Query data (with full parameters)
+     * @param type Data type (Product/Inventory/Inbound/Outbound)
+     * @param filter Filter criteria (JSON format)
+     * @param date Date filter
+     * @param period Time period filter
+     * @return JSON data returned by the server
      */
     public static String queryData(String type, String filter, String date, String period) {
-        /* === 原始API代码 - 已注释，改为本地模式 ===
+        /* === Original API code - commented out, switched to local mode ===
         StringBuilder jsonBuilder = new StringBuilder();
         jsonBuilder.append("{\"type\":\"").append(type).append("\"");
 
@@ -50,85 +50,85 @@ public class ZYHApiClient {
         jsonBuilder.append("}");
 
         return sendPostRequest(DATA_URL, jsonBuilder.toString());
-        === 原始API代码结束 === */
+        === End of original API code === */
 
-        // 本地模式：直接从JSON文件读取
+        // Local mode: read directly from JSON files
         return ZYHLocalData.queryData(type);
     }
 
     /**
-     * 查询数据（简单版本）
-     * @param type 数据类型
-     * @return 服务器返回的JSON数据
+     * Query data (simple version)
+     * @param type Data type
+     * @return JSON data returned by the server
      */
     public static String queryData(String type) {
-        /* === 原始API代码 - 已注释，改为本地模式 ===
+        /* === Original API code - commented out, switched to local mode ===
         return queryData(type, null, null, null);
-        === 原始API代码结束 === */
+        === End of original API code === */
 
-        // 本地模式：直接从JSON文件读取
+        // Local mode: read directly from JSON files
         return ZYHLocalData.queryData(type);
     }
 
     /**
-     * 修改库存商品信息
-     * @param action 操作类型（add新增/modify修改/delete删除）
-     * @param recordId 记录ID
-     * @param name 商品名称
-     * @param barcode 商品条码
-     * @param buyPrice 进货价格
-     * @param sellPrice 销售价格
-     * @return 服务器返回的JSON数据
+     * Modify inventory product information
+     * @param action Operation type (add/modify/delete)
+     * @param recordId Record ID
+     * @param name Product name
+     * @param barcode Product barcode
+     * @param buyPrice Purchase price
+     * @param sellPrice Sale price
+     * @return JSON data returned by the server
      */
     public static String modifyInventory(String action, String recordId, String name,
             String barcode, Double buyPrice, Double sellPrice) {
-        /* === 原始API代码 - 已注释，改为只读模式 ===
+        /* === Original API code - commented out, switched to read-only mode ===
         StringBuilder jsonBuilder = new StringBuilder();
-        jsonBuilder.append("{\"type\":\"库存\",\"action\":\"").append(action).append("\"");
+        jsonBuilder.append("{\"type\":\"Inventory\",\"action\":\"").append(action).append("\"");
 
         if (recordId != null && !recordId.isEmpty()) {
             jsonBuilder.append(",\"record_id\":\"").append(recordId).append("\"");
         }
 
         if (barcode != null && !barcode.isEmpty()) {
-            jsonBuilder.append(",\"商品条码\":\"").append(barcode).append("\"");
+            jsonBuilder.append(",\"Product Barcode\":\"").append(barcode).append("\"");
         }
 
         if (name != null && !name.isEmpty()) {
-            jsonBuilder.append(",\"商品名称\":\"").append(name).append("\"");
+            jsonBuilder.append(",\"Product Name\":\"").append(name).append("\"");
         }
 
         if (buyPrice != null) {
-            jsonBuilder.append(",\"进货价格\":").append(buyPrice);
+            jsonBuilder.append(",\"Purchase Price\":").append(buyPrice);
         }
 
         if (sellPrice != null) {
-            jsonBuilder.append(",\"售卖定价\":").append(sellPrice);
+            jsonBuilder.append(",\"Sale Price\":").append(sellPrice);
         }
 
         jsonBuilder.append("}");
 
         return sendPostRequest(CHANGE_URL, jsonBuilder.toString());
-        === 原始API代码结束 === */
+        === End of original API code === */
 
-        // 只读模式：返回成功，操作仅在内存中生效
-        return "{\"success\":true,\"message\":\"本地只读模式，操作仅在内存中生效\"}";
+        // Read-only mode: returns success, operations only take effect in memory
+        return "{\"success\":true,\"message\":\"Local read-only mode, operations only take effect in memory\"}";
     }
 
     /**
-     * 修改入库/出库记录
-     * @param type 类型（入库/出库）
-     * @param action 操作类型
-     * @param recordId 记录ID
-     * @param barcode 商品条码
-     * @param quantity 数量
-     * @param date 日期
-     * @param itemName 商品名称
-     * @return 服务器返回的JSON数据
+     * Modify inbound/outbound records
+     * @param type Type (Inbound/Outbound)
+     * @param action Operation type
+     * @param recordId Record ID
+     * @param barcode Product barcode
+     * @param quantity Quantity
+     * @param date Date
+     * @param itemName Product name
+     * @return JSON data returned by the server
      */
     public static String modifyStock(String type, String action, String recordId,
             String barcode, Integer quantity, String date, String itemName) {
-        /* === 原始API代码 - 已注释，改为只读模式 ===
+        /* === Original API code - commented out, switched to read-only mode ===
         StringBuilder jsonBuilder = new StringBuilder();
         jsonBuilder.append("{\"type\":\"").append(type).append("\",\"action\":\"").append(action).append("\"");
 
@@ -137,94 +137,94 @@ public class ZYHApiClient {
         }
 
         if (barcode != null && !barcode.isEmpty()) {
-            jsonBuilder.append(",\"商品条码\":\"").append(barcode).append("\"");
+            jsonBuilder.append(",\"Product Barcode\":\"").append(barcode).append("\"");
         }
 
         if (quantity != null) {
-            jsonBuilder.append(",\"数量\":").append(quantity);
+            jsonBuilder.append(",\"Quantity\":").append(quantity);
         }
 
         if (date != null && !date.isEmpty()) {
-            jsonBuilder.append(",\"日期\":\"").append(date).append("\"");
+            jsonBuilder.append(",\"Date\":\"").append(date).append("\"");
         }
 
         if (itemName != null && !itemName.isEmpty()) {
-            if ("入库".equals(type)) {
-                jsonBuilder.append(",\"入库项\":\"").append(itemName).append("\"");
-            } else if ("出库".equals(type)) {
-                jsonBuilder.append(",\"出库项\":\"").append(itemName).append("\"");
+            if ("Inbound".equals(type)) {
+                jsonBuilder.append(",\"Inbound Item\":\"").append(itemName).append("\"");
+            } else if ("Outbound".equals(type)) {
+                jsonBuilder.append(",\"Outbound Item\":\"").append(itemName).append("\"");
             }
         }
 
         jsonBuilder.append("}");
 
         return sendPostRequest(CHANGE_URL, jsonBuilder.toString());
-        === 原始API代码结束 === */
+        === End of original API code === */
 
-        // 只读模式：返回成功，操作仅在内存中生效
-        return "{\"success\":true,\"message\":\"本地只读模式，操作仅在内存中生效\"}";
+        // Read-only mode: returns success, operations only take effect in memory
+        return "{\"success\":true,\"message\":\"Local read-only mode, operations only take effect in memory\"}";
     }
 
     /**
-     * 重置所有数据
-     * @return 服务器返回的JSON数据
+     * Reset all data
+     * @return JSON data returned by the server
      */
     public static String resetData() {
-        /* === 原始API代码 - 已注释，改为只读模式 ===
+        /* === Original API code - commented out, switched to read-only mode ===
         return sendPostRequest(CHANGE_URL, "{\"action\":\"reset\"}");
-        === 原始API代码结束 === */
+        === End of original API code === */
 
-        // 只读模式：返回成功
-        return "{\"success\":true,\"message\":\"本地只读模式，重置操作无效\"}";
+        // Read-only mode: returns success
+        return "{\"success\":true,\"message\":\"Local read-only mode, reset operation invalid\"}";
     }
 
     /**
-     * 按类型重置数据
-     * @param type 数据类型
-     * @return 服务器返回的JSON数据
+     * Reset data by type
+     * @param type Data type
+     * @return JSON data returned by the server
      */
     public static String resetDataByType(String type) {
-        /* === 原始API代码 - 已注释，改为只读模式 ===
+        /* === Original API code - commented out, switched to read-only mode ===
         StringBuilder jsonBuilder = new StringBuilder();
         jsonBuilder.append("{\"type\":\"").append(type).append("\",\"action\":\"reset\"}");
         return sendPostRequest(CHANGE_URL, jsonBuilder.toString());
-        === 原始API代码结束 === */
+        === End of original API code === */
 
-        // 只读模式：返回成功
-        return "{\"success\":true,\"message\":\"本地只读模式，重置操作无效\"}";
+        // Read-only mode: returns success
+        return "{\"success\":true,\"message\":\"Local read-only mode, reset operation invalid\"}";
     }
 
     /**
-     * 发送POST请求到服务器
-     * @param urlStr 请求URL
-     * @param jsonBody JSON格式的请求体
-     * @return 服务器响应内容
+     * Send POST request to server
+     * @param urlStr Request URL
+     * @param jsonBody JSON format request body
+     * @return Server response content
      */
     @SuppressWarnings("unused")
     private static String sendPostRequest(String urlStr, String jsonBody) {
-        /* === 原始API代码 - 已注释，本地模式不使用网络请求 ===
+        /* === Original API code - commented out, local mode does not use network requests ===
         try {
             URL url = new URL(urlStr);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
-            // 设置请求方法为POST
+            // Set request method to POST
             conn.setRequestMethod("POST");
-            // 设置请求头
+            // Set request headers
             conn.setRequestProperty("Content-Type", "application/json");
-            conn.setDoOutput(true);  // 允许输出
-            conn.setConnectTimeout(10000);  // 连接超时10秒
-            conn.setReadTimeout(10000);  // 读取超时10秒
+            conn.setDoOutput(true);  // Allow output
+            conn.setConnectTimeout(10000);  // Connection timeout 10 seconds
+            conn.setReadTimeout(10000);  // Read timeout 10 seconds
 
-            // 写入请求体
+            // Write request body
             OutputStream os = conn.getOutputStream();
             os.write(jsonBody.getBytes("UTF-8"));
             os.flush();
             os.close();
 
-            // 获取响应码
+            // Get response code
             int responseCode = conn.getResponseCode();
 
-            // 根据响应码选择输入流
+            // Select input stream based on response code
             BufferedReader br;
             if (responseCode == 200) {
                 br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
@@ -232,7 +232,7 @@ public class ZYHApiClient {
                 br = new BufferedReader(new InputStreamReader(conn.getErrorStream(), "UTF-8"));
             }
 
-            // 读取响应内容
+            // Read response content
             StringBuilder response = new StringBuilder();
             String line;
             while ((line = br.readLine()) != null) {
@@ -243,12 +243,12 @@ public class ZYHApiClient {
 
             return response.toString();
         } catch (Exception e) {
-            // 发生异常时返回错误JSON
+            // Return error JSON when exception occurs
             return "{\"error\":\"" + e.getMessage() + "\"}";
         }
-        === 原始API代码结束 === */
+        === End of original API code === */
 
-        // 本地模式：不发送网络请求
-        return "{\"error\":\"本地模式，网络请求已禁用\"}";
+        // Local mode: does not send network requests
+        return "{\"error\":\"Local mode, network requests disabled\"}";
     }
 }

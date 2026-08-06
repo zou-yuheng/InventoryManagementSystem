@@ -1,56 +1,56 @@
 package zyhinventory;
 
 /**
- * 出库记录实体类
- * 用于存储商品出库操作的相关信息
- * 出库记录采用链表结构存储（栈，先进后出）
+ * Outbound Record Entity Class
+ * Used to store information related to product outbound operations
+ * Outbound records are stored in a linked list structure (Stack, LIFO)
  */
 public class ZYHOutboundRecord {
-    /** 记录ID，唯一标识每条出库记录 */
+    /** Record ID, uniquely identifies each outbound record */
     private String recordId;
 
-    /** 商品条码 */
+    /** Product barcode */
     private String barcode;
 
-    /** 商品名称 */
+    /** Product name */
     private String itemName;
 
-    /** 出库数量 */
+    /** Outbound quantity */
     private int quantity;
 
-    /** 出库日期（格式：YYYY-MM-DD） */
+    /** Outbound date (format: YYYY-MM-DD) */
     private String date;
 
-    /** 出库时间（完整时间戳） */
+    /** Outbound time (complete timestamp) */
     private String outboundTime;
 
     /**
-     * 默认构造函数
+     * Default constructor
      */
     public ZYHOutboundRecord() {
     }
 
     /**
-     * 构造函数 - 创建新出库记录
-     * @param barcode 商品条码
-     * @param itemName 商品名称
-     * @param quantity 出库数量
+     * Constructor - Create new outbound record
+     * @param barcode Product barcode
+     * @param itemName Product name
+     * @param quantity Outbound quantity
      */
     public ZYHOutboundRecord(String barcode, String itemName, int quantity) {
         this.barcode = barcode;
         this.itemName = itemName;
         this.quantity = quantity;
-        this.date = java.time.LocalDate.now().toString();  // 自动设置当前日期
-        this.outboundTime = java.time.LocalDateTime.now().toString().substring(0, 19);  // 自动设置当前时间
+        this.date = java.time.LocalDate.now().toString();  // Automatically set current date
+        this.outboundTime = java.time.LocalDateTime.now().toString().substring(0, 19);  // Automatically set current time
     }
 
     /**
-     * 构造函数 - 创建指定日期的出库记录
-     * @param recordId 记录ID
-     * @param barcode 商品条码
-     * @param itemName 商品名称
-     * @param quantity 出库数量
-     * @param date 出库日期
+     * Constructor - Create outbound record with specified date
+     * @param recordId Record ID
+     * @param barcode Product barcode
+     * @param itemName Product name
+     * @param quantity Outbound quantity
+     * @param date Outbound date
      */
     public ZYHOutboundRecord(String recordId, String barcode, String itemName,
             int quantity, String date) {
@@ -87,16 +87,16 @@ public class ZYHOutboundRecord {
     }
 
     /**
-     * 获取出库数量
-     * @return 出库数量
+     * Get outbound quantity
+     * @return Outbound quantity
      */
     public int getQuantity() {
         return quantity;
     }
 
     /**
-     * 设置出库数量
-     * @param quantity 出库数量
+     * Set outbound quantity
+     * @param quantity Outbound quantity
      */
     public void setQuantity(int quantity) {
         this.quantity = quantity;
@@ -119,7 +119,7 @@ public class ZYHOutboundRecord {
     }
 
     /**
-     * 返回出库记录信息的字符串表示
+     * Returns string representation of outbound record information
      */
     @Override
     public String toString() {
@@ -134,8 +134,8 @@ public class ZYHOutboundRecord {
     }
 
     /**
-     * 判断两条出库记录是否相同
-     * 根据记录ID判断
+     * Determine whether two outbound records are the same
+     * Judged by record ID
      */
     @Override
     public boolean equals(Object obj) {
@@ -146,7 +146,7 @@ public class ZYHOutboundRecord {
     }
 
     /**
-     * 根据记录ID生成哈希码
+     * Generate hash code based on record ID
      */
     @Override
     public int hashCode() {

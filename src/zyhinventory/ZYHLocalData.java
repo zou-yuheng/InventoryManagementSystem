@@ -4,25 +4,25 @@ import java.io.*;
 import java.nio.file.*;
 
 /**
- * 本地数据读取器
- * 从 data/ 目录读取 JSON 数据文件，替代远程 API
+ * Local Data Reader
+ * Reads JSON data files from the data/ directory, replacing the remote API
  */
 public class ZYHLocalData {
 
     public static String queryData(String type) {
         String fileName;
         switch (type) {
-            case "库存":
+            case "Inventory":
                 fileName = "data/inventory.json";
                 break;
-            case "入库":
+            case "Inbound":
                 fileName = "data/inbound.json";
                 break;
-            case "出库":
+            case "Outbound":
                 fileName = "data/outbound.json";
                 break;
             default:
-                return "{\"error\":\"未知数据类型\"}";
+                return "{\"error\":\"Unknown data type\"}";
         }
 
         try {
@@ -30,10 +30,10 @@ public class ZYHLocalData {
             if (Files.exists(path)) {
                 return new String(Files.readAllBytes(path), "UTF-8");
             } else {
-                return "{\"error\":\"数据文件不存在\"}";
+                return "{\"error\":\"Data file does not exist\"}";
             }
         } catch (Exception e) {
-            return "{\"error\":\"读取失败\"}";
+            return "{\"error\":\"Read failed\"}";
         }
     }
 }

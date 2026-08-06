@@ -1,66 +1,66 @@
 package zyhinventory;
 
 /**
- * 商品实体类
- * 用于存储商品的基本信息，包括条码、名称、价格、库存等
- * 库存管理系统中的核心数据模型之一
+ * Product Entity Class
+ * Used to store basic product information, including barcode, name, price, stock, etc.
+ * One of the core data models in the inventory management system
  */
 public class ZYHProduct {
-    /** 记录ID，用于唯一标识每条商品记录 */
+    /** Record ID, used to uniquely identify each product record */
     private String recordId;
 
-    /** 商品条码，用于扫码识别商品 */
+    /** Product barcode, used for scanning to identify products */
     private String barcode;
 
-    /** 商品名称 */
+    /** Product Name */
     private String name;
 
-    /** 进货价格（采购价） */
+    /** Purchase Price (Cost) */
     private double buyPrice;
 
-    /** 销售价格（零售价） */
+    /** Sale Price (Retail Price) */
     private double sellPrice;
 
-    /** 当前库存数量 */
+    /** Current stock quantity */
     private int stockQuantity;
 
-    /** 商品状态（正常/异常） */
+    /** Product status (Normal/Abnormal) */
     private String status;
 
-    /** 最后更新时间 */
+    /** Last update time */
     private String lastUpdateTime;
 
     /**
-     * 默认构造函数
+     * Default constructor
      */
     public ZYHProduct() {
     }
 
     /**
-     * 构造函数 - 创建新商品
-     * @param barcode 商品条码
-     * @param name 商品名称
-     * @param buyPrice 进货价格
-     * @param sellPrice 销售价格
+     * Constructor - Create new product
+     * @param barcode Product barcode
+     * @param name Product name
+     * @param buyPrice Purchase price
+     * @param sellPrice Sale price
      */
     public ZYHProduct(String barcode, String name, double buyPrice, double sellPrice) {
         this.barcode = barcode;
         this.name = name;
         this.buyPrice = buyPrice;
         this.sellPrice = sellPrice;
-        this.stockQuantity = 0;  // 新商品初始库存为0
-        this.status = "正常";
+        this.stockQuantity = 0;  // Initial stock of new product is 0
+        this.status = "Normal";
     }
 
     /**
-     * 构造函数 - 创建完整商品记录
-     * @param recordId 记录ID
-     * @param barcode 商品条码
-     * @param name 商品名称
-     * @param buyPrice 进货价格
-     * @param sellPrice 销售价格
-     * @param stockQuantity 库存数量
-     * @param status 商品状态
+     * Constructor - Create complete product record
+     * @param recordId Record ID
+     * @param barcode Product barcode
+     * @param name Product name
+     * @param buyPrice Purchase price
+     * @param sellPrice Sale price
+     * @param stockQuantity Stock quantity
+     * @param status Product status
      */
     public ZYHProduct(String recordId, String barcode, String name, double buyPrice,
             double sellPrice, int stockQuantity, String status) {
@@ -98,53 +98,53 @@ public class ZYHProduct {
     }
 
     /**
-     * 获取进货价格
-     * @return 进货价格
+     * Get purchase price
+     * @return Purchase price
      */
     public double getBuyPrice() {
         return buyPrice;
     }
 
     /**
-     * 设置进货价格
-     * @param buyPrice 进货价格
+     * Set purchase price
+     * @param buyPrice Purchase price
      */
     public void setBuyPrice(double buyPrice) {
         this.buyPrice = buyPrice;
     }
 
     /**
-     * 获取销售价格
-     * @return 销售价格
+     * Get sale price
+     * @return Sale price
      */
     public double getSellPrice() {
         return sellPrice;
     }
 
     /**
-     * 设置销售价格
-     * @param sellPrice 销售价格
+     * Set sale price
+     * @param sellPrice Sale price
      */
     public void setSellPrice(double sellPrice) {
         this.sellPrice = sellPrice;
     }
 
     /**
-     * 获取当前库存数量
-     * @return 库存数量
+     * Get current stock quantity
+     * @return Stock quantity
      */
     public int getStockQuantity() {
         return stockQuantity;
     }
 
     /**
-     * 设置库存数量
-     * 当库存数量小于0时自动标记为"异常"状态
-     * @param stockQuantity 库存数量
+     * Set stock quantity
+     * Automatically marks status as "Abnormal" when stock quantity is less than 0
+     * @param stockQuantity Stock quantity
      */
     public void setStockQuantity(int stockQuantity) {
         this.stockQuantity = stockQuantity;
-        this.status = stockQuantity >= 0 ? "正常" : "异常";
+        this.status = stockQuantity >= 0 ? "Normal" : "Abnormal";
     }
 
     public String getStatus() {
@@ -164,7 +164,7 @@ public class ZYHProduct {
     }
 
     /**
-     * 返回商品信息的字符串表示
+     * Returns string representation of product information
      */
     @Override
     public String toString() {
@@ -180,8 +180,8 @@ public class ZYHProduct {
     }
 
     /**
-     * 判断两个商品是否相同
-     * 根据条码判断，条码相同即为同一商品
+     * Determine whether two products are the same
+     * Judged by barcode, same barcode means same product
      */
     @Override
     public boolean equals(Object obj) {
@@ -192,7 +192,7 @@ public class ZYHProduct {
     }
 
     /**
-     * 根据条码生成哈希码
+     * Generate hash code based on barcode
      */
     @Override
     public int hashCode() {

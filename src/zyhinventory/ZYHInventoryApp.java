@@ -43,7 +43,7 @@ public class ZYHInventoryApp extends JFrame {
     }
 
     private void initComponents() {
-        setTitle("邹宇恒库存管理系统");
+        setTitle("Zou Yuheng Inventory Management System");
         setSize(1400, 800);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -67,20 +67,20 @@ public class ZYHInventoryApp extends JFrame {
         leftPanel.setBackground(BACKGROUND);
         leftPanel.setPreferredSize(new Dimension(200, 500));
 
-        JLabel titleLabel = new JLabel("邹宇恒库存管理");
-        titleLabel.setFont(new Font("微软雅黑", Font.BOLD, 16));
+        JLabel titleLabel = new JLabel("Inventory Management");
+        titleLabel.setFont(new Font("Segoe UI", Font.BOLD, 16));
         titleLabel.setForeground(COLOR_1);
         titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         titleLabel.setBorder(new EmptyBorder(0, 0, 20, 0));
 
-        JButton inventoryBtn = createMenuButton("库存管理", COLOR_2, e -> showPanel("inventory"));
-        JButton inboundBtn = createMenuButton("入库管理", COLOR_2, e -> showPanel("inbound"));
-        JButton outboundBtn = createMenuButton("出库管理", COLOR_2, e -> showPanel("outbound"));
-        JButton reportBtn = createMenuButton("报表生成", COLOR_2, e -> showPanel("report"));
-        JButton chartBtn = createMenuButton("图表展示", COLOR_2, e -> showPanel("chart"));
-        JButton resetBtn = createMenuButton("重置数据", COLOR_2, e -> resetDataFromAPI());
-        JButton analysisBtn = createMenuButton("数据分析", COLOR_2, e -> showAnalysisDialog());
-        JButton predictBtn = createMenuButton("库存预测", COLOR_2, e -> showStockPredictionDialog());
+        JButton inventoryBtn = createMenuButton("Inventory Management", COLOR_2, e -> showPanel("inventory"));
+        JButton inboundBtn = createMenuButton("Inbound Management", COLOR_2, e -> showPanel("inbound"));
+        JButton outboundBtn = createMenuButton("Outbound Management", COLOR_2, e -> showPanel("outbound"));
+        JButton reportBtn = createMenuButton("Report Generation", COLOR_2, e -> showPanel("report"));
+        JButton chartBtn = createMenuButton("Chart Display", COLOR_2, e -> showPanel("chart"));
+        JButton resetBtn = createMenuButton("Reset Data", COLOR_2, e -> resetDataFromAPI());
+        JButton analysisBtn = createMenuButton("Data Analysis", COLOR_2, e -> showAnalysisDialog());
+        JButton predictBtn = createMenuButton("Stock Prediction", COLOR_2, e -> showStockPredictionDialog());
 
         leftPanel.add(titleLabel);
         leftPanel.add(inventoryBtn);
@@ -104,7 +104,7 @@ public class ZYHInventoryApp extends JFrame {
 
     private JButton createMenuButton(String text, Color bgColor, java.awt.event.ActionListener listener) {
         JButton button = new RoundedButton(text, 8);
-        button.setFont(new Font("微软雅黑", Font.PLAIN, 14));
+        button.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         button.setForeground(COLOR_WHITE);
         button.setBackground(bgColor);
         button.setFocusPainted(false);
@@ -119,7 +119,7 @@ public class ZYHInventoryApp extends JFrame {
 
     private JButton createActionButton(String text, Color bgColor) {
         JButton button = new RoundedButton(text, 6);
-        button.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+        button.setFont(new Font("Segoe UI", Font.PLAIN, 12));
         button.setForeground(COLOR_WHITE);
         button.setBackground(bgColor);
         button.setFocusPainted(false);
@@ -137,23 +137,23 @@ public class ZYHInventoryApp extends JFrame {
         contentPanel.setName("contentPanel");
 
         inventoryTableModel = new DefaultTableModel(
-                new Object[]{"条码", "商品名称", "进货价", "销售价", "库存量", "状态"}, 0);
+                new Object[]{"Barcode", "Product Name", "Purchase Price", "Sale Price", "Stock Quantity", "Status"}, 0);
         inventoryTable = new JTable(inventoryTableModel);
-        inventoryTable.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+        inventoryTable.setFont(new Font("Segoe UI", Font.PLAIN, 12));
         inventoryTable.setRowHeight(28);
         JScrollPane inventoryScroll = new JScrollPane(inventoryTable);
 
         inboundTableModel = new DefaultTableModel(
-                new Object[]{"记录ID", "商品条码", "商品名称", "数量", "日期"}, 0);
+                new Object[]{"Record ID", "Product Barcode", "Product Name", "Quantity", "Date"}, 0);
         inboundTable = new JTable(inboundTableModel);
-        inboundTable.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+        inboundTable.setFont(new Font("Segoe UI", Font.PLAIN, 12));
         inboundTable.setRowHeight(28);
         JScrollPane inboundScroll = new JScrollPane(inboundTable);
 
         outboundTableModel = new DefaultTableModel(
-                new Object[]{"记录ID", "商品条码", "商品名称", "数量", "日期"}, 0);
+                new Object[]{"Record ID", "Product Barcode", "Product Name", "Quantity", "Date"}, 0);
         outboundTable = new JTable(outboundTableModel);
-        outboundTable.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+        outboundTable.setFont(new Font("Segoe UI", Font.PLAIN, 12));
         outboundTable.setRowHeight(28);
         JScrollPane outboundScroll = new JScrollPane(outboundTable);
 
@@ -175,9 +175,9 @@ public class ZYHInventoryApp extends JFrame {
 
         JPanel logPanel = new JPanel(new BorderLayout());
         logPanel.setPreferredSize(new Dimension(0, 150));
-        logPanel.setBorder(BorderFactory.createTitledBorder("操作日志"));
+        logPanel.setBorder(BorderFactory.createTitledBorder("Operation Log"));
         logArea = new JTextArea();
-        logArea.setFont(new Font("微软雅黑", Font.PLAIN, 11));
+        logArea.setFont(new Font("Segoe UI", Font.PLAIN, 11));
         logArea.setEditable(false);
         JScrollPane logScroll = new JScrollPane(logArea);
         logPanel.add(logScroll, BorderLayout.CENTER);
@@ -198,26 +198,26 @@ public class ZYHInventoryApp extends JFrame {
         panel.setBackground(BACKGROUND);
         panel.setBorder(new EmptyBorder(10, 10, 10, 10));
 
-        JLabel titleLabel = new JLabel("库存管理");
-        titleLabel.setFont(new Font("微软雅黑", Font.BOLD, 18));
+        JLabel titleLabel = new JLabel("Inventory Management");
+        titleLabel.setFont(new Font("Segoe UI", Font.BOLD, 18));
         titleLabel.setForeground(COLOR_1);
 
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 5));
         buttonPanel.setBackground(BACKGROUND);
 
-        JButton addBtn = createActionButton("新增商品", COLOR_1);
+        JButton addBtn = createActionButton("Add Product", COLOR_1);
         addBtn.addActionListener(e -> showAddProductDialog());
 
-        JButton modifyBtn = createActionButton("修改价格", COLOR_2);
+        JButton modifyBtn = createActionButton("Modify Price", COLOR_2);
         modifyBtn.addActionListener(e -> showModifyPriceDialog());
 
-        JButton deleteBtn = createActionButton("删除商品", new Color(239, 68, 68));
+        JButton deleteBtn = createActionButton("Delete Product", new Color(239, 68, 68));
         deleteBtn.addActionListener(e -> deleteSelectedInventory());
 
-        JButton filterBtn = createActionButton("数据筛选", new Color(139, 92, 246));
+        JButton filterBtn = createActionButton("Filter Data", new Color(139, 92, 246));
         filterBtn.addActionListener(e -> openFilterDialog("inventory"));
 
-        JButton batchPriceBtn = createActionButton("批量改价", new Color(249, 115, 22));
+        JButton batchPriceBtn = createActionButton("Batch Price Update", new Color(249, 115, 22));
         batchPriceBtn.addActionListener(e -> showBatchPriceDialog());
 
         buttonPanel.add(addBtn);
@@ -245,26 +245,26 @@ public class ZYHInventoryApp extends JFrame {
         panel.setBackground(BACKGROUND);
         panel.setBorder(new EmptyBorder(10, 10, 10, 10));
 
-        JLabel titleLabel = new JLabel("入库管理");
-        titleLabel.setFont(new Font("微软雅黑", Font.BOLD, 18));
+        JLabel titleLabel = new JLabel("Inbound Management");
+        titleLabel.setFont(new Font("Segoe UI", Font.BOLD, 18));
         titleLabel.setForeground(COLOR_1);
 
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 5));
         buttonPanel.setBackground(BACKGROUND);
 
-        JButton addBtn = createActionButton("新增入库", COLOR_1);
+        JButton addBtn = createActionButton("Add Inbound", COLOR_1);
         addBtn.addActionListener(e -> showAddInboundDialog());
 
-        JButton modifyBtn = createActionButton("修改入库记录", COLOR_2);
+        JButton modifyBtn = createActionButton("Modify Inbound Record", COLOR_2);
         modifyBtn.addActionListener(e -> showModifyInboundDialog());
 
-        JButton deleteBtn = createActionButton("删除入库记录", new Color(239, 68, 68));
+        JButton deleteBtn = createActionButton("Delete Inbound Record", new Color(239, 68, 68));
         deleteBtn.addActionListener(e -> deleteSelectedInbound());
 
-        JButton filterBtn = createActionButton("数据筛选", new Color(139, 92, 246));
+        JButton filterBtn = createActionButton("Filter Data", new Color(139, 92, 246));
         filterBtn.addActionListener(e -> openFilterDialog("inbound"));
 
-        JButton batchInboundBtn = createActionButton("批量入库", COLOR_3);
+        JButton batchInboundBtn = createActionButton("Batch Inbound", COLOR_3);
         batchInboundBtn.addActionListener(e -> showBatchInboundDialog());
 
         buttonPanel.add(addBtn);
@@ -283,8 +283,8 @@ public class ZYHInventoryApp extends JFrame {
 
         JPanel infoPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         infoPanel.setBackground(BACKGROUND);
-        inboundQueueInfoLabel = new JLabel("入库记录队列（先进先出）当前队列长度: " + dataManager.getInboundCount());
-        inboundQueueInfoLabel.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+        inboundQueueInfoLabel = new JLabel("Inbound Queue (FIFO) Current Length: " + dataManager.getInboundCount());
+        inboundQueueInfoLabel.setFont(new Font("Segoe UI", Font.PLAIN, 12));
         infoPanel.add(inboundQueueInfoLabel);
 
         panel.add(topPanel, BorderLayout.NORTH);
@@ -299,26 +299,26 @@ public class ZYHInventoryApp extends JFrame {
         panel.setBackground(BACKGROUND);
         panel.setBorder(new EmptyBorder(10, 10, 10, 10));
 
-        JLabel titleLabel = new JLabel("出库管理");
-        titleLabel.setFont(new Font("微软雅黑", Font.BOLD, 18));
+        JLabel titleLabel = new JLabel("Outbound Management");
+        titleLabel.setFont(new Font("Segoe UI", Font.BOLD, 18));
         titleLabel.setForeground(COLOR_1);
 
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 5));
         buttonPanel.setBackground(BACKGROUND);
 
-        JButton addBtn = createActionButton("新增出库", COLOR_1);
+        JButton addBtn = createActionButton("Add Outbound", COLOR_1);
         addBtn.addActionListener(e -> showAddOutboundDialog());
 
-        JButton modifyBtn = createActionButton("修改出库记录", COLOR_2);
+        JButton modifyBtn = createActionButton("Modify Outbound Record", COLOR_2);
         modifyBtn.addActionListener(e -> showModifyOutboundDialog());
 
-        JButton deleteBtn = createActionButton("删除出库记录", new Color(239, 68, 68));
+        JButton deleteBtn = createActionButton("Delete Outbound Record", new Color(239, 68, 68));
         deleteBtn.addActionListener(e -> deleteSelectedOutbound());
 
-        JButton filterBtn = createActionButton("数据筛选", new Color(139, 92, 246));
+        JButton filterBtn = createActionButton("Filter Data", new Color(139, 92, 246));
         filterBtn.addActionListener(e -> openFilterDialog("outbound"));
 
-        JButton batchOutboundBtn = createActionButton("批量出库", COLOR_3);
+        JButton batchOutboundBtn = createActionButton("Batch Outbound", COLOR_3);
         batchOutboundBtn.addActionListener(e -> showBatchOutboundDialog());
 
         buttonPanel.add(addBtn);
@@ -337,8 +337,8 @@ public class ZYHInventoryApp extends JFrame {
 
         JPanel infoPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         infoPanel.setBackground(BACKGROUND);
-        outboundStackInfoLabel = new JLabel("出库记录栈（先进后出）当前栈长度: " + dataManager.getOutboundCount());
-        outboundStackInfoLabel.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+        outboundStackInfoLabel = new JLabel("Outbound Stack (LIFO) Current Length: " + dataManager.getOutboundCount());
+        outboundStackInfoLabel.setFont(new Font("Segoe UI", Font.PLAIN, 12));
         infoPanel.add(outboundStackInfoLabel);
 
         panel.add(topPanel, BorderLayout.NORTH);
@@ -366,13 +366,13 @@ public class ZYHInventoryApp extends JFrame {
 
     private void updateInboundQueueInfo() {
         if (inboundQueueInfoLabel != null) {
-            inboundQueueInfoLabel.setText("入库记录队列（先进先出）当前队列长度: " + dataManager.getInboundCount());
+            inboundQueueInfoLabel.setText("Inbound Queue (FIFO) Current Length: " + dataManager.getInboundCount());
         }
     }
 
     private void updateOutboundStackInfo() {
         if (outboundStackInfoLabel != null) {
-            outboundStackInfoLabel.setText("出库记录栈（先进后出）当前栈长度: " + dataManager.getOutboundCount());
+            outboundStackInfoLabel.setText("Outbound Stack (LIFO) Current Length: " + dataManager.getOutboundCount());
         }
     }
 
@@ -408,20 +408,20 @@ public class ZYHInventoryApp extends JFrame {
         panel.setBackground(BACKGROUND);
         panel.setBorder(new EmptyBorder(10, 10, 10, 10));
 
-        JLabel titleLabel = new JLabel("库存业务报表");
-        titleLabel.setFont(new Font("微软雅黑", Font.BOLD, 18));
+        JLabel titleLabel = new JLabel("Inventory Business Report");
+        titleLabel.setFont(new Font("Segoe UI", Font.BOLD, 18));
         titleLabel.setForeground(COLOR_1);
 
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 5));
         buttonPanel.setBackground(BACKGROUND);
 
-        JButton generateBtn = createActionButton("生成报表", COLOR_1);
+        JButton generateBtn = createActionButton("Generate Report", COLOR_1);
         generateBtn.addActionListener(e -> generateReport());
 
-        JButton perfTestBtn = createActionButton("性能测试", COLOR_2);
+        JButton perfTestBtn = createActionButton("Performance Test", COLOR_2);
         perfTestBtn.addActionListener(e -> runPerformanceTest());
 
-        JButton htmlReportBtn = createActionButton("生成HTML报表", COLOR_3);
+        JButton htmlReportBtn = createActionButton("Generate HTML Report", COLOR_3);
         htmlReportBtn.addActionListener(e -> generateHtmlReport());
 
         buttonPanel.add(generateBtn);
@@ -434,7 +434,7 @@ public class ZYHInventoryApp extends JFrame {
         topPanel.add(buttonPanel, BorderLayout.CENTER);
 
         JTextArea reportArea = new JTextArea();
-        reportArea.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+        reportArea.setFont(new Font("Segoe UI", Font.PLAIN, 12));
         reportArea.setEditable(false);
         reportArea.setBorder(BorderFactory.createLineBorder(COLOR_4, 2));
         JScrollPane reportScroll = new JScrollPane(reportArea);
@@ -451,21 +451,21 @@ public class ZYHInventoryApp extends JFrame {
         panel.setBackground(BACKGROUND);
         panel.setBorder(new EmptyBorder(10, 10, 10, 10));
 
-        JLabel titleLabel = new JLabel("库存数据图表展示");
-        titleLabel.setFont(new Font("微软雅黑", Font.BOLD, 18));
+        JLabel titleLabel = new JLabel("Inventory Data Chart Display");
+        titleLabel.setFont(new Font("Segoe UI", Font.BOLD, 18));
         titleLabel.setForeground(COLOR_1);
 
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 5));
         buttonPanel.setBackground(BACKGROUND);
 
-        JButton refreshBtn = createActionButton("刷新图表", COLOR_1);
+        JButton refreshBtn = createActionButton("Refresh Chart", COLOR_1);
         refreshBtn.addActionListener(e -> refreshChart());
 
-        JLabel granularityLabel = new JLabel("时间粒度:");
-        granularityLabel.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+        JLabel granularityLabel = new JLabel("Time Granularity:");
+        granularityLabel.setFont(new Font("Segoe UI", Font.PLAIN, 12));
         
-        JComboBox<String> granularityCombo = new JComboBox<>(new String[]{"按日", "按月", "按年"});
-        granularityCombo.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+        JComboBox<String> granularityCombo = new JComboBox<>(new String[]{"By Day", "By Month", "By Year"});
+        granularityCombo.setFont(new Font("Segoe UI", Font.PLAIN, 12));
         granularityCombo.setPreferredSize(new Dimension(100, 28));
         granularityCombo.setSelectedIndex(0);
         granularityCombo.addActionListener(e -> {
@@ -510,8 +510,8 @@ public class ZYHInventoryApp extends JFrame {
         panel.setBackground(COLOR_WHITE);
         panel.setBorder(BorderFactory.createLineBorder(COLOR_4, 2));
 
-        JLabel titleLabel = new JLabel("库存分布饼图");
-        titleLabel.setFont(new Font("黑体", Font.BOLD, 14));
+        JLabel titleLabel = new JLabel("Inventory Distribution Pie Chart");
+        titleLabel.setFont(new Font("SansSerif", Font.BOLD, 14));
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
         titleLabel.setBorder(new EmptyBorder(10, 0, 10, 0));
         panel.add(titleLabel, BorderLayout.NORTH);
@@ -547,7 +547,7 @@ public class ZYHInventoryApp extends JFrame {
 
                 if (totalPositive == 0) {
                     g2d.setColor(Color.GRAY);
-                    g2d.drawString("暂无数据", centerX - 30, centerY);
+                    g2d.drawString("No Data", centerX - 30, centerY);
                     return;
                 }
 
@@ -599,7 +599,7 @@ public class ZYHInventoryApp extends JFrame {
                                   new Color(249, 115, 22), new Color(139, 92, 246), new Color(20, 184, 166),
                                   new Color(234, 179, 8), new Color(168, 85, 247), new Color(236, 72, 153)};
 
-                g2d.setFont(new Font("黑体", Font.PLAIN, 11));
+                g2d.setFont(new Font("SansSerif", Font.PLAIN, 11));
                 
                 int y = 10;
                 int itemHeight = 22;
@@ -618,10 +618,10 @@ public class ZYHInventoryApp extends JFrame {
                     g2d.drawString(item[0], paddingLeft + colorBoxSize + 8, y + 11);
                     
                     g2d.setColor(COLOR_1);
-                    g2d.setFont(new Font("黑体", Font.BOLD, 11));
+                    g2d.setFont(new Font("SansSerif", Font.BOLD, 11));
                     int textWidth = g2d.getFontMetrics().stringWidth(item[1]);
                     g2d.drawString(item[1], width - textWidth - 8, y + 11);
-                    g2d.setFont(new Font("黑体", Font.PLAIN, 11));
+                    g2d.setFont(new Font("SansSerif", Font.PLAIN, 11));
                     
                     y += itemHeight;
                     colorIndex++;
@@ -631,11 +631,11 @@ public class ZYHInventoryApp extends JFrame {
                     y += 12;
                     
                     g2d.setColor(new Color(239, 68, 68));
-                    g2d.setFont(new Font("黑体", Font.BOLD, 11));
-                    g2d.drawString("异常库存 (负数):", paddingLeft, y);
+                    g2d.setFont(new Font("SansSerif", Font.BOLD, 11));
+                    g2d.drawString("Abnormal Stock (Negative):", paddingLeft, y);
                     y += itemHeight;
                     
-                    g2d.setFont(new Font("黑体", Font.PLAIN, 11));
+                    g2d.setFont(new Font("SansSerif", Font.PLAIN, 11));
                     for (String[] item : negativeItems) {
                         if (y > height - 30) break;
                         
@@ -667,8 +667,8 @@ public class ZYHInventoryApp extends JFrame {
         panel.setBackground(COLOR_WHITE);
         panel.setBorder(BorderFactory.createLineBorder(COLOR_4, 2));
 
-        JLabel titleLabel = new JLabel("出入库统计柱状图");
-        titleLabel.setFont(new Font("黑体", Font.BOLD, 14));
+        JLabel titleLabel = new JLabel("Inbound/Outbound Statistics Bar Chart");
+        titleLabel.setFont(new Font("SansSerif", Font.BOLD, 14));
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
         titleLabel.setBorder(new EmptyBorder(10, 0, 10, 0));
         panel.add(titleLabel, BorderLayout.NORTH);
@@ -710,7 +710,7 @@ public class ZYHInventoryApp extends JFrame {
 
                 if (allPeriods.isEmpty()) {
                     g2d.setColor(Color.GRAY);
-                    g2d.drawString("暂无数据", width / 2 - 30, height / 2);
+                    g2d.drawString("No Data", width / 2 - 30, height / 2);
                     return;
                 }
 
@@ -727,7 +727,7 @@ public class ZYHInventoryApp extends JFrame {
                 int groupWidth = barWidth * 2 + barGap + 30;
                 int startX = padding;
                 
-                g2d.setFont(new Font("黑体", Font.PLAIN, 11));
+                g2d.setFont(new Font("SansSerif", Font.PLAIN, 11));
                 
                 java.util.Iterator<String> periodIter = allPeriods.iterator();
                 int index = 0;
@@ -787,12 +787,12 @@ public class ZYHInventoryApp extends JFrame {
                 g2d.setColor(COLOR_2);
                 g2d.fillRect(width - 100, padding, 15, 10);
                 g2d.setColor(Color.BLACK);
-                g2d.drawString("入库", width - 80, padding + 8);
+                g2d.drawString("Inbound", width - 80, padding + 8);
                 
                 g2d.setColor(new Color(239, 68, 68));
                 g2d.fillRect(width - 100, padding + 18, 15, 10);
                 g2d.setColor(Color.BLACK);
-                g2d.drawString("出库", width - 80, padding + 26);
+                g2d.drawString("Outbound", width - 80, padding + 26);
             }
         };
         panel.add(chartArea, BorderLayout.CENTER);
@@ -805,21 +805,21 @@ public class ZYHInventoryApp extends JFrame {
         panel.setBackground(BACKGROUND);
         panel.setBorder(new EmptyBorder(10, 10, 10, 10));
 
-        JLabel titleLabel = new JLabel("顺序表与链表性能比对");
-        titleLabel.setFont(new Font("微软雅黑", Font.BOLD, 18));
+        JLabel titleLabel = new JLabel("Sequential List vs Linked List Performance Comparison");
+        titleLabel.setFont(new Font("Segoe UI", Font.BOLD, 18));
         titleLabel.setForeground(COLOR_1);
 
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 5));
         buttonPanel.setBackground(BACKGROUND);
 
         JSpinner dataSizeSpinner = new JSpinner(new SpinnerNumberModel(10000, 1000, 100000, 1000));
-        JButton compareBtn = createActionButton("开始比对", COLOR_1);
+        JButton compareBtn = createActionButton("Start Comparison", COLOR_1);
         compareBtn.addActionListener(e -> {
             int size = (int) dataSizeSpinner.getValue();
             runComparison(size);
         });
 
-        buttonPanel.add(new JLabel("数据量:"));
+        buttonPanel.add(new JLabel("Data Size:"));
         buttonPanel.add(dataSizeSpinner);
         buttonPanel.add(compareBtn);
 
@@ -829,7 +829,7 @@ public class ZYHInventoryApp extends JFrame {
         topPanel.add(buttonPanel, BorderLayout.CENTER);
 
         JTextArea compareArea = new JTextArea();
-        compareArea.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+        compareArea.setFont(new Font("Segoe UI", Font.PLAIN, 12));
         compareArea.setEditable(false);
         compareArea.setBorder(BorderFactory.createLineBorder(COLOR_4, 2));
         JScrollPane compareScroll = new JScrollPane(compareArea);
@@ -838,8 +838,8 @@ public class ZYHInventoryApp extends JFrame {
         resultPanel.setBackground(BACKGROUND);
         resultPanel.add(compareScroll, BorderLayout.CENTER);
 
-        JLabel resultLabel = new JLabel("比对结果将显示在这里");
-        resultLabel.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+        JLabel resultLabel = new JLabel("Comparison results will be displayed here");
+        resultLabel.setFont(new Font("Segoe UI", Font.PLAIN, 12));
         resultLabel.setHorizontalAlignment(SwingConstants.CENTER);
         resultPanel.add(resultLabel, BorderLayout.NORTH);
 
@@ -857,7 +857,7 @@ public class ZYHInventoryApp extends JFrame {
                 int newStock = currentStock + quantity;
                 product.setStockQuantity(newStock);
                 
-                String status = newStock > 0 ? "正常" : (newStock < 0 ? "异常" : "售罄");
+                String status = newStock > 0 ? "Normal" : (newStock < 0 ? "Abnormal" : "Sold Out");
                 product.setStatus(status);
                 
                 if (inventoryTableModel != null) {
@@ -865,7 +865,7 @@ public class ZYHInventoryApp extends JFrame {
                     inventoryTableModel.setValueAt(status, i, 5);
                 }
                 
-                log("[库存更新] 条码: " + barcode + ", 原库存: " + currentStock + ", 新增: " + quantity + ", 新库存: " + newStock);
+                log("[Stock Update] Barcode: " + barcode + ", Original Stock: " + currentStock + ", Added: " + quantity + ", New Stock: " + newStock);
                 break;
             }
         }
@@ -887,18 +887,18 @@ public class ZYHInventoryApp extends JFrame {
     }
 
     private void loadDataFromAPI() {
-        log("开始从API加载数据...");
+        log("Starting to load data from API...");
         loadInventoryData();
         loadInboundData();
         loadOutboundData();
         updateInboundQueueInfo();
         updateOutboundStackInfo();
-        log("数据加载完成");
+        log("Data loading complete");
     }
 
     private void loadInventoryData() {
-        String response = ZYHApiClient.queryData("库存");
-        log("[库存] API响应: " + response);
+        String response = ZYHApiClient.queryData("Inventory");
+        log("[Inventory] API response: " + response);
 
         if (response != null && !response.isEmpty() && !response.contains("error")) {
             try {
@@ -914,7 +914,7 @@ public class ZYHInventoryApp extends JFrame {
                         double buyPrice = parseDouble(parts[2].trim());
                         double sellPrice = parseDouble(parts[3].trim());
                         int stock = parseInt(parts[4].trim());
-                        String status = stock > 0 ? "正常" : (stock < 0 ? "异常" : "售罄");
+                        String status = stock > 0 ? "Normal" : (stock < 0 ? "Abnormal" : "Sold Out");
 
                         ZYHProduct product = new ZYHProduct(barcode, name, buyPrice, sellPrice);
                         product.setStockQuantity(stock);
@@ -922,16 +922,16 @@ public class ZYHInventoryApp extends JFrame {
                         inventoryTableModel.addRow(new Object[]{barcode, name, buyPrice, sellPrice, stock, status});
                     }
                 }
-                log("[库存] 成功加载 " + records.size() + " 条数据");
+                log("[Inventory] Successfully loaded " + records.size() + " records");
             } catch (Exception e) {
-                log("[库存] 解析错误: " + e.getMessage());
+                log("[Inventory] Parse error: " + e.getMessage());
             }
         }
     }
 
     private void loadInboundData() {
-        String response = ZYHApiClient.queryData("入库");
-        log("[入库] API响应: " + response);
+        String response = ZYHApiClient.queryData("Inbound");
+        log("[Inbound] API response: " + response);
 
         if (response != null && !response.isEmpty() && !response.contains("error")) {
             try {
@@ -964,16 +964,16 @@ public class ZYHInventoryApp extends JFrame {
                         inboundTableModel.addRow(new Object[]{recordId, barcode, name, quantity, date});
                     }
                 }
-                log("[入库] 成功加载 " + records.size() + " 条数据");
+                log("[Inbound] Successfully loaded " + records.size() + " records");
             } catch (Exception e) {
-                log("[入库] 解析错误: " + e.getMessage());
+                log("[Inbound] Parse error: " + e.getMessage());
             }
         }
     }
 
     private void loadOutboundData() {
-        String response = ZYHApiClient.queryData("出库");
-        log("[出库] API响应: " + response);
+        String response = ZYHApiClient.queryData("Outbound");
+        log("[Outbound] API response: " + response);
 
         if (response != null && !response.isEmpty() && !response.contains("error")) {
             try {
@@ -1006,9 +1006,9 @@ public class ZYHInventoryApp extends JFrame {
                         outboundTableModel.addRow(new Object[]{recordId, barcode, name, quantity, date});
                     }
                 }
-                log("[出库] 成功加载 " + records.size() + " 条数据");
+                log("[Outbound] Successfully loaded " + records.size() + " records");
             } catch (Exception e) {
-                log("[出库] 解析错误: " + e.getMessage());
+                log("[Outbound] Parse error: " + e.getMessage());
             }
         }
     }
@@ -1025,11 +1025,11 @@ public class ZYHInventoryApp extends JFrame {
             response = response.replace("\\\"", "\"");
         }
 
-        log("[DEBUG] 处理后的响应: " + response.substring(0, Math.min(200, response.length())) + "...");
+        log("[DEBUG] Processed response: " + response.substring(0, Math.min(200, response.length())) + "...");
 
         int dataArrayStart = response.indexOf("\"data\":[");
         if (dataArrayStart == -1) {
-            log("[DEBUG] 未找到 data 数组");
+            log("[DEBUG] data array not found");
             return records;
         }
         
@@ -1037,7 +1037,7 @@ public class ZYHInventoryApp extends JFrame {
         int arrayEnd = response.lastIndexOf("]");
         
         if (arrayEnd == -1 || arrayEnd <= arrayContentStart) {
-            log("[DEBUG] data 数组格式错误");
+            log("[DEBUG] data array format error");
             return records;
         }
         
@@ -1091,32 +1091,32 @@ public class ZYHInventoryApp extends JFrame {
             }
         }
         
-        log("[DEBUG] 分割出 " + itemList.size() + " 条记录");
+        log("[DEBUG] Split into " + itemList.size() + " records");
         for (int i = 0; i < itemList.size(); i++) {
             String item = itemList.get(i);
-            log("[DEBUG] 处理第 " + (i + 1) + " 条记录: " + item.substring(0, Math.min(80, item.length())) + "...");
+            log("[DEBUG] Processing record " + (i + 1) + ": " + item.substring(0, Math.min(80, item.length())) + "...");
             String record = extractRecordData(item);
-            log("[DEBUG] 解析结果: " + record);
+            log("[DEBUG] Parse result: " + record);
             if (!record.isEmpty()) {
                 records.add(record);
             }
         }
 
-        log("[DEBUG] 解析出 " + records.size() + " 条记录");
+        log("[DEBUG] Parsed " + records.size() + " records");
         return records;
     }
 
     private String extractRecordData(String json) {
-        String barcode = parseNestedValue(json, "商品条码");
-        String name = parseNestedValue(json, "商品名称");
-        String buyPrice = parseNestedValue(json, "进货价格");
-        String sellPrice = parseNestedValue(json, "售卖定价");
-        String stock = parseNestedValue(json, "库存量");
-        String status = parseNestedValue(json, "数据状态");
-        String quantity = parseNestedValue(json, "数量");
-        String date = parseNestedValue(json, "日期");
-        String inboundItem = parseNestedValue(json, "入库项");
-        String outboundItem = parseNestedValue(json, "出库项");
+        String barcode = parseNestedValue(json, "Product Barcode");
+        String name = parseNestedValue(json, "Product Name");
+        String buyPrice = parseNestedValue(json, "Purchase Price");
+        String sellPrice = parseNestedValue(json, "Sale Price");
+        String stock = parseNestedValue(json, "Stock Quantity");
+        String status = parseNestedValue(json, "Status");
+        String quantity = parseNestedValue(json, "Quantity");
+        String date = parseNestedValue(json, "Date");
+        String inboundItem = parseNestedValue(json, "Inbound Item");
+        String outboundItem = parseNestedValue(json, "Outbound Item");
 
         if (name.isEmpty()) {
             name = inboundItem.isEmpty() ? outboundItem : inboundItem;
@@ -1133,12 +1133,12 @@ public class ZYHInventoryApp extends JFrame {
         String key = "\"" + fieldName + "\":";
         int keyIndex = json.indexOf(key);
         if (keyIndex == -1) {
-            log("[DEBUG] parseNestedValue: 未找到字段 '" + fieldName + "'");
+            log("[DEBUG] parseNestedValue: field not found '" + fieldName + "'");
             return "";
         }
-        log("[DEBUG] parseNestedValue: 字段 '" + fieldName + "' 在位置 " + keyIndex + ", 值开始位置 " + (keyIndex + key.length()));
+        log("[DEBUG] parseNestedValue: field '" + fieldName + "' at position " + keyIndex + ", value starts at " + (keyIndex + key.length()));
         if (keyIndex + key.length() < json.length()) {
-            log("[DEBUG] parseNestedValue: 字段 '" + fieldName + "' 后100字符: " + json.substring(keyIndex, Math.min(keyIndex + 100, json.length())));
+            log("[DEBUG] parseNestedValue: 100 chars after field '" + fieldName + "': " + json.substring(keyIndex, Math.min(keyIndex + 100, json.length())));
         }
 
         int valueStart = keyIndex + key.length();
@@ -1262,16 +1262,16 @@ public class ZYHInventoryApp extends JFrame {
     }
 
     private String parseFieldsData(String fieldsStr) {
-        String barcode = extractSimpleValue(fieldsStr, "商品条码");
-        String name = extractSimpleValue(fieldsStr, "商品名称");
-        String buyPrice = extractSimpleValue(fieldsStr, "进货价");
-        String sellPrice = extractSimpleValue(fieldsStr, "售卖定价");
-        String stock = extractSimpleValue(fieldsStr, "库存量");
-        String status = extractSimpleValue(fieldsStr, "状态");
-        String quantity = extractSimpleValue(fieldsStr, "数量");
-        String date = extractSimpleValue(fieldsStr, "日期");
-        String inboundItem = extractSimpleValue(fieldsStr, "入库项");
-        String outboundItem = extractSimpleValue(fieldsStr, "出库项");
+        String barcode = extractSimpleValue(fieldsStr, "Product Barcode");
+        String name = extractSimpleValue(fieldsStr, "Product Name");
+        String buyPrice = extractSimpleValue(fieldsStr, "Purchase Price");
+        String sellPrice = extractSimpleValue(fieldsStr, "Sale Price");
+        String stock = extractSimpleValue(fieldsStr, "Stock Quantity");
+        String status = extractSimpleValue(fieldsStr, "Status");
+        String quantity = extractSimpleValue(fieldsStr, "Quantity");
+        String date = extractSimpleValue(fieldsStr, "Date");
+        String inboundItem = extractSimpleValue(fieldsStr, "Inbound Item");
+        String outboundItem = extractSimpleValue(fieldsStr, "Outbound Item");
         
         if (name.isEmpty()) {
             name = inboundItem.isEmpty() ? outboundItem : inboundItem;
@@ -1341,7 +1341,7 @@ public class ZYHInventoryApp extends JFrame {
     }
 
     private void showAddProductDialog() {
-        JDialog dialog = new JDialog(this, "新增商品", true);
+        JDialog dialog = new JDialog(this, "Add Product", true);
         dialog.setSize(450, 280);
         dialog.setLocationRelativeTo(this);
         dialog.setLayout(new BorderLayout());
@@ -1358,22 +1358,22 @@ public class ZYHInventoryApp extends JFrame {
         JTextField sellPriceField = new JTextField(20);
 
         gbc.gridx = 0; gbc.gridy = 0;
-        panel.add(new JLabel("商品条码:"), gbc);
+        panel.add(new JLabel("Product Barcode:"), gbc);
         gbc.gridx = 1;
         panel.add(barcodeField, gbc);
 
         gbc.gridx = 0; gbc.gridy = 1;
-        panel.add(new JLabel("商品名称:"), gbc);
+        panel.add(new JLabel("Product Name:"), gbc);
         gbc.gridx = 1;
         panel.add(nameField, gbc);
 
         gbc.gridx = 0; gbc.gridy = 2;
-        panel.add(new JLabel("进货价格:"), gbc);
+        panel.add(new JLabel("Purchase Price:"), gbc);
         gbc.gridx = 1;
         panel.add(buyPriceField, gbc);
 
         gbc.gridx = 0; gbc.gridy = 3;
-        panel.add(new JLabel("销售价格:"), gbc);
+        panel.add(new JLabel("Sale Price:"), gbc);
         gbc.gridx = 1;
         panel.add(sellPriceField, gbc);
 
@@ -1389,7 +1389,7 @@ public class ZYHInventoryApp extends JFrame {
             }
         });
 
-        JButton okBtn = createActionButton("确定", COLOR_1);
+        JButton okBtn = createActionButton("Confirm", COLOR_1);
         okBtn.addActionListener(e -> {
             try {
                 String barcode = barcodeField.getText().trim();
@@ -1402,18 +1402,18 @@ public class ZYHInventoryApp extends JFrame {
                 ZYHProduct product = new ZYHProduct(barcode, name, buyPrice, sellPrice);
                 product.setStockQuantity(stock);
                 dataManager.getInventoryList().add(product);
-                inventoryTableModel.addRow(new Object[]{barcode, name, buyPrice, sellPrice, stock, "正常"});
+                inventoryTableModel.addRow(new Object[]{barcode, name, buyPrice, sellPrice, stock, "Normal"});
 
                 updateInboundRecordsWithProductInfo(barcode, name);
 
-                JOptionPane.showMessageDialog(dialog, "新增成功！\n入库记录已自动关联库存数量: " + stock);
+                JOptionPane.showMessageDialog(dialog, "Added successfully!\nInbound record has been automatically linked to stock quantity: " + stock);
                 dialog.dispose();
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(dialog, "输入错误：" + ex.getMessage());
+                JOptionPane.showMessageDialog(dialog, "Input error: " + ex.getMessage());
             }
         });
 
-        JButton cancelBtn = createActionButton("取消", new Color(107, 114, 128));
+        JButton cancelBtn = createActionButton("Cancel", new Color(107, 114, 128));
         cancelBtn.addActionListener(e -> dialog.dispose());
 
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 10));
@@ -1428,7 +1428,7 @@ public class ZYHInventoryApp extends JFrame {
     private void showModifyPriceDialog() {
         int selectedRow = inventoryTable.getSelectedRow();
         if (selectedRow == -1) {
-            JOptionPane.showMessageDialog(this, "请先选择一个商品");
+            JOptionPane.showMessageDialog(this, "Please select a product first");
             return;
         }
 
@@ -1437,7 +1437,7 @@ public class ZYHInventoryApp extends JFrame {
         double buyPrice = (double) inventoryTableModel.getValueAt(selectedRow, 2);
         double sellPrice = (double) inventoryTableModel.getValueAt(selectedRow, 3);
 
-        JDialog dialog = new JDialog(this, "修改商品价格", true);
+        JDialog dialog = new JDialog(this, "Modify Product Price", true);
         dialog.setSize(450, 280);
         dialog.setLocationRelativeTo(this);
 
@@ -1451,27 +1451,27 @@ public class ZYHInventoryApp extends JFrame {
         JTextField buyPriceField = new JTextField(String.valueOf(buyPrice));
         JTextField sellPriceField = new JTextField(String.valueOf(sellPrice));
 
-        panel.add(new JLabel("商品条码:"));
+        panel.add(new JLabel("Product Barcode:"));
         panel.add(barcodeField);
-        panel.add(new JLabel("商品名称:"));
+        panel.add(new JLabel("Product Name:"));
         panel.add(nameField);
-        panel.add(new JLabel("进货价格:"));
+        panel.add(new JLabel("Purchase Price:"));
         panel.add(buyPriceField);
-        panel.add(new JLabel("销售价格:"));
+        panel.add(new JLabel("Sale Price:"));
         panel.add(sellPriceField);
 
-        JButton okBtn = createActionButton("确认修改", COLOR_1);
+        JButton okBtn = createActionButton("Confirm Modify", COLOR_1);
         okBtn.addActionListener(e -> {
             try {
                 double newBuyPrice = Double.parseDouble(buyPriceField.getText().trim());
                 double newSellPrice = Double.parseDouble(sellPriceField.getText().trim());
 
                 if (newBuyPrice < 0 || newSellPrice < 0) {
-                    JOptionPane.showMessageDialog(dialog, "价格不能为负数");
+                    JOptionPane.showMessageDialog(dialog, "Price cannot be negative");
                     return;
                 }
 
-                log("[修改价格] 条码: " + barcode + ", 进货价: " + buyPrice + " -> " + newBuyPrice + ", 销售价: " + sellPrice + " -> " + newSellPrice + " (本地操作)");
+                log("[Price Modify] Barcode: " + barcode + ", Purchase Price: " + buyPrice + " -> " + newBuyPrice + ", Sale Price: " + sellPrice + " -> " + newSellPrice + " (local operation)");
 
                 for (int i = 0; i < dataManager.getInventoryList().size(); i++) {
                     ZYHProduct product = dataManager.getInventoryList().get(i);
@@ -1485,14 +1485,14 @@ public class ZYHInventoryApp extends JFrame {
                 inventoryTableModel.setValueAt(newBuyPrice, selectedRow, 2);
                 inventoryTableModel.setValueAt(newSellPrice, selectedRow, 3);
 
-                JOptionPane.showMessageDialog(dialog, "修改成功！");
+                JOptionPane.showMessageDialog(dialog, "Modified successfully!");
                 dialog.dispose();
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(dialog, "输入错误：" + ex.getMessage());
+                JOptionPane.showMessageDialog(dialog, "Input error: " + ex.getMessage());
             }
         });
 
-        JButton cancelBtn = createActionButton("取消", new Color(107, 114, 128));
+        JButton cancelBtn = createActionButton("Cancel", new Color(107, 114, 128));
         cancelBtn.addActionListener(e -> dialog.dispose());
 
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 10));
@@ -1505,7 +1505,7 @@ public class ZYHInventoryApp extends JFrame {
     }
 
     private void showBatchPriceDialog() {
-        JDialog dialog = new JDialog(this, "批量修改价格", true);
+        JDialog dialog = new JDialog(this, "Batch Price Update", true);
         dialog.setSize(650, 500);
         dialog.setLocationRelativeTo(this);
 
@@ -1513,13 +1513,13 @@ public class ZYHInventoryApp extends JFrame {
         mainPanel.setBorder(new EmptyBorder(15, 15, 15, 15));
 
         JPanel topPanel = new JPanel(new GridLayout(1, 3, 10, 10));
-        topPanel.add(new JLabel("调整方式:"));
-        JComboBox<String> adjustTypeCombo = new JComboBox<>(new String[]{"按金额降价", "按金额涨价", "按比例降价", "按比例涨价"});
+        topPanel.add(new JLabel("Adjustment Method:"));
+        JComboBox<String> adjustTypeCombo = new JComboBox<>(new String[]{"Decrease by Amount", "Increase by Amount", "Decrease by Percentage", "Increase by Percentage"});
         topPanel.add(adjustTypeCombo);
         JTextField adjustValueField = new JTextField("0");
         topPanel.add(adjustValueField);
 
-        String[] columnNames = {"选择", "条码", "商品名称", "当前进货价", "当前销售价", "新进货价", "新销售价"};
+        String[] columnNames = {"Select", "Barcode", "Product Name", "Current Purchase Price", "Current Sale Price", "New Purchase Price", "New Sale Price"};
         java.util.List<Object[]> priceData = new java.util.ArrayList<>();
         for (int i = 0; i < dataManager.getInventoryList().size(); i++) {
             ZYHProduct product = dataManager.getInventoryList().get(i);
@@ -1550,12 +1550,12 @@ public class ZYHInventoryApp extends JFrame {
             }
         };
         JTable priceTable = new JTable(priceTableModel);
-        priceTable.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+        priceTable.setFont(new Font("Segoe UI", Font.PLAIN, 12));
         priceTable.setRowHeight(28);
         JScrollPane tableScroll = new JScrollPane(priceTable);
-        tableScroll.setBorder(BorderFactory.createTitledBorder("商品价格列表（可直接编辑新价格）"));
+        tableScroll.setBorder(BorderFactory.createTitledBorder("Product Price List (new prices can be edited directly)"));
 
-        JButton previewBtn = createActionButton("预览调整", COLOR_2);
+        JButton previewBtn = createActionButton("Preview Adjustment", COLOR_2);
         previewBtn.addActionListener(e -> {
             try {
                 String adjustType = (String) adjustTypeCombo.getSelectedItem();
@@ -1566,27 +1566,27 @@ public class ZYHInventoryApp extends JFrame {
                     double currentSell = (Double) priceTableModel.getValueAt(i, 4);
                     double newSell = currentSell;
                     switch (adjustType) {
-                        case "按金额降价":
+                        case "Decrease by Amount":
                             newSell = Math.max(0, currentSell - adjustValue);
                             break;
-                        case "按金额涨价":
+                        case "Increase by Amount":
                             newSell = currentSell + adjustValue;
                             break;
-                        case "按比例降价":
+                        case "Decrease by Percentage":
                             newSell = Math.max(0, currentSell * (1 - adjustValue / 100));
                             break;
-                        case "按比例涨价":
+                        case "Increase by Percentage":
                             newSell = currentSell * (1 + adjustValue / 100);
                             break;
                     }
                     priceTableModel.setValueAt(Math.round(newSell * 100.0) / 100.0, i, 6);
                 }
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(dialog, "输入错误：" + ex.getMessage());
+                JOptionPane.showMessageDialog(dialog, "Input error: " + ex.getMessage());
             }
         });
 
-        JButton selectAllBtn = createActionButton("全选", new Color(107, 114, 128));
+        JButton selectAllBtn = createActionButton("Select All", new Color(107, 114, 128));
         selectAllBtn.addActionListener(e -> {
             for (int i = 0; i < priceTableModel.getRowCount(); i++) {
                 priceTableModel.setValueAt(true, i, 0);
@@ -1594,7 +1594,7 @@ public class ZYHInventoryApp extends JFrame {
         });
 
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        JButton okBtn = createActionButton("确认修改", COLOR_1);
+        JButton okBtn = createActionButton("Confirm Modify", COLOR_1);
         okBtn.addActionListener(e -> {
             try {
                 int successCount = 0;
@@ -1616,15 +1616,15 @@ public class ZYHInventoryApp extends JFrame {
                 }
 
                 playSound("success");
-                JOptionPane.showMessageDialog(dialog, "批量修改成功！共修改 " + successCount + " 个商品销售价格");
+                JOptionPane.showMessageDialog(dialog, "Batch update successful! Modified sale prices for " + successCount + " products");
                 dialog.dispose();
             } catch (Exception ex) {
                 playSound("error");
-                JOptionPane.showMessageDialog(dialog, "输入错误：" + ex.getMessage());
+                JOptionPane.showMessageDialog(dialog, "Input error: " + ex.getMessage());
             }
         });
 
-        JButton cancelBtn = createActionButton("取消", new Color(107, 114, 128));
+        JButton cancelBtn = createActionButton("Cancel", new Color(107, 114, 128));
         cancelBtn.addActionListener(e -> dialog.dispose());
 
         buttonPanel.add(previewBtn);
@@ -1641,7 +1641,7 @@ public class ZYHInventoryApp extends JFrame {
     }
 
     private void showScanInboundDialog() {
-        JDialog dialog = new JDialog(this, "扫码入库", true);
+        JDialog dialog = new JDialog(this, "Scan to Inbound", true);
         dialog.setSize(400, 200);
         dialog.setLocationRelativeTo(this);
 
@@ -1651,32 +1651,32 @@ public class ZYHInventoryApp extends JFrame {
         JTextField barcodeField = new JTextField();
         JTextField quantityField = new JTextField("1");
 
-        panel.add(new JLabel("商品条码（扫码枪输入）:"));
+        panel.add(new JLabel("Product Barcode (scanner input):"));
         panel.add(barcodeField);
-        panel.add(new JLabel("入库数量:"));
+        panel.add(new JLabel("Inbound Quantity:"));
         panel.add(quantityField);
 
-        JButton okBtn = createActionButton("确认入库", COLOR_1);
+        JButton okBtn = createActionButton("Confirm Inbound", COLOR_1);
         okBtn.addActionListener(e -> {
             try {
                 String barcode = barcodeField.getText().trim();
                 int quantity = Integer.parseInt(quantityField.getText().trim());
 
-                log("[扫码入库] 条码: " + barcode + ", 数量: " + quantity + " (本地操作)");
+                log("[Scan Inbound] Barcode: " + barcode + ", Quantity: " + quantity + " (local operation)");
 
                 ZYHInboundRecord record = new ZYHInboundRecord(barcode, "", quantity);
                 dataManager.getInboundQueue().addLast(record);
 
                 playSound("success");
-                JOptionPane.showMessageDialog(dialog, "入库成功！");
+                JOptionPane.showMessageDialog(dialog, "Inbound successful!");
                 dialog.dispose();
                 loadInboundData();
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(dialog, "输入错误：" + ex.getMessage());
+                JOptionPane.showMessageDialog(dialog, "Input error: " + ex.getMessage());
             }
         });
 
-        JButton cancelBtn = createActionButton("取消", new Color(107, 114, 128));
+        JButton cancelBtn = createActionButton("Cancel", new Color(107, 114, 128));
         cancelBtn.addActionListener(e -> dialog.dispose());
 
         panel.add(okBtn);
@@ -1687,7 +1687,7 @@ public class ZYHInventoryApp extends JFrame {
     }
 
     private void showAddInboundDialog() {
-        JDialog dialog = new JDialog(this, "新增入库", true);
+        JDialog dialog = new JDialog(this, "Add Inbound", true);
         dialog.setSize(400, 200);
         dialog.setLocationRelativeTo(this);
 
@@ -1697,18 +1697,18 @@ public class ZYHInventoryApp extends JFrame {
         JTextField barcodeField = new JTextField();
         JTextField quantityField = new JTextField("1");
 
-        panel.add(new JLabel("商品条码:"));
+        panel.add(new JLabel("Product Barcode:"));
         panel.add(barcodeField);
-        panel.add(new JLabel("入库数量:"));
+        panel.add(new JLabel("Inbound Quantity:"));
         panel.add(quantityField);
 
-        JButton okBtn = createActionButton("确认入库", COLOR_1);
+        JButton okBtn = createActionButton("Confirm Inbound", COLOR_1);
         okBtn.addActionListener(e -> {
             try {
                 String barcode = barcodeField.getText().trim();
                 int quantity = Integer.parseInt(quantityField.getText().trim());
 
-                log("[新增入库] 条码: " + barcode + ", 数量: " + quantity + " (本地操作)");
+                log("[New Inbound] Barcode: " + barcode + ", Quantity: " + quantity + " (local operation)");
 
                 String recordId = String.valueOf(System.currentTimeMillis());
                 String name = findProductNameByBarcode(barcode);
@@ -1722,14 +1722,14 @@ public class ZYHInventoryApp extends JFrame {
                 updateInventoryQuantity(barcode, quantity);
 
                 playSound("success");
-                JOptionPane.showMessageDialog(dialog, "入库成功！");
+                JOptionPane.showMessageDialog(dialog, "Inbound successful!");
                 dialog.dispose();
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(dialog, "输入错误：" + ex.getMessage());
+                JOptionPane.showMessageDialog(dialog, "Input error: " + ex.getMessage());
             }
         });
 
-        JButton cancelBtn = createActionButton("取消", new Color(107, 114, 128));
+        JButton cancelBtn = createActionButton("Cancel", new Color(107, 114, 128));
         cancelBtn.addActionListener(e -> dialog.dispose());
 
         panel.add(okBtn);
@@ -1740,14 +1740,14 @@ public class ZYHInventoryApp extends JFrame {
     }
 
     private void showBatchInboundDialog() {
-        JDialog dialog = new JDialog(this, "批量入库", true);
+        JDialog dialog = new JDialog(this, "Batch Inbound", true);
         dialog.setSize(600, 450);
         dialog.setLocationRelativeTo(this);
 
         JPanel mainPanel = new JPanel(new BorderLayout(10, 10));
         mainPanel.setBorder(new EmptyBorder(15, 15, 15, 15));
 
-        String[] columnNames = {"日期", "条码", "商品名称", "数量"};
+        String[] columnNames = {"Date", "Barcode", "Product Name", "Quantity"};
         java.util.List<Object[]> batchData = new java.util.ArrayList<>();
         batchData.add(new Object[]{java.time.LocalDate.now().toString(), "", "", 1});
         javax.swing.table.DefaultTableModel batchTableModel = new javax.swing.table.DefaultTableModel(batchData.toArray(new Object[0][]), columnNames) {
@@ -1762,18 +1762,18 @@ public class ZYHInventoryApp extends JFrame {
         topPanel.setLayout(new BoxLayout(topPanel, BoxLayout.Y_AXIS));
         
         JPanel inputPanel = new JPanel(new GridLayout(3, 2, 10, 10));
-        inputPanel.add(new JLabel("商品条码:"));
+        inputPanel.add(new JLabel("Product Barcode:"));
         JTextField barcodeField = new JTextField();
         inputPanel.add(barcodeField);
-        inputPanel.add(new JLabel("商品名称:"));
+        inputPanel.add(new JLabel("Product Name:"));
         JTextField nameField = new JTextField();
         inputPanel.add(nameField);
-        inputPanel.add(new JLabel("入库数量:"));
+        inputPanel.add(new JLabel("Inbound Quantity:"));
         JTextField quantityField = new JTextField("1");
         inputPanel.add(quantityField);
         
         JPanel quickAddPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        JButton quickAddBtn = createActionButton("快速添加到列表", COLOR_2);
+        JButton quickAddBtn = createActionButton("Quick Add to List", COLOR_2);
         quickAddBtn.addActionListener(e -> {
             try {
                 String barcode = barcodeField.getText().trim();
@@ -1792,10 +1792,10 @@ public class ZYHInventoryApp extends JFrame {
                     quantityField.setText("1");
                     barcodeField.requestFocus();
                 } else {
-                    JOptionPane.showMessageDialog(dialog, "请输入商品条码");
+                    JOptionPane.showMessageDialog(dialog, "Please enter product barcode");
                 }
             } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(dialog, "数量必须是数字");
+                JOptionPane.showMessageDialog(dialog, "Quantity must be a number");
             }
         });
         quickAddPanel.add(quickAddBtn);
@@ -1818,17 +1818,17 @@ public class ZYHInventoryApp extends JFrame {
         });
         
         barcodeField.addActionListener(e -> quickAddBtn.doClick());
-        batchTable.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+        batchTable.setFont(new Font("Segoe UI", Font.PLAIN, 12));
         batchTable.setRowHeight(28);
         JScrollPane tableScroll = new JScrollPane(batchTable);
-        tableScroll.setBorder(BorderFactory.createTitledBorder("入库记录列表（可编辑）"));
+        tableScroll.setBorder(BorderFactory.createTitledBorder("Inbound Record List (editable)"));
 
-        JButton addRowBtn = createActionButton("添加一行", COLOR_2);
+        JButton addRowBtn = createActionButton("Add Row", COLOR_2);
         addRowBtn.addActionListener(e -> {
             batchTableModel.addRow(new Object[]{java.time.LocalDate.now().toString(), "", "", 1});
         });
 
-        JButton removeRowBtn = createActionButton("删除行", new Color(239, 68, 68));
+        JButton removeRowBtn = createActionButton("Delete Row", new Color(239, 68, 68));
         removeRowBtn.addActionListener(e -> {
             int selectedRow = batchTable.getSelectedRow();
             if (selectedRow >= 0) {
@@ -1837,7 +1837,7 @@ public class ZYHInventoryApp extends JFrame {
         });
 
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        JButton okBtn = createActionButton("确认入库", COLOR_1);
+        JButton okBtn = createActionButton("Confirm Inbound", COLOR_1);
         okBtn.addActionListener(e -> {
             try {
                 int successCount = 0;
@@ -1859,15 +1859,15 @@ public class ZYHInventoryApp extends JFrame {
 
                 updateInboundQueueInfo();
                 playSound("success");
-                JOptionPane.showMessageDialog(dialog, "批量入库成功！共录入 " + successCount + " 条记录");
+                JOptionPane.showMessageDialog(dialog, "Batch inbound successful! Added " + successCount + " records");
                 dialog.dispose();
             } catch (Exception ex) {
                 playSound("error");
-                JOptionPane.showMessageDialog(dialog, "输入错误：" + ex.getMessage());
+                JOptionPane.showMessageDialog(dialog, "Input error: " + ex.getMessage());
             }
         });
 
-        JButton cancelBtn = createActionButton("取消", new Color(107, 114, 128));
+        JButton cancelBtn = createActionButton("Cancel", new Color(107, 114, 128));
         cancelBtn.addActionListener(e -> dialog.dispose());
 
         buttonPanel.add(addRowBtn);
@@ -1886,7 +1886,7 @@ public class ZYHInventoryApp extends JFrame {
     private void showModifyInboundDialog() {
         int selectedRow = inboundTable.getSelectedRow();
         if (selectedRow == -1) {
-            JOptionPane.showMessageDialog(this, "请先选择一条入库记录");
+            JOptionPane.showMessageDialog(this, "Please select an inbound record first");
             return;
         }
 
@@ -1895,7 +1895,7 @@ public class ZYHInventoryApp extends JFrame {
         String name = (String) inboundTableModel.getValueAt(selectedRow, 2);
         int oldQuantity = (int) inboundTableModel.getValueAt(selectedRow, 3);
 
-        JDialog dialog = new JDialog(this, "修改入库记录", true);
+        JDialog dialog = new JDialog(this, "Modify Inbound Record", true);
         dialog.setSize(400, 200);
         dialog.setLocationRelativeTo(this);
 
@@ -1906,23 +1906,23 @@ public class ZYHInventoryApp extends JFrame {
         barcodeField.setEditable(false);
         JTextField quantityField = new JTextField(String.valueOf(oldQuantity));
 
-        panel.add(new JLabel("商品条码:"));
+        panel.add(new JLabel("Product Barcode:"));
         panel.add(barcodeField);
-        panel.add(new JLabel("入库数量:"));
+        panel.add(new JLabel("Inbound Quantity:"));
         panel.add(quantityField);
 
-        JButton okBtn = createActionButton("确认修改", COLOR_1);
+        JButton okBtn = createActionButton("Confirm Modify", COLOR_1);
         okBtn.addActionListener(e -> {
             try {
                 int newQuantity = Integer.parseInt(quantityField.getText().trim());
                 if (newQuantity <= 0) {
-                    JOptionPane.showMessageDialog(dialog, "入库数量必须大于0");
+                    JOptionPane.showMessageDialog(dialog, "Inbound quantity must be greater than 0");
                     return;
                 }
 
                 int diff = newQuantity - oldQuantity;
 
-                log("[修改入库] 记录ID: " + recordId + ", 条码: " + barcode + ", 原数量: " + oldQuantity + ", 新数量: " + newQuantity + " (本地操作)");
+                log("[Modify Inbound] Record ID: " + recordId + ", Barcode: " + barcode + ", Original Quantity: " + oldQuantity + ", New Quantity: " + newQuantity + " (local operation)");
 
                 for (int i = 0; i < dataManager.getInboundQueue().size(); i++) {
                     ZYHInboundRecord record = dataManager.getInboundQueue().get(i);
@@ -1936,14 +1936,14 @@ public class ZYHInventoryApp extends JFrame {
 
                 updateInventoryQuantity(barcode, diff);
 
-                JOptionPane.showMessageDialog(dialog, "修改成功！");
+                JOptionPane.showMessageDialog(dialog, "Modified successfully!");
                 dialog.dispose();
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(dialog, "输入错误：" + ex.getMessage());
+                JOptionPane.showMessageDialog(dialog, "Input error: " + ex.getMessage());
             }
         });
 
-        JButton cancelBtn = createActionButton("取消", new Color(107, 114, 128));
+        JButton cancelBtn = createActionButton("Cancel", new Color(107, 114, 128));
         cancelBtn.addActionListener(e -> dialog.dispose());
 
         panel.add(okBtn);
@@ -1954,7 +1954,7 @@ public class ZYHInventoryApp extends JFrame {
     }
 
     private void showAddOutboundDialog() {
-        JDialog dialog = new JDialog(this, "新增出库", true);
+        JDialog dialog = new JDialog(this, "Add Outbound", true);
         dialog.setSize(400, 250);
         dialog.setLocationRelativeTo(this);
 
@@ -1978,14 +1978,14 @@ public class ZYHInventoryApp extends JFrame {
             }
         });
 
-        panel.add(new JLabel("商品条码:"));
+        panel.add(new JLabel("Product Barcode:"));
         panel.add(barcodeField);
-        panel.add(new JLabel("商品名称:"));
+        panel.add(new JLabel("Product Name:"));
         panel.add(nameField);
-        panel.add(new JLabel("出库数量:"));
+        panel.add(new JLabel("Outbound Quantity:"));
         panel.add(quantityField);
 
-        JButton okBtn = createActionButton("确认出库", COLOR_1);
+        JButton okBtn = createActionButton("Confirm Outbound", COLOR_1);
         okBtn.addActionListener(e -> {
             try {
                 String barcode = barcodeField.getText().trim();
@@ -1996,7 +1996,7 @@ public class ZYHInventoryApp extends JFrame {
                     name = findProductNameByBarcode(barcode);
                 }
 
-                log("[新增出库] 条码: " + barcode + ", 名称: " + name + ", 数量: " + quantity + " (本地操作)");
+                log("[New Outbound] Barcode: " + barcode + ", Name: " + name + ", Quantity: " + quantity + " (local operation)");
 
                 String recordId = String.valueOf(System.currentTimeMillis());
                 ZYHOutboundRecord record = new ZYHOutboundRecord(recordId, barcode, name, quantity, java.time.LocalDate.now().toString());
@@ -2009,14 +2009,14 @@ public class ZYHInventoryApp extends JFrame {
                 updateInventoryQuantity(barcode, -quantity);
 
                 playSound("success");
-                JOptionPane.showMessageDialog(dialog, "出库成功！");
+                JOptionPane.showMessageDialog(dialog, "Outbound successful!");
                 dialog.dispose();
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(dialog, "输入错误：" + ex.getMessage());
+                JOptionPane.showMessageDialog(dialog, "Input error: " + ex.getMessage());
             }
         });
 
-        JButton cancelBtn = createActionButton("取消", new Color(107, 114, 128));
+        JButton cancelBtn = createActionButton("Cancel", new Color(107, 114, 128));
         cancelBtn.addActionListener(e -> dialog.dispose());
 
         panel.add(okBtn);
@@ -2027,14 +2027,14 @@ public class ZYHInventoryApp extends JFrame {
     }
 
     private void showBatchOutboundDialog() {
-        JDialog dialog = new JDialog(this, "批量出库", true);
+        JDialog dialog = new JDialog(this, "Batch Outbound", true);
         dialog.setSize(600, 450);
         dialog.setLocationRelativeTo(this);
 
         JPanel mainPanel = new JPanel(new BorderLayout(10, 10));
         mainPanel.setBorder(new EmptyBorder(15, 15, 15, 15));
 
-        String[] columnNames = {"日期", "条码", "商品名称", "数量"};
+        String[] columnNames = {"Date", "Barcode", "Product Name", "Quantity"};
         java.util.List<Object[]> batchData = new java.util.ArrayList<>();
         batchData.add(new Object[]{java.time.LocalDate.now().toString(), "", "", 1});
         javax.swing.table.DefaultTableModel batchTableModel = new javax.swing.table.DefaultTableModel(batchData.toArray(new Object[0][]), columnNames) {
@@ -2049,18 +2049,18 @@ public class ZYHInventoryApp extends JFrame {
         topPanel.setLayout(new BoxLayout(topPanel, BoxLayout.Y_AXIS));
         
         JPanel inputPanel = new JPanel(new GridLayout(3, 2, 10, 10));
-        inputPanel.add(new JLabel("商品条码:"));
+        inputPanel.add(new JLabel("Product Barcode:"));
         JTextField barcodeField = new JTextField();
         inputPanel.add(barcodeField);
-        inputPanel.add(new JLabel("商品名称:"));
+        inputPanel.add(new JLabel("Product Name:"));
         JTextField nameField = new JTextField();
         inputPanel.add(nameField);
-        inputPanel.add(new JLabel("出库数量:"));
+        inputPanel.add(new JLabel("Outbound Quantity:"));
         JTextField quantityField = new JTextField("1");
         inputPanel.add(quantityField);
         
         JPanel quickAddPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        JButton quickAddBtn = createActionButton("快速添加到列表", COLOR_2);
+        JButton quickAddBtn = createActionButton("Quick Add to List", COLOR_2);
         quickAddBtn.addActionListener(e -> {
             try {
                 String barcode = barcodeField.getText().trim();
@@ -2079,10 +2079,10 @@ public class ZYHInventoryApp extends JFrame {
                     quantityField.setText("1");
                     barcodeField.requestFocus();
                 } else {
-                    JOptionPane.showMessageDialog(dialog, "请输入商品条码");
+                    JOptionPane.showMessageDialog(dialog, "Please enter product barcode");
                 }
             } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(dialog, "数量必须是数字");
+                JOptionPane.showMessageDialog(dialog, "Quantity must be a number");
             }
         });
         quickAddPanel.add(quickAddBtn);
@@ -2106,17 +2106,17 @@ public class ZYHInventoryApp extends JFrame {
         
         barcodeField.addActionListener(e -> quickAddBtn.doClick());
         
-        batchTable.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+        batchTable.setFont(new Font("Segoe UI", Font.PLAIN, 12));
         batchTable.setRowHeight(28);
         JScrollPane tableScroll = new JScrollPane(batchTable);
-        tableScroll.setBorder(BorderFactory.createTitledBorder("出库记录列表（可编辑）"));
+        tableScroll.setBorder(BorderFactory.createTitledBorder("Outbound Record List (editable)"));
 
-        JButton addRowBtn = createActionButton("添加一行", COLOR_2);
+        JButton addRowBtn = createActionButton("Add Row", COLOR_2);
         addRowBtn.addActionListener(e -> {
             batchTableModel.addRow(new Object[]{java.time.LocalDate.now().toString(), "", "", 1});
         });
 
-        JButton removeRowBtn = createActionButton("删除行", new Color(239, 68, 68));
+        JButton removeRowBtn = createActionButton("Delete Row", new Color(239, 68, 68));
         removeRowBtn.addActionListener(e -> {
             int selectedRow = batchTable.getSelectedRow();
             if (selectedRow >= 0) {
@@ -2125,7 +2125,7 @@ public class ZYHInventoryApp extends JFrame {
         });
 
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        JButton okBtn = createActionButton("确认出库", COLOR_1);
+        JButton okBtn = createActionButton("Confirm Outbound", COLOR_1);
         okBtn.addActionListener(e -> {
             try {
                 int successCount = 0;
@@ -2147,15 +2147,15 @@ public class ZYHInventoryApp extends JFrame {
 
                 updateOutboundStackInfo();
                 playSound("success");
-                JOptionPane.showMessageDialog(dialog, "批量出库成功！共录入 " + successCount + " 条记录");
+                JOptionPane.showMessageDialog(dialog, "Batch outbound successful! Added " + successCount + " records");
                 dialog.dispose();
             } catch (Exception ex) {
                 playSound("error");
-                JOptionPane.showMessageDialog(dialog, "输入错误：" + ex.getMessage());
+                JOptionPane.showMessageDialog(dialog, "Input error: " + ex.getMessage());
             }
         });
 
-        JButton cancelBtn = createActionButton("取消", new Color(107, 114, 128));
+        JButton cancelBtn = createActionButton("Cancel", new Color(107, 114, 128));
         cancelBtn.addActionListener(e -> dialog.dispose());
 
         buttonPanel.add(addRowBtn);
@@ -2174,7 +2174,7 @@ public class ZYHInventoryApp extends JFrame {
     private void showModifyOutboundDialog() {
         int selectedRow = outboundTable.getSelectedRow();
         if (selectedRow == -1) {
-            JOptionPane.showMessageDialog(this, "请先选择一条出库记录");
+            JOptionPane.showMessageDialog(this, "Please select an outbound record first");
             return;
         }
 
@@ -2183,7 +2183,7 @@ public class ZYHInventoryApp extends JFrame {
         String name = (String) outboundTableModel.getValueAt(selectedRow, 2);
         int oldQuantity = (int) outboundTableModel.getValueAt(selectedRow, 3);
 
-        JDialog dialog = new JDialog(this, "修改出库记录", true);
+        JDialog dialog = new JDialog(this, "Modify Outbound Record", true);
         dialog.setSize(400, 200);
         dialog.setLocationRelativeTo(this);
 
@@ -2194,17 +2194,17 @@ public class ZYHInventoryApp extends JFrame {
         barcodeField.setEditable(false);
         JTextField quantityField = new JTextField(String.valueOf(oldQuantity));
 
-        panel.add(new JLabel("商品条码:"));
+        panel.add(new JLabel("Product Barcode:"));
         panel.add(barcodeField);
-        panel.add(new JLabel("出库数量:"));
+        panel.add(new JLabel("Outbound Quantity:"));
         panel.add(quantityField);
 
-        JButton okBtn = createActionButton("确认修改", COLOR_1);
+        JButton okBtn = createActionButton("Confirm Modify", COLOR_1);
         okBtn.addActionListener(e -> {
             try {
                 int newQuantity = Integer.parseInt(quantityField.getText().trim());
                 if (newQuantity <= 0) {
-                    JOptionPane.showMessageDialog(dialog, "出库数量必须大于0");
+                    JOptionPane.showMessageDialog(dialog, "Outbound quantity must be greater than 0");
                     return;
                 }
 
@@ -2212,11 +2212,11 @@ public class ZYHInventoryApp extends JFrame {
                 int diff = oldQuantity - newQuantity;
 
                 if (currentStock + diff < 0) {
-                    JOptionPane.showMessageDialog(dialog, "库存不足！当前库存: " + currentStock + ", 需要增加库存: " + Math.abs(currentStock + diff));
+                    JOptionPane.showMessageDialog(dialog, "Insufficient stock! Current stock: " + currentStock + ", need to increase stock by: " + Math.abs(currentStock + diff));
                     return;
                 }
 
-                log("[修改出库] 记录ID: " + recordId + ", 条码: " + barcode + ", 原数量: " + oldQuantity + ", 新数量: " + newQuantity + " (本地操作)");
+                log("[Modify Outbound] Record ID: " + recordId + ", Barcode: " + barcode + ", Original Quantity: " + oldQuantity + ", New Quantity: " + newQuantity + " (local operation)");
 
                 for (int i = 0; i < dataManager.getOutboundStack().size(); i++) {
                     ZYHOutboundRecord record = dataManager.getOutboundStack().get(i);
@@ -2230,14 +2230,14 @@ public class ZYHInventoryApp extends JFrame {
 
                 updateInventoryQuantity(barcode, diff);
 
-                JOptionPane.showMessageDialog(dialog, "修改成功！");
+                JOptionPane.showMessageDialog(dialog, "Modified successfully!");
                 dialog.dispose();
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(dialog, "输入错误：" + ex.getMessage());
+                JOptionPane.showMessageDialog(dialog, "Input error: " + ex.getMessage());
             }
         });
 
-        JButton cancelBtn = createActionButton("取消", new Color(107, 114, 128));
+        JButton cancelBtn = createActionButton("Cancel", new Color(107, 114, 128));
         cancelBtn.addActionListener(e -> dialog.dispose());
 
         panel.add(okBtn);
@@ -2259,27 +2259,27 @@ public class ZYHInventoryApp extends JFrame {
 
     private void generateReport() {
         StringBuilder report = new StringBuilder();
-        report.append("========== 邹宇恒库存管理系统 业务报表 ==========\n\n");
-        report.append("生成时间: ").append(java.time.LocalDateTime.now().toString().substring(0, 19)).append("\n\n");
+        report.append("========== Inventory Management System Business Report ==========\n\n");
+        report.append("Generated Time: ").append(java.time.LocalDateTime.now().toString().substring(0, 19)).append("\n\n");
 
-        report.append("【库存统计】\n");
-        report.append("商品总数: ").append(dataManager.getInventoryCount()).append("\n");
-        report.append("库存记录数: ").append(dataManager.getInventoryCount()).append("\n");
-        report.append("入库记录数: ").append(dataManager.getInboundCount()).append("\n");
-        report.append("出库记录数: ").append(dataManager.getOutboundCount()).append("\n\n");
+        report.append("[Inventory Statistics]\n");
+        report.append("Total Products: ").append(dataManager.getInventoryCount()).append("\n");
+        report.append("Inventory Records: ").append(dataManager.getInventoryCount()).append("\n");
+        report.append("Inbound Records: ").append(dataManager.getInboundCount()).append("\n");
+        report.append("Outbound Records: ").append(dataManager.getOutboundCount()).append("\n\n");
 
-        report.append("【顺序表数据】\n");
-        report.append("商品列表: ").append(dataManager.getInventoryList().size()).append(" 条\n");
-        report.append("库存列表: ").append(dataManager.getInventoryList().size()).append(" 条\n\n");
+        report.append("[Sequential List Data]\n");
+        report.append("Product List: ").append(dataManager.getInventoryList().size()).append(" records\n");
+        report.append("Inventory List: ").append(dataManager.getInventoryList().size()).append(" records\n\n");
 
-        report.append("【链表数据】\n");
-        report.append("入库队列: ").append(dataManager.getInboundQueue().size()).append(" 条\n");
-        report.append("出库栈: ").append(dataManager.getOutboundStack().size()).append(" 条\n\n");
+        report.append("[Linked List Data]\n");
+        report.append("Inbound Queue: ").append(dataManager.getInboundQueue().size()).append(" records\n");
+        report.append("Outbound Stack: ").append(dataManager.getOutboundStack().size()).append(" records\n\n");
 
-        report.append("【库存详情】\n");
+        report.append("[Inventory Details]\n");
         for (int i = 0; i < dataManager.getInventoryList().size(); i++) {
             ZYHProduct product = dataManager.getInventoryList().get(i);
-            report.append(String.format("%d. %s - 库存: %d\n", i + 1, product.getName(), product.getStockQuantity()));
+            report.append(String.format("%d. %s - Stock: %d\n", i + 1, product.getName(), product.getStockQuantity()));
         }
 
         report.append("\n===============================================\n");
@@ -2290,27 +2290,27 @@ public class ZYHInventoryApp extends JFrame {
             }
         }
 
-        JOptionPane.showMessageDialog(this, "报表已生成！");
+        JOptionPane.showMessageDialog(this, "Report generated successfully!");
 
-        log("[报表] 生成完成");
+        log("[Report] Generation complete");
     }
 
     /**
-     * 生成HTML格式的库存数据分析报表
+     * Generate HTML format inventory data analysis report
      */
     private void generateHtmlReport() {
         StringBuilder html = new StringBuilder();
-        
-        // HTML头部
+
+        // HTML header
         html.append("<!DOCTYPE html>\n");
-        html.append("<html lang=\"zh-CN\">\n");
+        html.append("<html lang=\"en\">\n");
         html.append("<head>\n");
         html.append("<meta charset=\"UTF-8\">\n");
-        html.append("<title>库存数据分析报告</title>\n");
+        html.append("<title>Inventory Data Analysis Report</title>\n");
         html.append("<style>\n");
         html.append(":root { --darkest: #0c4a6e; --dark: #0369a1; --primary: #0ea5e9; --light: #bae6fd; --white: #ffffff; }\n");
         html.append("* { margin: 0; padding: 0; box-sizing: border-box; }\n");
-        html.append("body { font-family: 'Microsoft YaHei', Arial, sans-serif; background: var(--light); padding: 30px; }\n");
+        html.append("body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--light); padding: 30px; }\n");
         html.append(".report-container { max-width: 1200px; margin: 0 auto; background: var(--white); border-radius: 16px; box-shadow: 0 8px 32px rgba(12, 74, 110, 0.15); overflow: hidden; }\n");
         html.append(".report-header { background: linear-gradient(135deg, var(--darkest) 0%, var(--dark) 50%, var(--primary) 100%); color: var(--white); padding: 35px; text-align: center; }\n");
         html.append(".report-header h1 { font-size: 28px; margin-bottom: 12px; font-weight: 600; }\n");
@@ -2349,61 +2349,61 @@ public class ZYHInventoryApp extends JFrame {
         html.append(".advice-content { flex: 1; }\n");
         html.append(".advice-title { font-size: 16px; font-weight: bold; color: var(--darkest); margin-bottom: 8px; }\n");
         html.append(".advice-text { font-size: 14px; color: #374151; line-height: 1.6; }\n");
-        html.append(".排查-list { }\n");
-        html.append(".排查-item { background: rgba(220, 38, 38, 0.05); border-left: 4px solid #dc2626; padding: 18px; border-radius: 0 12px 12px 0; margin-bottom: 15px; }\n");
-        html.append(".排查-item:last-child { margin-bottom: 0; }\n");
-        html.append(".排查-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }\n");
-        html.append(".排查-icon { font-size: 22px; }\n");
-        html.append(".排查-name { font-size: 18px; font-weight: bold; color: #dc2626; }\n");
-        html.append(".排查-stock { font-size: 14px; color: #374151; margin-bottom: 10px; }\n");
-        html.append(".排查-stock span { color: #dc2626; font-weight: bold; font-size: 16px; }\n");
-        html.append(".排查-suggest { background: rgba(3, 105, 161, 0.05); padding: 12px; border-radius: 8px; }\n");
-        html.append(".排查-suggest-title { font-size: 14px; font-weight: bold; color: var(--dark); margin-bottom: 8px; }\n");
-        html.append(".排查-suggest ul { margin: 0; padding-left: 20px; }\n");
-        html.append(".排查-suggest li { font-size: 13px; color: #0369a1; margin-bottom: 5px; line-height: 1.5; }\n");
+        html.append(".investigation-list { }\n");
+        html.append(".investigation-item { background: rgba(220, 38, 38, 0.05); border-left: 4px solid #dc2626; padding: 18px; border-radius: 0 12px 12px 0; margin-bottom: 15px; }\n");
+        html.append(".investigation-item:last-child { margin-bottom: 0; }\n");
+        html.append(".investigation-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }\n");
+        html.append(".investigation-icon { font-size: 22px; }\n");
+        html.append(".investigation-name { font-size: 18px; font-weight: bold; color: #dc2626; }\n");
+        html.append(".investigation-stock { font-size: 14px; color: #374151; margin-bottom: 10px; }\n");
+        html.append(".investigation-stock span { color: #dc2626; font-weight: bold; font-size: 16px; }\n");
+        html.append(".investigation-suggest { background: rgba(3, 105, 161, 0.05); padding: 12px; border-radius: 8px; }\n");
+        html.append(".investigation-suggest-title { font-size: 14px; font-weight: bold; color: var(--dark); margin-bottom: 8px; }\n");
+        html.append(".investigation-suggest ul { margin: 0; padding-left: 20px; }\n");
+        html.append(".investigation-suggest li { font-size: 13px; color: #0369a1; margin-bottom: 5px; line-height: 1.5; }\n");
         html.append(".footer { text-align: center; padding: 25px; background: rgba(12, 74, 110, 0.05); color: var(--dark); font-size: 14px; }\n");
         html.append("</style>\n");
         html.append("</head>\n");
         html.append("<body>\n");
         html.append("<div class=\"report-container\">\n");
         
-        // 报表头部
+        // Report header
         html.append("<div class=\"report-header\">\n");
-        html.append("<h1>库存数据分析报告</h1>\n");
-        html.append("<div class=\"time\">生成时间: ").append(java.time.LocalDateTime.now().toString().substring(0, 19)).append("</div>\n");
+        html.append("<h1>Inventory Data Analysis Report</h1>\n");
+        html.append("<div class=\"time\">Generated Time: ").append(java.time.LocalDateTime.now().toString().substring(0, 19)).append("</div>\n");
         html.append("</div>\n");
-        
+
         html.append("<div class=\"report-body\">\n");
-        
-        // 统计摘要
+
+        // Statistics summary
         html.append("<div class=\"section\">\n");
-        html.append("<div class=\"section-title\">📊 统计摘要</div>\n");
+        html.append("<div class=\"section-title\">📊 Statistics Summary</div>\n");
         html.append("<div class=\"summary-cards\">\n");
-        html.append("<div class=\"summary-card\"><div class=\"value\">").append(dataManager.getInventoryCount()).append("</div><div class=\"label\">商品总数</div></div>\n");
-        html.append("<div class=\"summary-card\"><div class=\"value\">").append(dataManager.getInboundCount()).append("</div><div class=\"label\">入库记录</div></div>\n");
-        html.append("<div class=\"summary-card\"><div class=\"value\">").append(dataManager.getOutboundCount()).append("</div><div class=\"label\">出库记录</div></div>\n");
+        html.append("<div class=\"summary-card\"><div class=\"value\">").append(dataManager.getInventoryCount()).append("</div><div class=\"label\">Total Products</div></div>\n");
+        html.append("<div class=\"summary-card\"><div class=\"value\">").append(dataManager.getInboundCount()).append("</div><div class=\"label\">Inbound Records</div></div>\n");
+        html.append("<div class=\"summary-card\"><div class=\"value\">").append(dataManager.getOutboundCount()).append("</div><div class=\"label\">Outbound Records</div></div>\n");
         
         int totalStock = 0;
         for (int i = 0; i < dataManager.getInventoryList().size(); i++) {
             totalStock += dataManager.getInventoryList().get(i).getStockQuantity();
         }
-        html.append("<div class=\"summary-card\"><div class=\"value\">").append(totalStock).append("</div><div class=\"label\">库存总量</div></div>\n");
+        html.append("<div class=\"summary-card\"><div class=\"value\">").append(totalStock).append("</div><div class=\"label\">Total Stock</div></div>\n");
         html.append("</div>\n");
         html.append("</div>\n");
-        
-        // 统计数据分布
+
+        // Data distribution statistics
         html.append("<div class=\"section\">\n");
-        html.append("<div class=\"section-title\">📈 数据分布</div>\n");
+        html.append("<div class=\"section-title\">📈 Data Distribution</div>\n");
         html.append("<table>\n");
-        html.append("<tr><th>数据结构</th><th>数据类型</th><th>记录数</th></tr>\n");
-        html.append("<tr><td>顺序表</td><td>商品列表</td><td>").append(dataManager.getInventoryList().size()).append("</td></tr>\n");
-        html.append("<tr><td>顺序表</td><td>库存列表</td><td>").append(dataManager.getInventoryList().size()).append("</td></tr>\n");
-        html.append("<tr><td>链表(队列)</td><td>入库记录</td><td>").append(dataManager.getInboundQueue().size()).append("</td></tr>\n");
-        html.append("<tr><td>链表(栈)</td><td>出库记录</td><td>").append(dataManager.getOutboundStack().size()).append("</td></tr>\n");
+        html.append("<tr><th>Data Structure</th><th>Data Type</th><th>Record Count</th></tr>\n");
+        html.append("<tr><td>Sequential List</td><td>Product List</td><td>").append(dataManager.getInventoryList().size()).append("</td></tr>\n");
+        html.append("<tr><td>Sequential List</td><td>Inventory List</td><td>").append(dataManager.getInventoryList().size()).append("</td></tr>\n");
+        html.append("<tr><td>Linked List (Queue)</td><td>Inbound Records</td><td>").append(dataManager.getInboundQueue().size()).append("</td></tr>\n");
+        html.append("<tr><td>Linked List (Stack)</td><td>Outbound Records</td><td>").append(dataManager.getOutboundStack().size()).append("</td></tr>\n");
         html.append("</table>\n");
         html.append("</div>\n");
         
-        // 入库Top分析
+        // Inbound Top analysis
         java.util.Map<String, Integer> inboundStats = new java.util.HashMap<>();
         for (int i = 0; i < dataManager.getInboundQueue().size(); i++) {
             ZYHInboundRecord record = dataManager.getInboundQueue().get(i);
@@ -2414,12 +2414,12 @@ public class ZYHInventoryApp extends JFrame {
         inboundList.sort((a, b) -> Integer.compare(b.getValue(), a.getValue()));
         
         html.append("<div class=\"section\">\n");
-        html.append("<div class=\"section-title\">📥 入库Top商品</div>\n");
+        html.append("<div class=\"section-title\">📥 Top Inbound Products</div>\n");
         
         int maxInbound = inboundList.isEmpty() ? 1 : inboundList.get(0).getValue();
         for (int i = 0; i < Math.min(5, inboundList.size()); i++) {
             java.util.Map.Entry<String, Integer> entry = inboundList.get(i);
-            String name = "未知商品";
+            String name = "Unknown Product";
             for (int j = 0; j < dataManager.getInventoryList().size(); j++) {
                 if (dataManager.getInventoryList().get(j).getBarcode().equals(entry.getKey())) {
                     name = dataManager.getInventoryList().get(j).getName();
@@ -2428,13 +2428,13 @@ public class ZYHInventoryApp extends JFrame {
             }
             double ratio = (double) entry.getValue() / maxInbound * 100;
             html.append("<div style=\"margin: 10px 0;\">\n");
-            html.append("<span class=\"rank\">").append(i + 1).append("</span>").append(name).append(" (").append(entry.getValue()).append("件)\n");
+            html.append("<span class=\"rank\">").append(i + 1).append("</span>").append(name).append(" (").append(entry.getValue()).append("units)\n");
             html.append("<div class=\"progress-bar\"><div class=\"progress-fill\" style=\"width: ").append(ratio).append("%\"></div></div>\n");
             html.append("</div>\n");
         }
         html.append("</div>\n");
         
-        // 出库Top分析
+        // Outbound Top analysis
         java.util.Map<String, Integer> outboundStats = new java.util.HashMap<>();
         java.util.Map<String, String> lastOutboundDate = new java.util.HashMap<>();
         for (int i = 0; i < dataManager.getOutboundStack().size(); i++) {
@@ -2447,12 +2447,12 @@ public class ZYHInventoryApp extends JFrame {
         outboundList.sort((a, b) -> Integer.compare(b.getValue(), a.getValue()));
         
         html.append("<div class=\"section\">\n");
-        html.append("<div class=\"section-title\">📤 出库Top商品</div>\n");
+        html.append("<div class=\"section-title\">📤 Top Outbound Products</div>\n");
         
         int maxOutbound = outboundList.isEmpty() ? 1 : outboundList.get(0).getValue();
         for (int i = 0; i < Math.min(5, outboundList.size()); i++) {
             java.util.Map.Entry<String, Integer> entry = outboundList.get(i);
-            String name = "未知商品";
+            String name = "Unknown Product";
             for (int j = 0; j < dataManager.getInventoryList().size(); j++) {
                 if (dataManager.getInventoryList().get(j).getBarcode().equals(entry.getKey())) {
                     name = dataManager.getInventoryList().get(j).getName();
@@ -2461,17 +2461,17 @@ public class ZYHInventoryApp extends JFrame {
             }
             double ratio = (double) entry.getValue() / maxOutbound * 100;
             html.append("<div style=\"margin: 10px 0;\">\n");
-            html.append("<span class=\"rank\">").append(i + 1).append("</span>").append(name).append(" (").append(entry.getValue()).append("件)\n");
+            html.append("<span class=\"rank\">").append(i + 1).append("</span>").append(name).append(" (").append(entry.getValue()).append("units)\n");
             html.append("<div class=\"progress-bar\"><div class=\"progress-fill\" style=\"width: ").append(ratio).append("%\"></div></div>\n");
             html.append("</div>\n");
         }
         html.append("</div>\n");
         
-        // 库存详情
+        // Inventory details
         html.append("<div class=\"section\">\n");
-        html.append("<div class=\"section-title\">📦 库存详情</div>\n");
+        html.append("<div class=\"section-title\">📦 Inventory Details</div>\n");
         html.append("<table>\n");
-        html.append("<tr><th>商品条码</th><th>商品名称</th><th>入库总量</th><th>出库总量</th><th>当前库存</th><th>状态</th></tr>\n");
+        html.append("<tr><th>Barcode</th><th>Product Name</th><th>Total Inbound</th><th>Total Outbound</th><th>Current Stock</th><th>Status</th></tr>\n");
         
         for (int i = 0; i < dataManager.getInventoryList().size(); i++) {
             ZYHProduct product = dataManager.getInventoryList().get(i);
@@ -2481,16 +2481,16 @@ public class ZYHInventoryApp extends JFrame {
             String status;
             String statusClass;
             if (stock < 0) {
-                status = "异常";
+                status = "Abnormal";
                 statusClass = "status-error";
             } else if (stock == 0) {
-                status = "缺货";
+                status = "Out of Stock";
                 statusClass = "status-out";
             } else if (stock <= 5) {
-                status = "预警";
+                status = "Warning";
                 statusClass = "status-warning";
             } else {
-                status = "正常";
+                status = "Normal";
                 statusClass = "status-normal";
             }
             
@@ -2506,9 +2506,9 @@ public class ZYHInventoryApp extends JFrame {
         html.append("</table>\n");
         html.append("</div>\n");
         
-        // 预警清单
+        // Warning list
         html.append("<div class=\"section\">\n");
-        html.append("<div class=\"section-title\">⚠️ 预警清单</div>\n");
+        html.append("<div class=\"section-title\">⚠️ Warning List</div>\n");
         
         boolean hasWarning = false;
         html.append("<div class=\"warning-list\">\n");
@@ -2516,26 +2516,26 @@ public class ZYHInventoryApp extends JFrame {
             ZYHProduct product = dataManager.getInventoryList().get(i);
             int stock = product.getStockQuantity();
             if (stock < 0) {
-                html.append("<div class=\"warning-item\"><span class=\"warning-type type-error\">库存异常</span>").append(product.getName()).append(" - 库存为负数: ").append(stock).append("</div>\n");
+                html.append("<div class=\"warning-item\"><span class=\"warning-type type-error\">Stock Abnormal</span>").append(product.getName()).append(" - Stock is negative: ").append(stock).append("</div>\n");
                 hasWarning = true;
             } else if (stock == 0) {
-                html.append("<div class=\"warning-item\"><span class=\"warning-type type-error\">库存不足</span>").append(product.getName()).append(" - 库存为0，需立即补货</div>\n");
+                html.append("<div class=\"warning-item\"><span class=\"warning-type type-error\">Insufficient Stock</span>").append(product.getName()).append(" - Stock is 0, restocking needed immediately</div>\n");
                 hasWarning = true;
             } else if (stock <= 5) {
-                html.append("<div class=\"warning-item\"><span class=\"warning-type type-warning\">库存预警</span>").append(product.getName()).append(" - 库存偏低: ").append(stock).append("件</div>\n");
+                html.append("<div class=\"warning-item\"><span class=\"warning-type type-warning\">Stock Warning</span>").append(product.getName()).append(" - Stock is low: ").append(stock).append(" units</div>\n");
                 hasWarning = true;
             }
         }
         
         if (!hasWarning) {
-            html.append("<div style=\"color: #22c55e; text-align: center; padding: 10px;\">暂无预警，库存状态良好</div>\n");
+            html.append("<div style=\"color: #22c55e; text-align: center; padding: 10px;\">No warnings, stock status is good</div>\n");
         }
         html.append("</div>\n");
         html.append("</div>\n");
         
-        // 智能建议模块
+        // Smart advice module
         html.append("<div class=\"section\">\n");
-        html.append("<div class=\"section-title\">智能建议</div>\n");
+        html.append("<div class=\"section-title\">Smart Advice</div>\n");
         html.append("<div class=\"advice-cards\">\n");
         
         boolean hasAdvice = false;
@@ -2549,8 +2549,8 @@ public class ZYHInventoryApp extends JFrame {
                 html.append("<div class=\"advice-card urgent\">\n");
                 html.append("<div class=\"advice-icon\"></div>\n");
                 html.append("<div class=\"advice-content\">\n");
-                html.append("<div class=\"advice-title\">紧急补货建议</div>\n");
-                html.append("<div class=\"advice-text\"><strong>").append(product.getName()).append("</strong> 库存为负数(<span style=\"color:#dc2626\">").append(stock).append("</span>)，数据异常需立即处理！</div>\n");
+                html.append("<div class=\"advice-title\">Urgent Restock Advice</div>\n");
+                html.append("<div class=\"advice-text\"><strong>").append(product.getName()).append("</strong> Stock is negative (<span style=\"color:#dc2626\">").append(stock).append("</span>), data abnormal, needs immediate attention!</div>\n");
                 html.append("</div>\n");
                 html.append("</div>\n");
                 hasAdvice = true;
@@ -2558,8 +2558,8 @@ public class ZYHInventoryApp extends JFrame {
                 html.append("<div class=\"advice-card urgent\">\n");
                 html.append("<div class=\"advice-icon\"></div>\n");
                 html.append("<div class=\"advice-content\">\n");
-                html.append("<div class=\"advice-title\">紧急补货建议</div>\n");
-                html.append("<div class=\"advice-text\"><strong>").append(product.getName()).append("</strong> 库存为0，需立即补货避免缺货损失！</div>\n");
+                html.append("<div class=\"advice-title\">Urgent Restock Advice</div>\n");
+                html.append("<div class=\"advice-text\"><strong>").append(product.getName()).append("</strong> Stock is 0, restock immediately to avoid out-of-stock losses!</div>\n");
                 html.append("</div>\n");
                 html.append("</div>\n");
                 hasAdvice = true;
@@ -2567,8 +2567,8 @@ public class ZYHInventoryApp extends JFrame {
                 html.append("<div class=\"advice-card warning\">\n");
                 html.append("<div class=\"advice-icon\"></div>\n");
                 html.append("<div class=\"advice-content\">\n");
-                html.append("<div class=\"advice-title\">库存预警建议</div>\n");
-                html.append("<div class=\"advice-text\"><strong>").append(product.getName()).append("</strong> 库存偏低(").append(stock).append("件)，建议近期安排补货。</div>\n");
+                html.append("<div class=\"advice-title\">Stock Warning Advice</div>\n");
+                html.append("<div class=\"advice-text\"><strong>").append(product.getName()).append("</strong> Stock is low (").append(stock).append(" units), recommend scheduling restock soon.</div>\n");
                 html.append("</div>\n");
                 html.append("</div>\n");
                 hasAdvice = true;
@@ -2576,8 +2576,8 @@ public class ZYHInventoryApp extends JFrame {
                 html.append("<div class=\"advice-card success\">\n");
                 html.append("<div class=\"advice-icon\"></div>\n");
                 html.append("<div class=\"advice-content\">\n");
-                html.append("<div class=\"advice-title\">销售建议</div>\n");
-                html.append("<div class=\"advice-text\"><strong>").append(product.getName()).append("</strong> 入库量与出库量持平（共").append(inbound).append("件），库存周转良好。</div>\n");
+                html.append("<div class=\"advice-title\">Sales Advice</div>\n");
+                html.append("<div class=\"advice-text\"><strong>").append(product.getName()).append("</strong> Inbound equals outbound (total ").append(inbound).append(" units), inventory turnover is good.</div>\n");
                 html.append("</div>\n");
                 html.append("</div>\n");
                 hasAdvice = true;
@@ -2591,8 +2591,8 @@ public class ZYHInventoryApp extends JFrame {
                             html.append("<div class=\"advice-card urgent\">\n");
                             html.append("<div class=\"advice-icon\"></div>\n");
                             html.append("<div class=\"advice-content\">\n");
-                            html.append("<div class=\"advice-title\">严重积压警告</div>\n");
-                            html.append("<div class=\"advice-text\"><strong>").append(product.getName()).append("</strong> 库存").append(stock).append("件，已超过").append(daysSinceLastOut).append("天无出库记录，建议大幅降价促销！</div>\n");
+                            html.append("<div class=\"advice-title\">Severe Overstock Warning</div>\n");
+                            html.append("<div class=\"advice-text\"><strong>").append(product.getName()).append("</strong> Stock ").append(stock).append(" units, over ").append(daysSinceLastOut).append(" days without outbound records, recommend significant price reduction promotion!</div>\n");
                             html.append("</div>\n");
                             html.append("</div>\n");
                             hasAdvice = true;
@@ -2600,8 +2600,8 @@ public class ZYHInventoryApp extends JFrame {
                             html.append("<div class=\"advice-card warning\">\n");
                             html.append("<div class=\"advice-icon\"></div>\n");
                             html.append("<div class=\"advice-content\">\n");
-                            html.append("<div class=\"advice-title\">库存积压警告</div>\n");
-                            html.append("<div class=\"advice-text\"><strong>").append(product.getName()).append("</strong> 库存").append(stock).append("件，近").append(daysSinceLastOut).append("天无出库记录，建议促销消化。</div>\n");
+                            html.append("<div class=\"advice-title\">Overstock Warning</div>\n");
+                            html.append("<div class=\"advice-text\"><strong>").append(product.getName()).append("</strong> Stock ").append(stock).append(" units, nearly ").append(daysSinceLastOut).append(" days without outbound records, recommend promotion to clear.</div>\n");
                             html.append("</div>\n");
                             html.append("</div>\n");
                             hasAdvice = true;
@@ -2613,13 +2613,13 @@ public class ZYHInventoryApp extends JFrame {
         }
         
         if (!hasAdvice) {
-            html.append("<div style=\"color: #059669; text-align: center; padding: 15px; font-size: 14px;\">各项指标正常，库存管理良好！</div>\n");
+            html.append("<div style=\"color: #059669; text-align: center; padding: 15px; font-size: 14px;\">All indicators normal, inventory management is good!</div>\n");
         }
         
         html.append("</div>\n");
         html.append("</div>\n");
         
-        // 异常排查建议模块
+        // Abnormal investigation advice module
         boolean hasAbnormal = false;
         for (int i = 0; i < dataManager.getInventoryList().size(); i++) {
             ZYHProduct product = dataManager.getInventoryList().get(i);
@@ -2632,26 +2632,26 @@ public class ZYHInventoryApp extends JFrame {
         
         if (hasAbnormal) {
             html.append("<div class=\"section\">\n");
-            html.append("<div class=\"section-title\">异常排查建议</div>\n");
-            html.append("<div class=\"排查-list\">\n");
+            html.append("<div class=\"section-title\">Abnormal Investigation Advice</div>\n");
+            html.append("<div class=\"investigation-list\">\n");
             
             for (int i = 0; i < dataManager.getInventoryList().size(); i++) {
                 ZYHProduct product = dataManager.getInventoryList().get(i);
                 int stock = product.getStockQuantity();
                 if (stock < 0) {
-                    html.append("<div class=\"排查-item\">\n");
-                    html.append("<div class=\"排查-header\">\n");
-                    html.append("<div class=\"排查-icon\"></div>\n");
-                    html.append("<div class=\"排查-name\">").append(product.getName()).append("</div>\n");
+                    html.append("<div class=\"investigation-item\">\n");
+                    html.append("<div class=\"investigation-header\">\n");
+                    html.append("<div class=\"investigation-icon\"></div>\n");
+                    html.append("<div class=\"investigation-name\">").append(product.getName()).append("</div>\n");
                     html.append("</div>\n");
-                    html.append("<div class=\"排查-stock\">当前库存: <span>").append(stock).append("</span> (异常)</div>\n");
-                    html.append("<div class=\"排查-suggest\">\n");
-                    html.append("<div class=\"排查-suggest-title\">排查建议：请检查是否存在以下问题：</div>\n");
+                    html.append("<div class=\"investigation-stock\">Current Stock: <span>").append(stock).append("</span> (Abnormal)</div>\n");
+                    html.append("<div class=\"investigation-suggest\">\n");
+                    html.append("<div class=\"investigation-suggest-title\">Investigation advice: Please check for the following issues:</div>\n");
                     html.append("<ul>\n");
-                    html.append("<li>出库记录是否重复录入或数量错误</li>\n");
-                    html.append("<li>入库记录是否正确录入，数量是否准确</li>\n");
-                    html.append("<li>是否存在未经授权的数据修改</li>\n");
-                    html.append("<li>出入库时间顺序是否存在逻辑错误</li>\n");
+                    html.append("<li>Are outbound records duplicated or have incorrect quantities</li>\n");
+                    html.append("<li>Are inbound records correctly entered with accurate quantities</li>\n");
+                    html.append("<li>Is there any unauthorized data modification</li>\n");
+                    html.append("<li>Are there logical errors in the chronological order of inbound/outbound records</li>\n");
                     html.append("</ul>\n");
                     html.append("</div>\n");
                     html.append("</div>\n");
@@ -2664,18 +2664,18 @@ public class ZYHInventoryApp extends JFrame {
         
         html.append("</div>\n");
         
-        // 页脚
+        // Footer
         html.append("<div class=\"footer\">\n");
-        html.append("邹宇恒库存管理系统 - 数据分析报告\n");
+        html.append("Inventory Management System - Data Analysis Report\n");
         html.append("</div>\n");
         
         html.append("</div>\n");
         html.append("</body>\n");
         html.append("</html>");
         
-        // 保存文件
+        // Save file
         try {
-            String fileName = "库存数据分析报告_" + java.time.LocalDateTime.now().toString().replace(":", "-").substring(0, 19) + ".html";
+            String fileName = "InventoryDataAnalysisReport_" + java.time.LocalDateTime.now().toString().replace(":", "-").substring(0, 19) + ".html";
             java.io.FileWriter writer = new java.io.FileWriter(fileName);
             writer.write(html.toString());
             writer.close();
@@ -2684,21 +2684,21 @@ public class ZYHInventoryApp extends JFrame {
             java.awt.Desktop.getDesktop().browse(htmlFile.toURI());
             
             playSound("complete");
-            JOptionPane.showMessageDialog(this, "HTML报表已生成并打开！\n\n文件位置: " + htmlFile.getAbsolutePath());
-            log("[报表] HTML报表生成完成: " + fileName);
+            JOptionPane.showMessageDialog(this, "HTML report generated and opened!\n\nFile location: " + htmlFile.getAbsolutePath());
+            log("[Report] HTML report generation complete: " + fileName);
         } catch (java.io.IOException e) {
             playSound("error");
-            JOptionPane.showMessageDialog(this, "生成报表失败: " + e.getMessage());
-            log("[报表] HTML报表生成失败: " + e.getMessage());
+            JOptionPane.showMessageDialog(this, "Failed to generate report: " + e.getMessage());
+            log("[Report] HTML report generation failed: " + e.getMessage());
         }
     }
 
     private void runPerformanceTest() {
         int testSize = 50000;
         StringBuilder result = new StringBuilder();
-        result.append("========== 顺序表 vs 链表 性能对比 ==========\n\n");
-        result.append("测试数据量: ").append(testSize).append(" 条\n");
-        result.append("测试环境: Java 数组 vs 双向链表\n\n");
+        result.append("========== Sequential List vs Linked List Performance Comparison ==========\n\n");
+        result.append("Test Data Size: ").append(testSize).append(" records\n");
+        result.append("Test Environment: Java Array vs Doubly Linked List\n\n");
 
         ZYHSequentialList<Integer> seqList = new ZYHSequentialList<>();
         ZYHLinkedList<Integer> linkedList = new ZYHLinkedList<>();
@@ -2707,7 +2707,7 @@ public class ZYHInventoryApp extends JFrame {
         long startTime, endTime;
         long seqTime, linkTime;
 
-        result.append("【1. 尾部添加（入库操作）】\n");
+        result.append("[1. Tail Add (Inbound Operation)]\n");
         startTime = System.nanoTime();
         for (int i = 0; i < testSize; i++) {
             seqList.add(i);
@@ -2722,11 +2722,11 @@ public class ZYHInventoryApp extends JFrame {
         endTime = System.nanoTime();
         linkTime = endTime - startTime;
 
-        result.append("顺序表: ").append(String.format("%.2f", seqTime / 1_000_000.0)).append(" ms\n");
-        result.append("链表: ").append(String.format("%.2f", linkTime / 1_000_000.0)).append(" ms\n");
-        result.append("结论: ").append(seqTime < linkTime ? "顺序表更快" : "链表更快").append("\n\n");
+        result.append("Sequential List: ").append(String.format("%.2f", seqTime / 1_000_000.0)).append(" ms\n");
+        result.append("Linked List: ").append(String.format("%.2f", linkTime / 1_000_000.0)).append(" ms\n");
+        result.append("Conclusion: ").append(seqTime < linkTime ? "Sequential List is faster" : "Linked List is faster").append("\n\n");
 
-        result.append("【2. 尾部删除（出库操作）】\n");
+        result.append("[2. Tail Remove (Outbound Operation)]\n");
         startTime = System.nanoTime();
         for (int i = 0; i < testSize; i++) {
             seqList.remove(seqList.size() - 1);
@@ -2741,16 +2741,16 @@ public class ZYHInventoryApp extends JFrame {
         endTime = System.nanoTime();
         linkTime = endTime - startTime;
 
-        result.append("顺序表: ").append(String.format("%.2f", seqTime / 1_000_000.0)).append(" ms\n");
-        result.append("链表: ").append(String.format("%.2f", linkTime / 1_000_000.0)).append(" ms\n");
-        result.append("结论: ").append(seqTime < linkTime ? "顺序表更快" : "链表更快").append("\n\n");
+        result.append("Sequential List: ").append(String.format("%.2f", seqTime / 1_000_000.0)).append(" ms\n");
+        result.append("Linked List: ").append(String.format("%.2f", linkTime / 1_000_000.0)).append(" ms\n");
+        result.append("Conclusion: ").append(seqTime < linkTime ? "Sequential List is faster" : "Linked List is faster").append("\n\n");
 
         for (int i = 0; i < testSize; i++) {
             seqList.add(i);
             linkedList.addLast(i);
         }
 
-        result.append("【3. 搜索操作（按索引查找）】\n");
+        result.append("[3. Search Operation (Index Lookup)]\n");
         int midIndex = testSize / 2;
         startTime = System.nanoTime();
         for (int i = 0; i < testSize; i++) {
@@ -2769,11 +2769,11 @@ public class ZYHInventoryApp extends JFrame {
         endTime = System.nanoTime();
         linkTime = endTime - startTime;
 
-        result.append("顺序表: ").append(String.format("%.2f", seqTime / 1_000_000.0)).append(" ms\n");
-        result.append("链表: ").append(String.format("%.2f", linkTime / 1_000_000.0)).append(" ms\n");
-        result.append("结论: ").append(seqTime < linkTime ? "顺序表更快（支持随机访问）" : "链表更快").append("\n\n");
+        result.append("Sequential List: ").append(String.format("%.2f", seqTime / 1_000_000.0)).append(" ms\n");
+        result.append("Linked List: ").append(String.format("%.2f", linkTime / 1_000_000.0)).append(" ms\n");
+        result.append("Conclusion: ").append(seqTime < linkTime ? "Sequential List is faster (supports random access)" : "Linked List is faster").append("\n\n");
 
-        result.append("【4. 中间插入（需移动元素）】\n");
+        result.append("[4. Middle Insert (Requires Element Shifting)]\n");
         seqList.clear();
         linkedList.clear();
         int smallSize = 100;
@@ -2797,19 +2797,19 @@ public class ZYHInventoryApp extends JFrame {
         endTime = System.nanoTime();
         linkTime = endTime - startTime;
 
-        result.append("顺序表: ").append(String.format("%.2f", seqTime / 1_000_000.0)).append(" ms（需移动元素）\n");
-        result.append("链表: ").append(String.format("%.2f", linkTime / 1_000_000.0)).append(" ms（修改指针）\n");
-        result.append("结论: ").append(seqTime > linkTime ? "链表更快（无需移动元素）" : "顺序表更快").append("\n\n");
+        result.append("Sequential List: ").append(String.format("%.2f", seqTime / 1_000_000.0)).append(" ms (requires element shifting)\n");
+        result.append("Linked List: ").append(String.format("%.2f", linkTime / 1_000_000.0)).append(" ms (modifies pointers)\n");
+        result.append("Conclusion: ").append(seqTime > linkTime ? "Linked List is faster (no element shifting needed)" : "Sequential List is faster").append("\n\n");
 
         JTextArea textArea = new JTextArea(result.toString());
-        textArea.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+        textArea.setFont(new Font("Segoe UI", Font.PLAIN, 12));
         textArea.setEditable(false);
         JScrollPane scrollPane = new JScrollPane(textArea);
         scrollPane.setPreferredSize(new Dimension(500, 400));
 
-        JOptionPane.showMessageDialog(this, scrollPane, "性能对比结果", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, scrollPane, "Performance Comparison Results", JOptionPane.INFORMATION_MESSAGE);
 
-        log("[性能测试] 测试完成，数据量: " + testSize);
+        log("[Performance Test] Test complete, data size: " + testSize);
     }
 
     private void findAndSetReportText(JPanel panel, String text) {
@@ -2833,8 +2833,8 @@ public class ZYHInventoryApp extends JFrame {
         JFileChooser fileChooser = new JFileChooser();
         if (fileChooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
             File file = fileChooser.getSelectedFile();
-            log("[报表] 导出到: " + file.getAbsolutePath());
-            JOptionPane.showMessageDialog(this, "报表导出成功！");
+            log("[Report] Exported to: " + file.getAbsolutePath());
+            JOptionPane.showMessageDialog(this, "Report exported successfully!");
         }
     }
 
@@ -2870,16 +2870,16 @@ public class ZYHInventoryApp extends JFrame {
 
     private void refreshChart() {
         contentPanel.repaint();
-        log("[图表] 刷新完成");
+        log("[Chart] Refresh complete");
     }
 
     private void runComparison(int size) {
-        log("[性能比对] 开始比对，数据量: " + size);
+        log("[Performance Comparison] Starting comparison, data size: " + size);
         ZYHDataManager.PerformanceComparison result = dataManager.comparePerformance(size);
-        log("[性能比对] 完成");
+        log("[Performance Comparison] Complete");
         log(result.toString());
 
-        JOptionPane.showMessageDialog(this, "比对完成，请查看日志面板的详细结果！");
+        JOptionPane.showMessageDialog(this, "Comparison complete, please check the log panel for detailed results!");
     }
 
     private class RoundedButton extends JButton {
@@ -2913,20 +2913,20 @@ public class ZYHInventoryApp extends JFrame {
 
         @Override
         protected void paintBorder(Graphics g) {
-            // 不绘制边框
+            // Do not draw border
         }
     }
 
     private void deleteSelectedInventory() {
         int selectedRow = inventoryTable.getSelectedRow();
         if (selectedRow == -1) {
-            JOptionPane.showMessageDialog(this, "请先选择要删除的商品");
+            JOptionPane.showMessageDialog(this, "Please select a product to delete first");
             return;
         }
 
         String barcode = (String) inventoryTableModel.getValueAt(selectedRow, 0);
         
-        int confirm = JOptionPane.showConfirmDialog(this, "确定要删除商品 '" + barcode + "' 吗？", "确认删除", JOptionPane.YES_NO_OPTION);
+        int confirm = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete product '" + barcode + "'?", "Confirm Delete", JOptionPane.YES_NO_OPTION);
         if (confirm != JOptionPane.YES_OPTION) {
             return;
         }
@@ -2940,8 +2940,8 @@ public class ZYHInventoryApp extends JFrame {
             }
         }
 
-        JOptionPane.showMessageDialog(this, "商品删除成功！");
-        log("[库存管理] 删除商品: " + barcode);
+        JOptionPane.showMessageDialog(this, "Product deleted successfully!");
+        log("[Inventory Management] Deleted product: " + barcode);
     }
 
     private void openFilterDialog(String filterType) {
@@ -2952,14 +2952,14 @@ public class ZYHInventoryApp extends JFrame {
     private void deleteSelectedInbound() {
         int selectedRow = inboundTable.getSelectedRow();
         if (selectedRow == -1) {
-            JOptionPane.showMessageDialog(this, "请先选择要删除的入库记录");
+            JOptionPane.showMessageDialog(this, "Please select an inbound record to delete first");
             return;
         }
 
         String recordId = (String) inboundTableModel.getValueAt(selectedRow, 0);
         String barcode = (String) inboundTableModel.getValueAt(selectedRow, 1);
         
-        int confirm = JOptionPane.showConfirmDialog(this, "确定要删除入库记录 '" + recordId + "' 吗？", "确认删除", JOptionPane.YES_NO_OPTION);
+        int confirm = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete inbound record '" + recordId + "'?", "Confirm Delete", JOptionPane.YES_NO_OPTION);
         if (confirm != JOptionPane.YES_OPTION) {
             return;
         }
@@ -2977,21 +2977,21 @@ public class ZYHInventoryApp extends JFrame {
         updateStockQuantity();
         updateInboundQueueInfo();
 
-        JOptionPane.showMessageDialog(this, "入库记录删除成功！库存已重新计算");
-        log("[入库管理] 删除入库记录: " + recordId);
+        JOptionPane.showMessageDialog(this, "Inbound record deleted successfully! Stock recalculated");
+        log("[Inbound Management] Deleted inbound record: " + recordId);
     }
 
     private void deleteSelectedOutbound() {
         int selectedRow = outboundTable.getSelectedRow();
         if (selectedRow == -1) {
-            JOptionPane.showMessageDialog(this, "请先选择要删除的出库记录");
+            JOptionPane.showMessageDialog(this, "Please select an outbound record to delete first");
             return;
         }
 
         String recordId = (String) outboundTableModel.getValueAt(selectedRow, 0);
         String barcode = (String) outboundTableModel.getValueAt(selectedRow, 1);
         
-        int confirm = JOptionPane.showConfirmDialog(this, "确定要删除出库记录 '" + recordId + "' 吗？", "确认删除", JOptionPane.YES_NO_OPTION);
+        int confirm = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete outbound record '" + recordId + "'?", "Confirm Delete", JOptionPane.YES_NO_OPTION);
         if (confirm != JOptionPane.YES_OPTION) {
             return;
         }
@@ -3009,8 +3009,8 @@ public class ZYHInventoryApp extends JFrame {
         updateStockQuantity();
         updateOutboundStackInfo();
 
-        JOptionPane.showMessageDialog(this, "出库记录删除成功！库存已重新计算");
-        log("[出库管理] 删除出库记录: " + recordId);
+        JOptionPane.showMessageDialog(this, "Outbound record deleted successfully! Stock recalculated");
+        log("[Outbound Management] Deleted outbound record: " + recordId);
     }
 
     private void updateStockQuantity() {
@@ -3043,18 +3043,18 @@ public class ZYHInventoryApp extends JFrame {
             int outbound = outboundTotal.getOrDefault(barcode, 0);
             int newStock = inbound - outbound;
             inventoryTableModel.setValueAt(newStock, i, 4);
-            inventoryTableModel.setValueAt(newStock >= 0 ? "正常" : "异常", i, 5);
+            inventoryTableModel.setValueAt(newStock >= 0 ? "Normal" : "Abnormal", i, 5);
         }
     }
 
     private void resetDataFromAPI() {
-        int confirm = JOptionPane.showConfirmDialog(this, 
-            "确定要重置所有数据吗？这将清空所有操作并重新从API加载原始数据。", 
-            "确认重置", 
+        int confirm = JOptionPane.showConfirmDialog(this,
+            "Are you sure you want to reset all data? This will clear all operations and reload original data from API.",
+            "Confirm Reset",
             JOptionPane.YES_NO_OPTION);
-        
+
         if (confirm == JOptionPane.YES_OPTION) {
-            log("开始重置数据...");
+            log("Starting data reset...");
             
             dataManager.getInventoryList().clear();
             dataManager.getInboundQueue().clear();
@@ -3067,8 +3067,8 @@ public class ZYHInventoryApp extends JFrame {
             
             loadDataFromAPI();
             
-            JOptionPane.showMessageDialog(this, "数据重置完成！已重新从API加载原始数据。");
-            log("数据重置完成");
+            JOptionPane.showMessageDialog(this, "Data reset complete! Original data reloaded from API.");
+            log("Data reset complete");
         }
     }
 
@@ -3086,15 +3086,15 @@ public class ZYHInventoryApp extends JFrame {
     }
 
     /**
-     * 展示数据分析对话框
-     * 统计各商品的入库总量、出库总量、当前库存，并标记异常状态
+     * Show data analysis dialog
+     * Statistics for total inbound, total outbound, current stock of each product, and mark abnormal status
      */
     private void showAnalysisDialog() {
-        JDialog dialog = new JDialog(this, "库存数据分析", true);
+        JDialog dialog = new JDialog(this, "Inventory Data Analysis", true);
         dialog.setSize(1200, 850);
         dialog.setLocationRelativeTo(this);
 
-        // 统计出入库数据
+        // Statistics for inbound/outbound data
         java.util.Map<String, Integer> inboundStats = new java.util.HashMap<>();
         java.util.Map<String, Integer> outboundStats = new java.util.HashMap<>();
         java.util.Map<String, Integer> inboundCount = new java.util.HashMap<>();
@@ -3102,7 +3102,7 @@ public class ZYHInventoryApp extends JFrame {
         java.util.Map<String, String> lastInboundDate = new java.util.HashMap<>();
         java.util.Map<String, String> lastOutboundDate = new java.util.HashMap<>();
 
-        // 统计入库总量和次数
+        // Statistics for total inbound and count
         for (int i = 0; i < dataManager.getInboundQueue().size(); i++) {
             ZYHInboundRecord record = dataManager.getInboundQueue().get(i);
             String barcode = record.getBarcode();
@@ -3111,7 +3111,7 @@ public class ZYHInventoryApp extends JFrame {
             lastInboundDate.put(barcode, record.getDate());
         }
 
-        // 统计出库总量和次数
+        // Statistics for total outbound and count
         for (int i = 0; i < dataManager.getOutboundStack().size(); i++) {
             ZYHOutboundRecord record = dataManager.getOutboundStack().get(i);
             String barcode = record.getBarcode();
@@ -3120,7 +3120,7 @@ public class ZYHInventoryApp extends JFrame {
             lastOutboundDate.put(barcode, record.getDate());
         }
 
-        // 创建分析数据列表
+        // Create analysis data list
         java.util.List<AnalysisData> analysisList = new java.util.ArrayList<>();
         java.util.List<TopProduct> topInboundList = new java.util.ArrayList<>();
         java.util.List<TopProduct> topOutboundList = new java.util.ArrayList<>();
@@ -3138,27 +3138,27 @@ public class ZYHInventoryApp extends JFrame {
             String status;
             String level = "";
 
-            // 判断状态和等级
+            // Determine status and level
             if (currentStock < 0) {
-                status = "异常";
+                status = "Abnormal";
                 level = "";
                 abnormalCount++;
-                warningList.add(new WarningItem(barcode, name, "库存异常", "库存为负数: " + currentStock));
+                warningList.add(new WarningItem(barcode, name, "Stock Abnormal", "Stock is negative: " + currentStock));
             } else if (currentStock == 0) {
-                status = "缺货";
+                status = "Out of Stock";
                 level = "";
                 abnormalCount++;
-                warningList.add(new WarningItem(barcode, name, "库存不足", "库存为0，需立即补货"));
+                warningList.add(new WarningItem(barcode, name, "Insufficient Stock", "Stock is 0, restocking needed immediately"));
             } else if (currentStock <= 5) {
-                status = "预警";
+                status = "Warning";
                 level = "";
-                warningList.add(new WarningItem(barcode, name, "库存预警", "库存偏低: " + currentStock + "件"));
+                warningList.add(new WarningItem(barcode, name, "Stock Warning", "Stock is low: " + currentStock + " units"));
             } else {
-                status = "正常";
+                status = "Normal";
                 level = "";
             }
 
-            // 检查库存积压（超过30天未出库）
+            // Check inventory backlog (no outbound for over 30 days)
             String lastOut = lastOutboundDate.get(barcode);
             if (lastOut != null && outbound > 0) {
                 try {
@@ -3167,7 +3167,7 @@ public class ZYHInventoryApp extends JFrame {
                     long daysSinceOutbound = java.time.temporal.ChronoUnit.DAYS.between(outDate, today);
                     if (daysSinceOutbound > 30 && currentStock > 10) {
                         backlogCount++;
-                        warningList.add(new WarningItem(barcode, name, "库存积压", "已" + daysSinceOutbound + "天未出库，库存: " + currentStock));
+                        warningList.add(new WarningItem(barcode, name, "Inventory Backlog", "No outbound for " + daysSinceOutbound + " days, stock: " + currentStock));
                     }
                 } catch (Exception e) {
                 }
@@ -3175,47 +3175,47 @@ public class ZYHInventoryApp extends JFrame {
 
             analysisList.add(new AnalysisData(barcode, name, inbound, outbound, currentStock, status, level));
 
-            // 添加到Top排行
+            // Add to Top ranking
             topInboundList.add(new TopProduct(barcode, name, inbound, inboundCount.getOrDefault(barcode, 0)));
             topOutboundList.add(new TopProduct(barcode, name, outbound, outboundCount.getOrDefault(barcode, 0)));
         }
 
-        // 排序Top榜单
+        // Sort Top rankings
         topInboundList.sort((a, b) -> Integer.compare(b.totalQuantity, a.totalQuantity));
         topOutboundList.sort((a, b) -> Integer.compare(b.totalQuantity, a.totalQuantity));
 
-        // 创建主面板 - 使用BorderLayout
+        // Create main panel - using BorderLayout
         JPanel mainPanel = new JPanel(new BorderLayout(10, 10));
         mainPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
         mainPanel.setBackground(BACKGROUND);
 
-        // ===== 顶部：统计摘要 =====
+        // ===== Top: Statistics Summary =====
         JPanel summaryPanel = new JPanel(new GridLayout(1, 4, 15, 0));
         summaryPanel.setBackground(COLOR_WHITE);
         summaryPanel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
-        summaryPanel.add(createSummaryCard("商品总数", String.valueOf(analysisList.size()), COLOR_1));
-        summaryPanel.add(createSummaryCard("异常商品", String.valueOf(abnormalCount), new Color(239, 68, 68)));
-        summaryPanel.add(createSummaryCard("积压商品", String.valueOf(backlogCount), new Color(234, 179, 8)));
-        summaryPanel.add(createSummaryCard("库存总量", String.valueOf(analysisList.stream().mapToInt(d -> d.currentStock).sum()), COLOR_3));
+        summaryPanel.add(createSummaryCard("Total Products", String.valueOf(analysisList.size()), COLOR_1));
+        summaryPanel.add(createSummaryCard("Abnormal Products", String.valueOf(abnormalCount), new Color(239, 68, 68)));
+        summaryPanel.add(createSummaryCard("Backlog Products", String.valueOf(backlogCount), new Color(234, 179, 8)));
+        summaryPanel.add(createSummaryCard("Total Stock", String.valueOf(analysisList.stream().mapToInt(d -> d.currentStock).sum()), COLOR_3));
         mainPanel.add(summaryPanel, BorderLayout.NORTH);
 
-        // ===== 中部：Top榜单和预警 =====
+        // ===== Middle: Top Rankings and Warnings =====
         JPanel centerPanel = new JPanel(new GridLayout(1, 2, 10, 10));
 
-        // 左：入库Top5 + 出库Top5
+        // Left: Inbound Top5 + Outbound Top5
         JPanel topPanel = new JPanel(new GridLayout(2, 1, 10, 10));
-        topPanel.add(createTopListPanel("入库Top 5", topInboundList, COLOR_2));
-        topPanel.add(createTopListPanel("出库Top 5", topOutboundList, COLOR_3));
+        topPanel.add(createTopListPanel("Inbound Top 5", topInboundList, COLOR_2));
+        topPanel.add(createTopListPanel("Outbound Top 5", topOutboundList, COLOR_3));
         centerPanel.add(topPanel);
 
-        // 右：预警清单
+        // Right: Warning List
         JPanel warningPanel = createWarningPanel(warningList);
         centerPanel.add(warningPanel);
 
         mainPanel.add(centerPanel, BorderLayout.CENTER);
 
-        // ===== 底部：详细数据表格 =====
-        String[] columnNames = {"商品条码", "商品名称", "入库总量", "出库总量", "当前库存", "状态"};
+        // ===== Bottom: Detailed Data Table =====
+        String[] columnNames = {"Product Barcode", "Product Name", "Total Inbound", "Total Outbound", "Current Stock", "Status"};
         java.util.List<Object[]> tableData = new java.util.ArrayList<>();
         for (AnalysisData data : analysisList) {
             tableData.add(new Object[]{
@@ -3239,24 +3239,24 @@ public class ZYHInventoryApp extends JFrame {
         };
 
         JTable table = new JTable(model);
-        table.setFont(new Font("微软雅黑", Font.PLAIN, 11));
+        table.setFont(new Font("Segoe UI", Font.PLAIN, 11));
         table.setRowHeight(24);
         table.setAutoCreateRowSorter(true);
         table.getColumnModel().getColumn(5).setCellRenderer(new StatusCellRenderer());
 
         JScrollPane tableScroll = new JScrollPane(table);
-        tableScroll.setBorder(BorderFactory.createTitledBorder("商品明细（点击表头可排序）"));
+        tableScroll.setBorder(BorderFactory.createTitledBorder("Product Details (click column header to sort)"));
         tableScroll.setPreferredSize(new Dimension(1180, 280));
 
         mainPanel.add(tableScroll, BorderLayout.SOUTH);
 
         dialog.add(mainPanel);
         dialog.setVisible(true);
-        log("[数据分析] 打开增强分析面板");
+        log("[Data Analysis] Opened enhanced analysis panel");
     }
 
     private void showStockPredictionDialog() {
-        JDialog dialog = new JDialog(this, "库存预测分析", true);
+        JDialog dialog = new JDialog(this, "Inventory Prediction Analysis", true);
         dialog.setSize(900, 600);
         dialog.setLocationRelativeTo(this);
 
@@ -3266,14 +3266,14 @@ public class ZYHInventoryApp extends JFrame {
 
         JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 15, 5));
         topPanel.setBackground(BACKGROUND);
-        topPanel.add(new JLabel("预测周期（周）:"));
+        topPanel.add(new JLabel("Prediction Period (weeks):"));
         JComboBox<Integer> weeksCombo = new JComboBox<>(new Integer[]{2, 4, 6, 8});
         weeksCombo.setPreferredSize(new Dimension(80, 30));
         topPanel.add(weeksCombo);
-        JButton predictBtn = createActionButton("开始预测", COLOR_1);
+        JButton predictBtn = createActionButton("Start Prediction", COLOR_1);
         topPanel.add(predictBtn);
 
-        String[] columnNames = {"条码", "商品名称", "当前库存", "周均出库", "预测周出库", "预计缺货日期", "建议补货量", "状态"};
+        String[] columnNames = {"Barcode", "Product Name", "Current Stock", "Weekly Avg Outbound", "Predicted Weekly Outbound", "Estimated Stockout Date", "Suggested Restock Qty", "Status"};
         java.util.List<Object[]> predictData = new java.util.ArrayList<>();
         java.util.Map<String, java.util.List<Integer>> weeklyOutboundMap = new java.util.HashMap<>();
 
@@ -3314,30 +3314,30 @@ public class ZYHInventoryApp extends JFrame {
                 avgWeeklyOutbound = weeklyData.stream().mapToInt(Integer::intValue).average().orElse(0);
             }
 
-            String status = "充足";
+            String status = "Sufficient";
             String stockOutDate = "-";
             int suggestRestock = 0;
 
             if (currentStock <= 0) {
-                status = "缺货";
-                stockOutDate = "已缺货";
+                status = "Out of Stock";
+                stockOutDate = "Already out of stock";
                 suggestRestock = (int) (avgWeeklyOutbound * 4);
             } else if (avgWeeklyOutbound > 0) {
                 int weeksUntilStockOut = (int) (currentStock / avgWeeklyOutbound);
                 if (weeksUntilStockOut <= 0) {
-                    status = "紧急";
-                    stockOutDate = "本周缺货";
+                    status = "Urgent";
+                    stockOutDate = "Out of stock this week";
                 } else if (weeksUntilStockOut <= 2) {
-                    status = "预警";
+                    status = "Warning";
                     stockOutDate = java.time.LocalDate.now().plusWeeks(weeksUntilStockOut).toString();
                 } else {
                     stockOutDate = java.time.LocalDate.now().plusWeeks(weeksUntilStockOut).toString();
                 }
                 suggestRestock = (int) (avgWeeklyOutbound * 4);
             } else if (totalOutbound > 0) {
-                status = "正常";
+                status = "Normal";
             } else {
-                status = "无出库";
+                status = "No Outbound";
             }
 
             predictData.add(new Object[]{barcode, name, currentStock,
@@ -3358,7 +3358,7 @@ public class ZYHInventoryApp extends JFrame {
         };
 
         JTable predictTable = new JTable(predictTableModel);
-        predictTable.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+        predictTable.setFont(new Font("Segoe UI", Font.PLAIN, 12));
         predictTable.setRowHeight(28);
         predictTable.setAutoCreateRowSorter(true);
 
@@ -3368,15 +3368,15 @@ public class ZYHInventoryApp extends JFrame {
                 java.awt.Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
                 String status = String.valueOf(value);
                 switch (status) {
-                    case "缺货":
-                    case "紧急":
+                    case "Out of Stock":
+                    case "Urgent":
                         c.setForeground(new Color(239, 68, 68));
                         break;
-                    case "预警":
+                    case "Warning":
                         c.setForeground(new Color(234, 179, 8));
                         break;
-                    case "充足":
-                    case "正常":
+                    case "Sufficient":
+                    case "Normal":
                         c.setForeground(new Color(34, 197, 94));
                         break;
                     default:
@@ -3387,11 +3387,11 @@ public class ZYHInventoryApp extends JFrame {
         });
 
         JScrollPane tableScroll = new JScrollPane(predictTable);
-        tableScroll.setBorder(BorderFactory.createTitledBorder("预测结果（点击表头可排序）"));
+        tableScroll.setBorder(BorderFactory.createTitledBorder("Prediction Results (click column header to sort)"));
 
         JPanel infoPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         infoPanel.setBackground(BACKGROUND);
-        infoPanel.add(new JLabel("<html><b>说明：</b>周均出库基于历史数据计算，预测周出库考虑增长趋势（+10%）。<br>建议补货量按4周安全库存计算。状态为\"无出库\"的商品表示暂无销售数据。</html>"));
+        infoPanel.add(new JLabel("<html><b>Note:</b> Weekly average outbound is calculated based on historical data, predicted weekly outbound considers growth trend (+10%).<br>Suggested restock quantity is calculated based on 4-week safety stock. Products with status \"No Outbound\" indicate no sales data available.</html>"));
 
         mainPanel.add(topPanel, BorderLayout.NORTH);
         mainPanel.add(tableScroll, BorderLayout.CENTER);
@@ -3399,16 +3399,16 @@ public class ZYHInventoryApp extends JFrame {
 
         predictBtn.addActionListener(e -> {
             playSound("success");
-            JOptionPane.showMessageDialog(dialog, "预测分析完成！\n共分析 " + predictData.size() + " 个商品");
+            JOptionPane.showMessageDialog(dialog, "Prediction analysis complete!\nAnalyzed " + predictData.size() + " products");
         });
 
         dialog.add(mainPanel);
         dialog.setVisible(true);
-        log("[库存预测] 打开预测分析面板");
+        log("[Inventory Prediction] Opened prediction analysis panel");
     }
 
     /**
-     * 创建统计卡片
+     * Create summary card
      */
     private JPanel createSummaryCard(String title, String value, Color color) {
         JPanel card = new JPanel();
@@ -3417,12 +3417,12 @@ public class ZYHInventoryApp extends JFrame {
         card.setBackground(COLOR_WHITE);
 
         JLabel titleLabel = new JLabel(title);
-        titleLabel.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+        titleLabel.setFont(new Font("Segoe UI", Font.PLAIN, 12));
         titleLabel.setForeground(new Color(107, 114, 128));
         titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         JLabel valueLabel = new JLabel(value);
-        valueLabel.setFont(new Font("微软雅黑", Font.BOLD, 28));
+        valueLabel.setFont(new Font("Segoe UI", Font.BOLD, 28));
         valueLabel.setForeground(color);
         valueLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
@@ -3436,7 +3436,7 @@ public class ZYHInventoryApp extends JFrame {
     }
 
     /**
-     * 创建Top榜单面板
+     * Create Top ranking panel
      */
     private JPanel createTopListPanel(String title, java.util.List<TopProduct> list, Color barColor) {
         JPanel panel = new JPanel(new BorderLayout(5, 5));
@@ -3448,7 +3448,7 @@ public class ZYHInventoryApp extends JFrame {
         listPanel.setBackground(COLOR_WHITE);
         listPanel.setBorder(BorderFactory.createEmptyBorder(3, 3, 3, 3));
 
-        // 限制显示数量，提高滚动效率
+        // Limit display count to improve scrolling efficiency
         int count = Math.min(8, list.size());
         int maxQuantity = count > 0 ? list.get(0).totalQuantity : 1;
 
@@ -3459,17 +3459,17 @@ public class ZYHInventoryApp extends JFrame {
             itemPanel.setBackground(COLOR_WHITE);
 
             JLabel rankLabel = new JLabel(" " + (i + 1) + ".");
-            rankLabel.setFont(new Font("微软雅黑", Font.BOLD, 12));
+            rankLabel.setFont(new Font("Segoe UI", Font.BOLD, 12));
             rankLabel.setPreferredSize(new Dimension(25, 28));
 
             JLabel nameLabel = new JLabel(product.name);
-            nameLabel.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+            nameLabel.setFont(new Font("Segoe UI", Font.PLAIN, 12));
             nameLabel.setPreferredSize(new Dimension(150, 28));
 
             double ratio = (double) product.totalQuantity / maxQuantity;
             int barWidth = (int) (ratio * 120);
 
-            // 使用JProgressBar替代自定义绘制，提高性能
+            // Use JProgressBar instead of custom drawing for better performance
             JProgressBar progressBar = new JProgressBar(0, maxQuantity);
             progressBar.setValue(product.totalQuantity);
             progressBar.setForeground(barColor);
@@ -3479,7 +3479,7 @@ public class ZYHInventoryApp extends JFrame {
             progressBar.setStringPainted(false);
 
             JLabel countLabel = new JLabel(String.valueOf(product.totalQuantity));
-            countLabel.setFont(new Font("微软雅黑", Font.BOLD, 12));
+            countLabel.setFont(new Font("Segoe UI", Font.BOLD, 12));
             countLabel.setForeground(barColor);
             countLabel.setPreferredSize(new Dimension(50, 28));
 
@@ -3492,14 +3492,14 @@ public class ZYHInventoryApp extends JFrame {
         }
 
         if (count == 0) {
-            JLabel emptyLabel = new JLabel("暂无数据");
-            emptyLabel.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+            JLabel emptyLabel = new JLabel("No Data");
+            emptyLabel.setFont(new Font("Segoe UI", Font.PLAIN, 12));
             emptyLabel.setForeground(new Color(156, 163, 175));
             emptyLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
             listPanel.add(emptyLabel);
         }
 
-        // 添加滚动条，减小高度
+        // Add scrollbar, reduce height
         JScrollPane scrollPane = new JScrollPane(listPanel);
         scrollPane.setPreferredSize(new Dimension(480, 160));
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
@@ -3510,23 +3510,23 @@ public class ZYHInventoryApp extends JFrame {
     }
 
     /**
-     * 创建预警面板
+     * Create warning panel
      */
     private JPanel createWarningPanel(java.util.List<WarningItem> warningList) {
         JPanel panel = new JPanel(new BorderLayout());
-        panel.setBorder(BorderFactory.createTitledBorder("预警清单"));
+        panel.setBorder(BorderFactory.createTitledBorder("Warning List"));
         panel.setBackground(COLOR_WHITE);
 
         if (warningList.isEmpty()) {
-            JLabel noWarning = new JLabel("暂无预警");
-            noWarning.setFont(new Font("微软雅黑", Font.PLAIN, 16));
+            JLabel noWarning = new JLabel("No warnings");
+            noWarning.setFont(new Font("Segoe UI", Font.PLAIN, 16));
             noWarning.setForeground(new Color(34, 197, 94));
             noWarning.setAlignmentX(Component.CENTER_ALIGNMENT);
             panel.add(noWarning, BorderLayout.CENTER);
             return panel;
         }
 
-        String[] columns = {"商品名称", "预警类型", "说明"};
+        String[] columns = {"Product Name", "Warning Type", "Description"};
         java.util.List<Object[]> data = new java.util.ArrayList<>();
         for (WarningItem item : warningList) {
             data.add(new Object[]{item.name, item.type, item.description});
@@ -3534,11 +3534,11 @@ public class ZYHInventoryApp extends JFrame {
 
         DefaultTableModel warningModel = new DefaultTableModel(data.toArray(new Object[0][]), columns);
         JTable warningTable = new JTable(warningModel);
-        warningTable.setFont(new Font("微软雅黑", Font.PLAIN, 14));
+        warningTable.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         warningTable.setRowHeight(35);
         warningTable.setAutoCreateRowSorter(true);
 
-        // 设置列宽
+        // Set column widths
         warningTable.getColumnModel().getColumn(0).setPreferredWidth(150);
         warningTable.getColumnModel().getColumn(1).setPreferredWidth(100);
         warningTable.getColumnModel().getColumn(2).setPreferredWidth(200);
@@ -3549,7 +3549,7 @@ public class ZYHInventoryApp extends JFrame {
                     boolean isSelected, boolean hasFocus, int row, int column) {
                 super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
                 String type = (String) value;
-                if ("库存异常".equals(type) || "库存不足".equals(type)) {
+                if ("Stock Abnormal".equals(type) || "Insufficient Stock".equals(type)) {
                     setForeground(new Color(239, 68, 68));
                 } else {
                     setForeground(new Color(234, 179, 8));
@@ -3567,7 +3567,7 @@ public class ZYHInventoryApp extends JFrame {
     }
 
     /**
-     * 分析数据内部类
+     * Analysis data inner class
      */
     private static class AnalysisData {
         String barcode;
@@ -3590,7 +3590,7 @@ public class ZYHInventoryApp extends JFrame {
     }
 
     /**
-     * Top商品数据类
+     * Top product data class
      */
     private static class TopProduct {
         String barcode;
@@ -3607,7 +3607,7 @@ public class ZYHInventoryApp extends JFrame {
     }
 
     /**
-     * 预警项数据类
+     * Warning item data class
      */
     private static class WarningItem {
         String barcode;
@@ -3624,7 +3624,7 @@ public class ZYHInventoryApp extends JFrame {
     }
 
     /**
-     * 状态列单元格渲染器
+     * Status column cell renderer
      */
     private static class StatusCellRenderer extends javax.swing.table.DefaultTableCellRenderer {
         @Override
@@ -3633,13 +3633,13 @@ public class ZYHInventoryApp extends JFrame {
             super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
             String status = (String) value;
-            if (status.contains("正常")) {
+            if (status.contains("Normal")) {
                 setForeground(new Color(34, 197, 94));
-            } else if (status.contains("预警")) {
+            } else if (status.contains("Warning")) {
                 setForeground(new Color(234, 179, 8));
-            } else if (status.contains("缺货")) {
+            } else if (status.contains("Out of Stock")) {
                 setForeground(new Color(239, 68, 68));
-            } else if (status.contains("异常")) {
+            } else if (status.contains("Abnormal")) {
                 setForeground(new Color(37, 37, 37));
             }
 

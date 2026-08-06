@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Inventory Data Analysis Report</title>
+<style>
+:root { --darkest: #0c4a6e; --dark: #0369a1; --primary: #0ea5e9; --light: #bae6fd; --white: #ffffff; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--light); padding: 30px; }
+.report-container { max-width: 1200px; margin: 0 auto; background: var(--white); border-radius: 16px; box-shadow: 0 8px 32px rgba(12, 74, 110, 0.15); overflow: hidden; }
+.report-header { background: linear-gradient(135deg, var(--darkest) 0%, var(--dark) 50%, var(--primary) 100%); color: var(--white); padding: 35px; text-align: center; }
+.report-header h1 { font-size: 28px; margin-bottom: 12px; font-weight: 600; }
+.report-header .time { font-size: 14px; opacity: 0.9; }
+.report-body { padding: 35px; }
+.section { margin-bottom: 35px; }
+.section-title { font-size: 20px; font-weight: bold; color: var(--darkest); margin-bottom: 18px; padding-bottom: 12px; border-bottom: 3px solid var(--primary); }
+.summary-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 25px; }
+.summary-card { background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%); border-radius: 12px; padding: 24px; color: var(--white); text-align: center; }
+.summary-card .value { font-size: 36px; font-weight: bold; margin-bottom: 8px; }
+.summary-card .label { font-size: 14px; opacity: 0.95; }
+table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+th, td { padding: 14px; text-align: left; border-bottom: 1px solid var(--light); }
+th { background: rgba(14, 165, 233, 0.05); font-weight: bold; color: var(--darkest); }
+tr:hover { background: rgba(14, 165, 233, 0.05); }
+.status-normal { color: #059669; font-weight: bold; }
+.status-warning { color: #d97706; font-weight: bold; }
+.status-out { color: #dc2626; font-weight: bold; }
+.status-error { color: #0c4a6e; font-weight: bold; }
+.rank { display: inline-block; width: 28px; height: 28px; background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%); color: var(--white); border-radius: 50%; text-align: center; line-height: 28px; font-size: 14px; font-weight: bold; margin-right: 12px; }
+.progress-bar { height: 24px; background: rgba(14, 165, 233, 0.1); border-radius: 12px; overflow: hidden; margin: 10px 0; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, var(--dark), var(--primary)); border-radius: 12px; }
+.warning-list { background: rgba(251, 191, 36, 0.1); border-left: 4px solid var(--dark); padding: 20px; border-radius: 0 12px 12px 0; }
+.warning-item { padding: 10px 0; border-bottom: 1px dashed rgba(12, 74, 110, 0.1); }
+.warning-item:last-child { border-bottom: none; }
+.warning-type { display: inline-block; padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: bold; margin-right: 12px; }
+.type-error { background: rgba(220, 38, 38, 0.1); color: #dc2626; }
+.type-warning { background: rgba(217, 119, 6, 0.1); color: #d97706; }
+.advice-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+.advice-card { border-radius: 10px; padding: 18px; display: flex; align-items: flex-start; gap: 15px; }
+.advice-card.urgent { background: rgba(220, 38, 38, 0.08); border-left: 4px solid #dc2626; }
+.advice-card.warning { background: rgba(217, 119, 6, 0.08); border-left: 4px solid #d97706; }
+.advice-card.info { background: rgba(14, 165, 233, 0.08); border-left: 4px solid #0ea5e9; }
+.advice-card.success { background: rgba(5, 150, 105, 0.08); border-left: 4px solid #059669; }
+.advice-icon { font-size: 28px; flex-shrink: 0; }
+.advice-content { flex: 1; }
+.advice-title { font-size: 16px; font-weight: bold; color: var(--darkest); margin-bottom: 8px; }
+.advice-text { font-size: 14px; color: #374151; line-height: 1.6; }
+.investigation-list { }
+.investigation-item { background: rgba(220, 38, 38, 0.05); border-left: 4px solid #dc2626; padding: 18px; border-radius: 0 12px 12px 0; margin-bottom: 15px; }
+.investigation-item:last-child { margin-bottom: 0; }
+.investigation-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.investigation-icon { font-size: 22px; }
+.investigation-name { font-size: 18px; font-weight: bold; color: #dc2626; }
+.investigation-stock { font-size: 14px; color: #374151; margin-bottom: 10px; }
+.investigation-stock span { color: #dc2626; font-weight: bold; font-size: 16px; }
+.investigation-suggest { background: rgba(3, 105, 161, 0.05); padding: 12px; border-radius: 8px; }
+.investigation-suggest-title { font-size: 14px; font-weight: bold; color: var(--dark); margin-bottom: 8px; }
+.investigation-suggest ul { margin: 0; padding-left: 20px; }
+.investigation-suggest li { font-size: 13px; color: #0369a1; margin-bottom: 5px; line-height: 1.5; }
+.footer { text-align: center; padding: 25px; background: rgba(12, 74, 110, 0.05); color: var(--dark); font-size: 14px; }
+</style>
+</head>
+<body>
+<div class="report-container">
+<div class="report-header">
+<h1>Inventory Data Analysis Report</h1>
+<div class="time">Generated Time: 2026-08-06T16:48:46</div>
+</div>
+<div class="report-body">
+<div class="section">
+<div class="section-title">📊 Statistics Summary</div>
+<div class="summary-cards">
+<div class="summary-card"><div class="value">14</div><div class="label">Total Products</div></div>
+<div class="summary-card"><div class="value">30</div><div class="label">Inbound Records</div></div>
+<div class="summary-card"><div class="value">336</div><div class="label">Outbound Records</div></div>
+<div class="summary-card"><div class="value">198</div><div class="label">Total Stock</div></div>
+</div>
+</div>
+<div class="section">
+<div class="section-title">📈 Data Distribution</div>
+<table>
+<tr><th>Data Structure</th><th>Data Type</th><th>Record Count</th></tr>
+<tr><td>Sequential List</td><td>Product List</td><td>14</td></tr>
+<tr><td>Sequential List</td><td>Inventory List</td><td>14</td></tr>
+<tr><td>Linked List (Queue)</td><td>Inbound Records</td><td>30</td></tr>
+<tr><td>Linked List (Stack)</td><td>Outbound Records</td><td>336</td></tr>
+</table>
+</div>
+<div class="section">
+<div class="section-title">📥 Top Inbound Products</div>
+<div style="margin: 10px 0;">
+<span class="rank">1</span>Coconut Drink (363units)
+<div class="progress-bar"><div class="progress-fill" style="width: 100.0%"></div></div>
+</div>
+<div style="margin: 10px 0;">
+<span class="rank">2</span>Lychee Juice Sparkling Water (160units)
+<div class="progress-bar"><div class="progress-fill" style="width: 44.0771349862259%"></div></div>
+</div>
+<div style="margin: 10px 0;">
+<span class="rank">3</span>Vita Lemon Tea (131units)
+<div class="progress-bar"><div class="progress-fill" style="width: 36.08815426997245%"></div></div>
+</div>
+<div style="margin: 10px 0;">
+<span class="rank">4</span>7-Up (120units)
+<div class="progress-bar"><div class="progress-fill" style="width: 33.057851239669425%"></div></div>
+</div>
+<div style="margin: 10px 0;">
+<span class="rank">5</span>Gatorade Lemon (120units)
+<div class="progress-bar"><div class="progress-fill" style="width: 33.057851239669425%"></div></div>
+</div>
+</div>
+<div class="section">
+<div class="section-title">📤 Top Outbound Products</div>
+<div style="margin: 10px 0;">
+<span class="rank">1</span>Coconut Drink (232units)
+<div class="progress-bar"><div class="progress-fill" style="width: 100.0%"></div></div>
+</div>
+<div style="margin: 10px 0;">
+<span class="rank">2</span>Lychee Juice Sparkling Water (179units)
+<div class="progress-bar"><div class="progress-fill" style="width: 77.15517241379311%"></div></div>
+</div>
+<div style="margin: 10px 0;">
+<span class="rank">3</span>Vita Lemon Tea (154units)
+<div class="progress-bar"><div class="progress-fill" style="width: 66.37931034482759%"></div></div>
+</div>
+<div style="margin: 10px 0;">
+<span class="rank">4</span>7-Up (113units)
+<div class="progress-bar"><div class="progress-fill" style="width: 48.706896551724135%"></div></div>
+</div>
+<div style="margin: 10px 0;">
+<span class="rank">5</span>Plum Lemon Sparkling Water (90units)
+<div class="progress-bar"><div class="progress-fill" style="width: 38.793103448275865%"></div></div>
+</div>
+</div>
+<div class="section">
+<div class="section-title">📦 Inventory Details</div>
+<table>
+<tr><th>Barcode</th><th>Product Name</th><th>Total Inbound</th><th>Total Outbound</th><th>Current Stock</th><th>Status</th></tr>
+<tr>
+<td>8850161230417</td>
+<td>Coconut Drink</td>
+<td>363</td>
+<td>232</td>
+<td>131</td>
+<td><span class="status-normal">Normal</span></td>
+</tr>
+<tr>
+<td>6934024590169</td>
+<td>Gatorade Lemon</td>
+<td>120</td>
+<td>63</td>
+<td>57</td>
+<td><span class="status-normal">Normal</span></td>
+</tr>
+<tr>
+<td>6954767410173</td>
+<td>Coca-Cola</td>
+<td>48</td>
+<td>0</td>
+<td>48</td>
+<td><span class="status-normal">Normal</span></td>
+</tr>
+<tr>
+<td>6934024590367</td>
+<td>Gatorade Blueberry</td>
+<td>90</td>
+<td>49</td>
+<td>41</td>
+<td><span class="status-normal">Normal</span></td>
+</tr>
+<tr>
+<td>6934024590466</td>
+<td>Gatorade Grapefruit</td>
+<td>75</td>
+<td>39</td>
+<td>36</td>
+<td><span class="status-normal">Normal</span></td>
+</tr>
+<tr>
+<td>6973179000637</td>
+<td>Guava Jasmine Sparkling Juice Tea</td>
+<td>67</td>
+<td>59</td>
+<td>8</td>
+<td><span class="status-normal">Normal</span></td>
+</tr>
+<tr>
+<td>6908946286936</td>
+<td>7-Up</td>
+<td>120</td>
+<td>113</td>
+<td>7</td>
+<td><span class="status-normal">Normal</span></td>
+</tr>
+<tr>
+<td>8850999021201</td>
+<td>Plum Lemon Sparkling Water</td>
+<td>96</td>
+<td>90</td>
+<td>6</td>
+<td><span class="status-normal">Normal</span></td>
+</tr>
+<tr>
+<td>6921581596048</td>
+<td>Low-sugar Oolong Tea</td>
+<td>65</td>
+<td>70</td>
+<td>-5</td>
+<td><span class="status-error">Abnormal</span></td>
+</tr>
+<tr>
+<td>05965459001</td>
+<td>Lychee Juice Sparkling Water</td>
+<td>160</td>
+<td>179</td>
+<td>-19</td>
+<td><span class="status-error">Abnormal</span></td>
+</tr>
+<tr>
+<td>6970870270947</td>
+<td>Starbucks Coffee</td>
+<td>4</td>
+<td>26</td>
+<td>-22</td>
+<td><span class="status-error">Abnormal</span></td>
+</tr>
+<tr>
+<td>4891028726449</td>
+<td>Vita Lemon Tea</td>
+<td>131</td>
+<td>154</td>
+<td>-23</td>
+<td><span class="status-error">Abnormal</span></td>
+</tr>
+<tr>
+<td>6972549661186</td>
+<td>Plum Sparkling Water</td>
+<td>0</td>
+<td>29</td>
+<td>-29</td>
+<td><span class="status-error">Abnormal</span></td>
+</tr>
+<tr>
+<td>4891028727224</td>
+<td>Vita Sparkling Apple Green Tea</td>
+<td>48</td>
+<td>86</td>
+<td>-38</td>
+<td><span class="status-error">Abnormal</span></td>
+</tr>
+</table>
+</div>
+<div class="section">
+<div class="section-title">⚠️ Warning List</div>
+<div class="warning-list">
+<div class="warning-item"><span class="warning-type type-error">Stock Abnormal</span>Low-sugar Oolong Tea - Stock is negative: -5</div>
+<div class="warning-item"><span class="warning-type type-error">Stock Abnormal</span>Lychee Juice Sparkling Water - Stock is negative: -19</div>
+<div class="warning-item"><span class="warning-type type-error">Stock Abnormal</span>Starbucks Coffee - Stock is negative: -22</div>
+<div class="warning-item"><span class="warning-type type-error">Stock Abnormal</span>Vita Lemon Tea - Stock is negative: -23</div>
+<div class="warning-item"><span class="warning-type type-error">Stock Abnormal</span>Plum Sparkling Water - Stock is negative: -29</div>
+<div class="warning-item"><span class="warning-type type-error">Stock Abnormal</span>Vita Sparkling Apple Green Tea - Stock is negative: -38</div>
+</div>
+</div>
+<div class="section">
+<div class="section-title">Smart Advice</div>
+<div class="advice-cards">
+<div class="advice-card urgent">
+<div class="advice-icon"></div>
+<div class="advice-content">
+<div class="advice-title">Severe Overstock Warning</div>
+<div class="advice-text"><strong>Coconut Drink</strong> Stock 131 units, over 132 days without outbound records, recommend significant price reduction promotion!</div>
+</div>
+</div>
+<div class="advice-card urgent">
+<div class="advice-icon"></div>
+<div class="advice-content">
+<div class="advice-title">Severe Overstock Warning</div>
+<div class="advice-text"><strong>Gatorade Lemon</strong> Stock 57 units, over 129 days without outbound records, recommend significant price reduction promotion!</div>
+</div>
+</div>
+<div class="advice-card urgent">
+<div class="advice-icon"></div>
+<div class="advice-content">
+<div class="advice-title">Severe Overstock Warning</div>
+<div class="advice-text"><strong>Gatorade Blueberry</strong> Stock 41 units, over 220 days without outbound records, recommend significant price reduction promotion!</div>
+</div>
+</div>
+<div class="advice-card urgent">
+<div class="advice-icon"></div>
+<div class="advice-content">
+<div class="advice-title">Severe Overstock Warning</div>
+<div class="advice-text"><strong>Gatorade Grapefruit</strong> Stock 36 units, over 127 days without outbound records, recommend significant price reduction promotion!</div>
+</div>
+</div>
+<div class="advice-card urgent">
+<div class="advice-icon"></div>
+<div class="advice-content">
+<div class="advice-title">Severe Overstock Warning</div>
+<div class="advice-text"><strong>Guava Jasmine Sparkling Juice Tea</strong> Stock 8 units, over 227 days without outbound records, recommend significant price reduction promotion!</div>
+</div>
+</div>
+<div class="advice-card urgent">
+<div class="advice-icon"></div>
+<div class="advice-content">
+<div class="advice-title">Severe Overstock Warning</div>
+<div class="advice-text"><strong>7-Up</strong> Stock 7 units, over 133 days without outbound records, recommend significant price reduction promotion!</div>
+</div>
+</div>
+<div class="advice-card urgent">
+<div class="advice-icon"></div>
+<div class="advice-content">
+<div class="advice-title">Severe Overstock Warning</div>
+<div class="advice-text"><strong>Plum Lemon Sparkling Water</strong> Stock 6 units, over 135 days without outbound records, recommend significant price reduction promotion!</div>
+</div>
+</div>
+<div class="advice-card urgent">
+<div class="advice-icon"></div>
+<div class="advice-content">
+<div class="advice-title">Urgent Restock Advice</div>
+<div class="advice-text"><strong>Low-sugar Oolong Tea</strong> Stock is negative (<span style="color:#dc2626">-5</span>), data abnormal, needs immediate attention!</div>
+</div>
+</div>
+<div class="advice-card urgent">
+<div class="advice-icon"></div>
+<div class="advice-content">
+<div class="advice-title">Urgent Restock Advice</div>
+<div class="advice-text"><strong>Lychee Juice Sparkling Water</strong> Stock is negative (<span style="color:#dc2626">-19</span>), data abnormal, needs immediate attention!</div>
+</div>
+</div>
+<div class="advice-card urgent">
+<div class="advice-icon"></div>
+<div class="advice-content">
+<div class="advice-title">Urgent Restock Advice</div>
+<div class="advice-text"><strong>Starbucks Coffee</strong> Stock is negative (<span style="color:#dc2626">-22</span>), data abnormal, needs immediate attention!</div>
+</div>
+</div>
+<div class="advice-card urgent">
+<div class="advice-icon"></div>
+<div class="advice-content">
+<div class="advice-title">Urgent Restock Advice</div>
+<div class="advice-text"><strong>Vita Lemon Tea</strong> Stock is negative (<span style="color:#dc2626">-23</span>), data abnormal, needs immediate attention!</div>
+</div>
+</div>
+<div class="advice-card urgent">
+<div class="advice-icon"></div>
+<div class="advice-content">
+<div class="advice-title">Urgent Restock Advice</div>
+<div class="advice-text"><strong>Plum Sparkling Water</strong> Stock is negative (<span style="color:#dc2626">-29</span>), data abnormal, needs immediate attention!</div>
+</div>
+</div>
+<div class="advice-card urgent">
+<div class="advice-icon"></div>
+<div class="advice-content">
+<div class="advice-title">Urgent Restock Advice</div>
+<div class="advice-text"><strong>Vita Sparkling Apple Green Tea</strong> Stock is negative (<span style="color:#dc2626">-38</span>), data abnormal, needs immediate attention!</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section">
+<div class="section-title">Abnormal Investigation Advice</div>
+<div class="investigation-list">
+<div class="investigation-item">
+<div class="investigation-header">
+<div class="investigation-icon"></div>
+<div class="investigation-name">Low-sugar Oolong Tea</div>
+</div>
+<div class="investigation-stock">Current Stock: <span>-5</span> (Abnormal)</div>
+<div class="investigation-suggest">
+<div class="investigation-suggest-title">Investigation advice: Please check for the following issues:</div>
+<ul>
+<li>Are outbound records duplicated or have incorrect quantities</li>
+<li>Are inbound records correctly entered with accurate quantities</li>
+<li>Is there any unauthorized data modification</li>
+<li>Are there logical errors in the chronological order of inbound/outbound records</li>
+</ul>
+</div>
+</div>
+<div class="investigation-item">
+<div class="investigation-header">
+<div class="investigation-icon"></div>
+<div class="investigation-name">Lychee Juice Sparkling Water</div>
+</div>
+<div class="investigation-stock">Current Stock: <span>-19</span> (Abnormal)</div>
+<div class="investigation-suggest">
+<div class="investigation-suggest-title">Investigation advice: Please check for the following issues:</div>
+<ul>
+<li>Are outbound records duplicated or have incorrect quantities</li>
+<li>Are inbound records correctly entered with accurate quantities</li>
+<li>Is there any unauthorized data modification</li>
+<li>Are there logical errors in the chronological order of inbound/outbound records</li>
+</ul>
+</div>
+</div>
+<div class="investigation-item">
+<div class="investigation-header">
+<div class="investigation-icon"></div>
+<div class="investigation-name">Starbucks Coffee</div>
+</div>
+<div class="investigation-stock">Current Stock: <span>-22</span> (Abnormal)</div>
+<div class="investigation-suggest">
+<div class="investigation-suggest-title">Investigation advice: Please check for the following issues:</div>
+<ul>
+<li>Are outbound records duplicated or have incorrect quantities</li>
+<li>Are inbound records correctly entered with accurate quantities</li>
+<li>Is there any unauthorized data modification</li>
+<li>Are there logical errors in the chronological order of inbound/outbound records</li>
+</ul>
+</div>
+</div>
+<div class="investigation-item">
+<div class="investigation-header">
+<div class="investigation-icon"></div>
+<div class="investigation-name">Vita Lemon Tea</div>
+</div>
+<div class="investigation-stock">Current Stock: <span>-23</span> (Abnormal)</div>
+<div class="investigation-suggest">
+<div class="investigation-suggest-title">Investigation advice: Please check for the following issues:</div>
+<ul>
+<li>Are outbound records duplicated or have incorrect quantities</li>
+<li>Are inbound records correctly entered with accurate quantities</li>
+<li>Is there any unauthorized data modification</li>
+<li>Are there logical errors in the chronological order of inbound/outbound records</li>
+</ul>
+</div>
+</div>
+<div class="investigation-item">
+<div class="investigation-header">
+<div class="investigation-icon"></div>
+<div class="investigation-name">Plum Sparkling Water</div>
+</div>
+<div class="investigation-stock">Current Stock: <span>-29</span> (Abnormal)</div>
+<div class="investigation-suggest">
+<div class="investigation-suggest-title">Investigation advice: Please check for the following issues:</div>
+<ul>
+<li>Are outbound records duplicated or have incorrect quantities</li>
+<li>Are inbound records correctly entered with accurate quantities</li>
+<li>Is there any unauthorized data modification</li>
+<li>Are there logical errors in the chronological order of inbound/outbound records</li>
+</ul>
+</div>
+</div>
+<div class="investigation-item">
+<div class="investigation-header">
+<div class="investigation-icon"></div>
+<div class="investigation-name">Vita Sparkling Apple Green Tea</div>
+</div>
+<div class="investigation-stock">Current Stock: <span>-38</span> (Abnormal)</div>
+<div class="investigation-suggest">
+<div class="investigation-suggest-title">Investigation advice: Please check for the following issues:</div>
+<ul>
+<li>Are outbound records duplicated or have incorrect quantities</li>
+<li>Are inbound records correctly entered with accurate quantities</li>
+<li>Is there any unauthorized data modification</li>
+<li>Are there logical errors in the chronological order of inbound/outbound records</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="footer">
+Inventory Management System - Data Analysis Report
+</div>
+</div>
+</body>
+</html>

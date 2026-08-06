@@ -1,45 +1,45 @@
 package zyhinventory;
 
 /**
- * 流水记录实体类
- * 用于存储所有库存变动的流水信息
- * 流水记录采用链表结构存储，支持频繁的增删操作
+ * Transaction Record Entity Class
+ * Used to store transaction information for all inventory changes
+ * Transaction records are stored in a linked list structure, supporting frequent add/delete operations
  */
 public class ZYHTransactionRecord {
-    /** 记录ID，唯一标识每条流水记录 */
+    /** Record ID, uniquely identifies each transaction record */
     private String recordId;
 
-    /** 商品条码 */
+    /** Product barcode */
     private String barcode;
 
-    /** 商品名称 */
+    /** Product name */
     private String itemName;
 
-    /** 交易类型（入库/出库） */
+    /** Transaction type (Inbound/Outbound) */
     private String transactionType;
 
-    /** 交易数量 */
+    /** Transaction quantity */
     private int quantity;
 
-    /** 交易时间 */
+    /** Transaction time */
     private String dateTime;
 
-    /** 交易描述 */
+    /** Transaction description */
     private String description;
 
     /**
-     * 默认构造函数
+     * Default constructor
      */
     public ZYHTransactionRecord() {
     }
 
     /**
-     * 构造函数 - 创建新流水记录
-     * @param barcode 商品条码
-     * @param itemName 商品名称
-     * @param transactionType 交易类型（入库/出库）
-     * @param quantity 交易数量
-     * @param description 交易描述
+     * Constructor - Create new transaction record
+     * @param barcode Product barcode
+     * @param itemName Product name
+     * @param transactionType Transaction type (Inbound/Outbound)
+     * @param quantity Transaction quantity
+     * @param description Transaction description
      */
     public ZYHTransactionRecord(String barcode, String itemName, String transactionType,
             int quantity, String description) {
@@ -48,7 +48,7 @@ public class ZYHTransactionRecord {
         this.transactionType = transactionType;
         this.quantity = quantity;
         this.description = description;
-        this.dateTime = java.time.LocalDateTime.now().toString().substring(0, 19);  // 自动设置当前时间
+        this.dateTime = java.time.LocalDateTime.now().toString().substring(0, 19);  // Automatically set current time
     }
 
     public String getRecordId() {
@@ -76,32 +76,32 @@ public class ZYHTransactionRecord {
     }
 
     /**
-     * 获取交易类型
-     * @return 交易类型（入库/出库）
+     * Get transaction type
+     * @return Transaction type (Inbound/Outbound)
      */
     public String getTransactionType() {
         return transactionType;
     }
 
     /**
-     * 设置交易类型
-     * @param transactionType 交易类型
+     * Set transaction type
+     * @param transactionType Transaction type
      */
     public void setTransactionType(String transactionType) {
         this.transactionType = transactionType;
     }
 
     /**
-     * 获取交易数量
-     * @return 交易数量
+     * Get transaction quantity
+     * @return Transaction quantity
      */
     public int getQuantity() {
         return quantity;
     }
 
     /**
-     * 设置交易数量
-     * @param quantity 交易数量
+     * Set transaction quantity
+     * @param quantity Transaction quantity
      */
     public void setQuantity(int quantity) {
         this.quantity = quantity;
@@ -124,7 +124,7 @@ public class ZYHTransactionRecord {
     }
 
     /**
-     * 返回流水记录信息的字符串表示
+     * Returns string representation of transaction record information
      */
     @Override
     public String toString() {
@@ -140,8 +140,8 @@ public class ZYHTransactionRecord {
     }
 
     /**
-     * 判断两条流水记录是否相同
-     * 根据记录ID判断
+     * Determine whether two transaction records are the same
+     * Judged by record ID
      */
     @Override
     public boolean equals(Object obj) {
@@ -152,7 +152,7 @@ public class ZYHTransactionRecord {
     }
 
     /**
-     * 根据记录ID生成哈希码
+     * Generate hash code based on record ID
      */
     @Override
     public int hashCode() {

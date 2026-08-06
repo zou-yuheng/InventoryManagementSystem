@@ -1,30 +1,30 @@
 package zyhinventory;
 
 /**
- * 数据管理器类
- * 统一管理库存系统中的所有数据
- * 使用顺序表存储商品列表和库存列表
- * 使用链表存储入库队列、出库栈和流水记录
+ * Data Manager Class
+ * Unified management of all data in the inventory system
+ * Uses sequential list to store product list and inventory list
+ * Uses linked list to store inbound queue, outbound stack and transaction records
  */
 public class ZYHDataManager {
-    /** 商品列表（顺序表） - 存储商品基本信息 */
+    /** Product list (Sequential list) - Stores basic product information */
     private ZYHSequentialList<ZYHProduct> productList;
 
-    /** 库存列表（顺序表） - 存储库存商品信息 */
+    /** Inventory list (Sequential list) - Stores inventory product information */
     private ZYHSequentialList<ZYHProduct> inventoryList;
 
-    /** 入库队列（链表） - 先进先出，存储入库记录 */
+    /** Inbound queue (Linked list) - FIFO, stores inbound records */
     private ZYHLinkedList<ZYHInboundRecord> inboundQueue;
 
-    /** 出库栈（链表） - 先进后出，存储出库记录 */
+    /** Outbound stack (Linked list) - LIFO, stores outbound records */
     private ZYHLinkedList<ZYHOutboundRecord> outboundStack;
 
-    /** 流水记录（链表） - 存储所有库存变动记录 */
+    /** Transaction records (Linked list) - Stores all inventory change records */
     private ZYHLinkedList<ZYHTransactionRecord> transactionFlow;
 
     /**
-     * 默认构造函数
-     * 初始化所有数据容器
+     * Default constructor
+     * Initialize all data containers
      */
     public ZYHDataManager() {
         this.productList = new ZYHSequentialList<>();
@@ -55,64 +55,64 @@ public class ZYHDataManager {
     }
 
     /**
-     * 添加商品到商品列表
-     * @param product 商品对象
+     * Add product to product list
+     * @param product Product object
      */
     public void addProduct(ZYHProduct product) {
         productList.add(product);
     }
 
     /**
-     * 添加商品到库存列表
-     * @param product 库存商品对象
+     * Add product to inventory list
+     * @param product Inventory product object
      */
     public void addInventory(ZYHProduct product) {
         inventoryList.add(product);
     }
 
     /**
-     * 入库记录入队（添加到队列尾部）
-     * @param record 入库记录
+     * Enqueue inbound record (add to queue tail)
+     * @param record Inbound record
      */
     public void enqueueInbound(ZYHInboundRecord record) {
         inboundQueue.addLast(record);
     }
 
     /**
-     * 入库记录出队（从队列头部移除）
-     * @return 被移除的入库记录
+     * Dequeue inbound record (remove from queue head)
+     * @return Removed inbound record
      */
     public ZYHInboundRecord dequeueInbound() {
         return inboundQueue.removeFirst();
     }
 
     /**
-     * 出库记录入栈（添加到栈顶）
-     * @param record 出库记录
+     * Push outbound record (add to stack top)
+     * @param record Outbound record
      */
     public void pushOutbound(ZYHOutboundRecord record) {
         outboundStack.addLast(record);
     }
 
     /**
-     * 出库记录出栈（从栈顶移除）
-     * @return 被移除的出库记录
+     * Pop outbound record (remove from stack top)
+     * @return Removed outbound record
      */
     public ZYHOutboundRecord popOutbound() {
         return outboundStack.removeLast();
     }
 
     /**
-     * 添加流水记录
-     * @param record 流水记录
+     * Add transaction record
+     * @param record Transaction record
      */
     public void addTransaction(ZYHTransactionRecord record) {
         transactionFlow.addLast(record);
     }
 
     /**
-     * 根据记录ID移除流水记录
-     * @param recordId 记录ID
+     * Remove transaction record by record ID
+     * @param recordId Record ID
      */
     public void removeTransaction(String recordId) {
         for (ZYHTransactionRecord record : transactionFlow) {
@@ -124,9 +124,9 @@ public class ZYHDataManager {
     }
 
     /**
-     * 根据条码查找商品
-     * @param barcode 商品条码
-     * @return 找到的商品，未找到返回null
+     * Find product by barcode
+     * @param barcode Product barcode
+     * @return Found product, returns null if not found
      */
     public ZYHProduct findProductByBarcode(String barcode) {
         for (int i = 0; i < productList.size(); i++) {
@@ -139,9 +139,9 @@ public class ZYHDataManager {
     }
 
     /**
-     * 根据条码查找库存商品
-     * @param barcode 商品条码
-     * @return 找到的库存商品，未找到返回null
+     * Find inventory product by barcode
+     * @param barcode Product barcode
+     * @return Found inventory product, returns null if not found
      */
     public ZYHProduct findInventoryByBarcode(String barcode) {
         for (int i = 0; i < inventoryList.size(); i++) {
@@ -154,47 +154,47 @@ public class ZYHDataManager {
     }
 
     /**
-     * 获取商品数量
-     * @return 商品列表中的商品数量
+     * Get product count
+     * @return Number of products in product list
      */
     public int getProductCount() {
         return productList.size();
     }
 
     /**
-     * 获取库存商品数量
-     * @return 库存列表中的商品数量
+     * Get inventory product count
+     * @return Number of products in inventory list
      */
     public int getInventoryCount() {
         return inventoryList.size();
     }
 
     /**
-     * 获取入库记录数量
-     * @return 入库队列中的记录数量
+     * Get inbound record count
+     * @return Number of records in inbound queue
      */
     public int getInboundCount() {
         return inboundQueue.size();
     }
 
     /**
-     * 获取出库记录数量
-     * @return 出库栈中的记录数量
+     * Get outbound record count
+     * @return Number of records in outbound stack
      */
     public int getOutboundCount() {
         return outboundStack.size();
     }
 
     /**
-     * 获取流水记录数量
-     * @return 流水链表中的记录数量
+     * Get transaction record count
+     * @return Number of records in transaction linked list
      */
     public int getTransactionCount() {
         return transactionFlow.size();
     }
 
     /**
-     * 清空所有数据
+     * Clear all data
      */
     public void clear() {
         productList.clear();
@@ -205,25 +205,25 @@ public class ZYHDataManager {
     }
 
     /**
-     * 性能对比结果类
-     * 用于存储顺序表和链表在增删改查操作上的性能对比数据
+     * Performance Comparison Result Class
+     * Used to store performance comparison data of sequential list and linked list in add/delete/query/update operations
      */
     public static class PerformanceComparison {
-        /** 顺序表添加耗时 */
+        /** Sequential list add time */
         private long sequentialAddTime;
-        /** 链表添加耗时 */
+        /** Linked list add time */
         private long linkedListAddTime;
-        /** 顺序表删除耗时 */
+        /** Sequential list remove time */
         private long sequentialRemoveTime;
-        /** 链表删除耗时 */
+        /** Linked list remove time */
         private long linkedListRemoveTime;
-        /** 顺序表查询耗时 */
+        /** Sequential list search time */
         private long sequentialSearchTime;
-        /** 链表查询耗时 */
+        /** Linked list search time */
         private long linkedListSearchTime;
-        /** 顺序表修改耗时 */
+        /** Sequential list update time */
         private long sequentialUpdateTime;
-        /** 链表修改耗时 */
+        /** Linked list update time */
         private long linkedListUpdateTime;
 
         public PerformanceComparison() {
@@ -294,46 +294,46 @@ public class ZYHDataManager {
         }
 
         /**
-         * 返回性能对比结果的字符串表示
+         * Returns string representation of performance comparison result
          */
         @Override
         public String toString() {
             StringBuilder sb = new StringBuilder();
-            sb.append("========== 顺序表 vs 链表 性能比对 ==========\n\n");
+            sb.append("========== Sequential List vs Linked List Performance Comparison ==========\n\n");
 
-            sb.append("【添加操作】\n");
-            sb.append("顺序表: ").append(sequentialAddTime).append(" ns\n");
-            sb.append("链表:   ").append(linkedListAddTime).append(" ns\n");
-            String addWinner = sequentialAddTime < linkedListAddTime ? "顺序表" : "链表";
-            sb.append("结论: ").append(addWinner).append(" 更快\n\n");
+            sb.append("[Add Operation]\n");
+            sb.append("Sequential List: ").append(sequentialAddTime).append(" ns\n");
+            sb.append("Linked List:     ").append(linkedListAddTime).append(" ns\n");
+            String addWinner = sequentialAddTime < linkedListAddTime ? "Sequential List" : "Linked List";
+            sb.append("Conclusion: ").append(addWinner).append(" is faster\n\n");
 
-            sb.append("【删除操作】\n");
-            sb.append("顺序表: ").append(sequentialRemoveTime).append(" ns\n");
-            sb.append("链表:   ").append(linkedListRemoveTime).append(" ns\n");
-            String removeWinner = sequentialRemoveTime < linkedListRemoveTime ? "顺序表" : "链表";
-            sb.append("结论: ").append(removeWinner).append(" 更快\n\n");
+            sb.append("[Delete Operation]\n");
+            sb.append("Sequential List: ").append(sequentialRemoveTime).append(" ns\n");
+            sb.append("Linked List:     ").append(linkedListRemoveTime).append(" ns\n");
+            String removeWinner = sequentialRemoveTime < linkedListRemoveTime ? "Sequential List" : "Linked List";
+            sb.append("Conclusion: ").append(removeWinner).append(" is faster\n\n");
 
-            sb.append("【查询操作】\n");
-            sb.append("顺序表: ").append(sequentialSearchTime).append(" ns\n");
-            sb.append("链表:   ").append(linkedListSearchTime).append(" ns\n");
-            String searchWinner = sequentialSearchTime < linkedListSearchTime ? "顺序表" : "链表";
-            sb.append("结论: ").append(searchWinner).append(" 更快\n\n");
+            sb.append("[Search Operation]\n");
+            sb.append("Sequential List: ").append(sequentialSearchTime).append(" ns\n");
+            sb.append("Linked List:     ").append(linkedListSearchTime).append(" ns\n");
+            String searchWinner = sequentialSearchTime < linkedListSearchTime ? "Sequential List" : "Linked List";
+            sb.append("Conclusion: ").append(searchWinner).append(" is faster\n\n");
 
-            sb.append("【修改操作】\n");
-            sb.append("顺序表: ").append(sequentialUpdateTime).append(" ns\n");
-            sb.append("链表:   ").append(linkedListUpdateTime).append(" ns\n");
-            String updateWinner = sequentialUpdateTime < linkedListUpdateTime ? "顺序表" : "链表";
-            sb.append("结论: ").append(updateWinner).append(" 更快\n\n");
+            sb.append("[Update Operation]\n");
+            sb.append("Sequential List: ").append(sequentialUpdateTime).append(" ns\n");
+            sb.append("Linked List:     ").append(linkedListUpdateTime).append(" ns\n");
+            String updateWinner = sequentialUpdateTime < linkedListUpdateTime ? "Sequential List" : "Linked List";
+            sb.append("Conclusion: ").append(updateWinner).append(" is faster\n\n");
 
-            sb.append("===========================================");
+            sb.append("================================================================");
             return sb.toString();
         }
     }
 
     /**
-     * 执行性能对比测试
-     * @param dataSize 测试数据规模
-     * @return 性能对比结果
+     * Execute performance comparison test
+     * @param dataSize Test data size
+     * @return Performance comparison result
      */
     public PerformanceComparison comparePerformance(int dataSize) {
         PerformanceComparison result = new PerformanceComparison();
@@ -343,7 +343,7 @@ public class ZYHDataManager {
 
         long startTime, endTime;
 
-        // 测试顺序表添加
+        // Test sequential list add
         startTime = System.nanoTime();
         for (int i = 0; i < dataSize; i++) {
             seqList.add(i);
@@ -351,7 +351,7 @@ public class ZYHDataManager {
         endTime = System.nanoTime();
         result.setSequentialAddTime(endTime - startTime);
 
-        // 测试链表添加
+        // Test linked list add
         startTime = System.nanoTime();
         for (int i = 0; i < dataSize; i++) {
             linkedList.addLast(i);
@@ -359,7 +359,7 @@ public class ZYHDataManager {
         endTime = System.nanoTime();
         result.setLinkedListAddTime(endTime - startTime);
 
-        // 测试中间位置删除
+        // Test middle position deletion
         int midIndex = dataSize / 2;
         startTime = System.nanoTime();
         seqList.remove(midIndex);
@@ -371,7 +371,7 @@ public class ZYHDataManager {
         endTime = System.nanoTime();
         result.setLinkedListRemoveTime(endTime - startTime);
 
-        // 测试查询操作
+        // Test search operation
         int targetValue = dataSize - 1;
         startTime = System.nanoTime();
         seqList.indexOf(targetValue);
@@ -383,7 +383,7 @@ public class ZYHDataManager {
         endTime = System.nanoTime();
         result.setLinkedListSearchTime(endTime - startTime);
 
-        // 测试修改操作
+        // Test update operation
         startTime = System.nanoTime();
         seqList.set(midIndex, dataSize + 1);
         endTime = System.nanoTime();
