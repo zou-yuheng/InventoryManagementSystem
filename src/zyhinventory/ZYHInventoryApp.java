@@ -3,6 +3,7 @@ package zyhinventory;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -67,16 +68,16 @@ public class ZYHInventoryApp extends JFrame {
         leftPanel.setBackground(BACKGROUND);
         leftPanel.setPreferredSize(new Dimension(200, 500));
 
-        JLabel titleLabel = new JLabel("Inventory Management");
+        JLabel titleLabel = new JLabel("<html>Inventory<br>Management</html>");
         titleLabel.setFont(new Font("Segoe UI", Font.BOLD, 16));
         titleLabel.setForeground(COLOR_1);
         titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         titleLabel.setBorder(new EmptyBorder(0, 0, 20, 0));
 
-        JButton inventoryBtn = createMenuButton("Inventory Management", COLOR_2, e -> showPanel("inventory"));
-        JButton inboundBtn = createMenuButton("Inbound Management", COLOR_2, e -> showPanel("inbound"));
-        JButton outboundBtn = createMenuButton("Outbound Management", COLOR_2, e -> showPanel("outbound"));
-        JButton reportBtn = createMenuButton("Report Generation", COLOR_2, e -> showPanel("report"));
+        JButton inventoryBtn = createMenuButton("<html>Inventory<br>Management</html>", COLOR_2, e -> showPanel("inventory"));
+        JButton inboundBtn = createMenuButton("<html>Inbound<br>Management</html>", COLOR_2, e -> showPanel("inbound"));
+        JButton outboundBtn = createMenuButton("<html>Outbound<br>Management</html>", COLOR_2, e -> showPanel("outbound"));
+        JButton reportBtn = createMenuButton("<html>Report<br>Generation</html>", COLOR_2, e -> showPanel("report"));
         JButton chartBtn = createMenuButton("Chart Display", COLOR_2, e -> showPanel("chart"));
         JButton resetBtn = createMenuButton("Reset Data", COLOR_2, e -> resetDataFromAPI());
         JButton analysisBtn = createMenuButton("Data Analysis", COLOR_2, e -> showAnalysisDialog());
@@ -109,8 +110,8 @@ public class ZYHInventoryApp extends JFrame {
         button.setBackground(bgColor);
         button.setFocusPainted(false);
         button.setBorderPainted(false);
-        button.setPreferredSize(new Dimension(180, 45));
-        button.setMaximumSize(new Dimension(180, 45));
+        button.setPreferredSize(new Dimension(200, 50));
+        button.setMaximumSize(new Dimension(200, 50));
         button.setBorder(BorderFactory.createEmptyBorder(5, 15, 5, 15));
         button.setOpaque(true);
         button.addActionListener(listener);
@@ -141,6 +142,38 @@ public class ZYHInventoryApp extends JFrame {
         inventoryTable = new JTable(inventoryTableModel);
         inventoryTable.setFont(new Font("Segoe UI", Font.PLAIN, 12));
         inventoryTable.setRowHeight(28);
+        inventoryTable.setAutoResizeMode(JTable.AUTO_RESIZE_SUBSEQUENT_COLUMNS);
+        inventoryTable.setRowHeight(30);
+        TableColumn invCol0 = inventoryTable.getColumnModel().getColumn(0);
+        invCol0.setMinWidth(130);
+        invCol0.setMaxWidth(230);
+        invCol0.setWidth(130);
+        invCol0.setPreferredWidth(130);
+        TableColumn invCol1 = inventoryTable.getColumnModel().getColumn(1);
+        invCol1.setMinWidth(200);
+        invCol1.setMaxWidth(300);
+        invCol1.setWidth(200);
+        invCol1.setPreferredWidth(200);
+        TableColumn invCol2 = inventoryTable.getColumnModel().getColumn(2);
+        invCol2.setMinWidth(100);
+        invCol2.setMaxWidth(200);
+        invCol2.setWidth(100);
+        invCol2.setPreferredWidth(100);
+        TableColumn invCol3 = inventoryTable.getColumnModel().getColumn(3);
+        invCol3.setMinWidth(100);
+        invCol3.setMaxWidth(200);
+        invCol3.setWidth(100);
+        invCol3.setPreferredWidth(100);
+        TableColumn invCol4 = inventoryTable.getColumnModel().getColumn(4);
+        invCol4.setMinWidth(120);
+        invCol4.setMaxWidth(220);
+        invCol4.setWidth(120);
+        invCol4.setPreferredWidth(120);
+        TableColumn invCol5 = inventoryTable.getColumnModel().getColumn(5);
+        invCol5.setMinWidth(80);
+        invCol5.setMaxWidth(180);
+        invCol5.setWidth(80);
+        invCol5.setPreferredWidth(80);
         JScrollPane inventoryScroll = new JScrollPane(inventoryTable);
 
         inboundTableModel = new DefaultTableModel(
@@ -148,6 +181,33 @@ public class ZYHInventoryApp extends JFrame {
         inboundTable = new JTable(inboundTableModel);
         inboundTable.setFont(new Font("Segoe UI", Font.PLAIN, 12));
         inboundTable.setRowHeight(28);
+        inboundTable.setAutoResizeMode(JTable.AUTO_RESIZE_SUBSEQUENT_COLUMNS);
+        inboundTable.setRowHeight(30);
+        TableColumn inbCol0 = inboundTable.getColumnModel().getColumn(0);
+        inbCol0.setMinWidth(80);
+        inbCol0.setMaxWidth(180);
+        inbCol0.setWidth(80);
+        inbCol0.setPreferredWidth(80);
+        TableColumn inbCol1 = inboundTable.getColumnModel().getColumn(1);
+        inbCol1.setMinWidth(130);
+        inbCol1.setMaxWidth(230);
+        inbCol1.setWidth(130);
+        inbCol1.setPreferredWidth(130);
+        TableColumn inbCol2 = inboundTable.getColumnModel().getColumn(2);
+        inbCol2.setMinWidth(200);
+        inbCol2.setMaxWidth(300);
+        inbCol2.setWidth(200);
+        inbCol2.setPreferredWidth(200);
+        TableColumn inbCol3 = inboundTable.getColumnModel().getColumn(3);
+        inbCol3.setMinWidth(80);
+        inbCol3.setMaxWidth(180);
+        inbCol3.setWidth(80);
+        inbCol3.setPreferredWidth(80);
+        TableColumn inbCol4 = inboundTable.getColumnModel().getColumn(4);
+        inbCol4.setMinWidth(120);
+        inbCol4.setMaxWidth(220);
+        inbCol4.setWidth(120);
+        inbCol4.setPreferredWidth(120);
         JScrollPane inboundScroll = new JScrollPane(inboundTable);
 
         outboundTableModel = new DefaultTableModel(
@@ -155,6 +215,33 @@ public class ZYHInventoryApp extends JFrame {
         outboundTable = new JTable(outboundTableModel);
         outboundTable.setFont(new Font("Segoe UI", Font.PLAIN, 12));
         outboundTable.setRowHeight(28);
+        outboundTable.setAutoResizeMode(JTable.AUTO_RESIZE_SUBSEQUENT_COLUMNS);
+        outboundTable.setRowHeight(30);
+        TableColumn outCol0 = outboundTable.getColumnModel().getColumn(0);
+        outCol0.setMinWidth(80);
+        outCol0.setMaxWidth(180);
+        outCol0.setWidth(80);
+        outCol0.setPreferredWidth(80);
+        TableColumn outCol1 = outboundTable.getColumnModel().getColumn(1);
+        outCol1.setMinWidth(130);
+        outCol1.setMaxWidth(230);
+        outCol1.setWidth(130);
+        outCol1.setPreferredWidth(130);
+        TableColumn outCol2 = outboundTable.getColumnModel().getColumn(2);
+        outCol2.setMinWidth(200);
+        outCol2.setMaxWidth(300);
+        outCol2.setWidth(200);
+        outCol2.setPreferredWidth(200);
+        TableColumn outCol3 = outboundTable.getColumnModel().getColumn(3);
+        outCol3.setMinWidth(80);
+        outCol3.setMaxWidth(180);
+        outCol3.setWidth(80);
+        outCol3.setPreferredWidth(80);
+        TableColumn outCol4 = outboundTable.getColumnModel().getColumn(4);
+        outCol4.setMinWidth(120);
+        outCol4.setMaxWidth(220);
+        outCol4.setWidth(120);
+        outCol4.setPreferredWidth(120);
         JScrollPane outboundScroll = new JScrollPane(outboundTable);
 
         JPanel inventoryPanel = createInventoryPanel();
@@ -198,7 +285,7 @@ public class ZYHInventoryApp extends JFrame {
         panel.setBackground(BACKGROUND);
         panel.setBorder(new EmptyBorder(10, 10, 10, 10));
 
-        JLabel titleLabel = new JLabel("Inventory Management");
+        JLabel titleLabel = new JLabel("<html>Inventory<br>Management</html>");
         titleLabel.setFont(new Font("Segoe UI", Font.BOLD, 18));
         titleLabel.setForeground(COLOR_1);
 
@@ -245,7 +332,7 @@ public class ZYHInventoryApp extends JFrame {
         panel.setBackground(BACKGROUND);
         panel.setBorder(new EmptyBorder(10, 10, 10, 10));
 
-        JLabel titleLabel = new JLabel("Inbound Management");
+        JLabel titleLabel = new JLabel("<html>Inbound<br>Management</html>");
         titleLabel.setFont(new Font("Segoe UI", Font.BOLD, 18));
         titleLabel.setForeground(COLOR_1);
 
@@ -299,7 +386,7 @@ public class ZYHInventoryApp extends JFrame {
         panel.setBackground(BACKGROUND);
         panel.setBorder(new EmptyBorder(10, 10, 10, 10));
 
-        JLabel titleLabel = new JLabel("Outbound Management");
+        JLabel titleLabel = new JLabel("<html>Outbound<br>Management</html>");
         titleLabel.setFont(new Font("Segoe UI", Font.BOLD, 18));
         titleLabel.setForeground(COLOR_1);
 
@@ -1506,7 +1593,7 @@ public class ZYHInventoryApp extends JFrame {
 
     private void showBatchPriceDialog() {
         JDialog dialog = new JDialog(this, "Batch Price Update", true);
-        dialog.setSize(650, 500);
+        dialog.setSize(1100, 700);
         dialog.setLocationRelativeTo(this);
 
         JPanel mainPanel = new JPanel(new BorderLayout(10, 10));
@@ -1552,8 +1639,46 @@ public class ZYHInventoryApp extends JFrame {
         JTable priceTable = new JTable(priceTableModel);
         priceTable.setFont(new Font("Segoe UI", Font.PLAIN, 12));
         priceTable.setRowHeight(28);
+        priceTable.setAutoResizeMode(JTable.AUTO_RESIZE_SUBSEQUENT_COLUMNS);
+        priceTable.setRowHeight(30);
+        TableColumn col0 = priceTable.getColumnModel().getColumn(0);
+        col0.setMinWidth(120);
+        col0.setMaxWidth(320);
+        col0.setWidth(120);
+        col0.setPreferredWidth(120);
+        TableColumn col1 = priceTable.getColumnModel().getColumn(1);
+        col1.setMinWidth(260);
+        col1.setMaxWidth(460);
+        col1.setWidth(260);
+        col1.setPreferredWidth(260);
+        TableColumn col2 = priceTable.getColumnModel().getColumn(2);
+        col2.setMinWidth(360);
+        col2.setMaxWidth(560);
+        col2.setWidth(360);
+        col2.setPreferredWidth(360);
+        TableColumn col3 = priceTable.getColumnModel().getColumn(3);
+        col3.setMinWidth(240);
+        col3.setMaxWidth(440);
+        col3.setWidth(240);
+        col3.setPreferredWidth(240);
+        TableColumn col4 = priceTable.getColumnModel().getColumn(4);
+        col4.setMinWidth(240);
+        col4.setMaxWidth(440);
+        col4.setWidth(240);
+        col4.setPreferredWidth(240);
+        TableColumn col5 = priceTable.getColumnModel().getColumn(5);
+        col5.setMinWidth(240);
+        col5.setMaxWidth(440);
+        col5.setWidth(240);
+        col5.setPreferredWidth(240);
+        TableColumn col6 = priceTable.getColumnModel().getColumn(6);
+        col6.setMinWidth(240);
+        col6.setMaxWidth(440);
+        col6.setWidth(240);
+        col6.setPreferredWidth(240);
         JScrollPane tableScroll = new JScrollPane(priceTable);
         tableScroll.setBorder(BorderFactory.createTitledBorder("Product Price List (new prices can be edited directly)"));
+        tableScroll.setPreferredSize(new Dimension(1050, 500));
 
         JButton previewBtn = createActionButton("Preview Adjustment", COLOR_2);
         previewBtn.addActionListener(e -> {
@@ -1631,6 +1756,22 @@ public class ZYHInventoryApp extends JFrame {
         buttonPanel.add(selectAllBtn);
         buttonPanel.add(okBtn);
         buttonPanel.add(cancelBtn);
+
+        final boolean[] isMaximized = {false};
+        final Dimension[] originalSize = {null};
+        JButton maximizeBtn = new JButton("Maximize");
+        maximizeBtn.addActionListener(e -> {
+            if (isMaximized[0]) {
+                dialog.setSize(originalSize[0]);
+                maximizeBtn.setText("Restore");
+            } else {
+                originalSize[0] = dialog.getSize();
+                dialog.setSize(Toolkit.getDefaultToolkit().getScreenSize());
+                maximizeBtn.setText("Restore");
+            }
+            isMaximized[0] = !isMaximized[0];
+        });
+        buttonPanel.add(maximizeBtn);
 
         mainPanel.add(topPanel, BorderLayout.NORTH);
         mainPanel.add(tableScroll, BorderLayout.CENTER);
@@ -1741,7 +1882,7 @@ public class ZYHInventoryApp extends JFrame {
 
     private void showBatchInboundDialog() {
         JDialog dialog = new JDialog(this, "Batch Inbound", true);
-        dialog.setSize(600, 450);
+        dialog.setSize(1000, 650);
         dialog.setLocationRelativeTo(this);
 
         JPanel mainPanel = new JPanel(new BorderLayout(10, 10));
@@ -1757,6 +1898,28 @@ public class ZYHInventoryApp extends JFrame {
             }
         };
         JTable batchTable = new JTable(batchTableModel);
+        batchTable.setAutoResizeMode(JTable.AUTO_RESIZE_SUBSEQUENT_COLUMNS);
+        batchTable.setRowHeight(30);
+        TableColumn col0 = batchTable.getColumnModel().getColumn(0);
+        col0.setMinWidth(200);
+        col0.setMaxWidth(400);
+        col0.setWidth(200);
+        col0.setPreferredWidth(200);
+        TableColumn col1 = batchTable.getColumnModel().getColumn(1);
+        col1.setMinWidth(260);
+        col1.setMaxWidth(460);
+        col1.setWidth(260);
+        col1.setPreferredWidth(260);
+        TableColumn col2 = batchTable.getColumnModel().getColumn(2);
+        col2.setMinWidth(400);
+        col2.setMaxWidth(600);
+        col2.setWidth(400);
+        col2.setPreferredWidth(400);
+        TableColumn col3 = batchTable.getColumnModel().getColumn(3);
+        col3.setMinWidth(160);
+        col3.setMaxWidth(360);
+        col3.setWidth(160);
+        col3.setPreferredWidth(160);
 
         JPanel topPanel = new JPanel();
         topPanel.setLayout(new BoxLayout(topPanel, BoxLayout.Y_AXIS));
@@ -1822,6 +1985,7 @@ public class ZYHInventoryApp extends JFrame {
         batchTable.setRowHeight(28);
         JScrollPane tableScroll = new JScrollPane(batchTable);
         tableScroll.setBorder(BorderFactory.createTitledBorder("Inbound Record List (editable)"));
+        tableScroll.setPreferredSize(new Dimension(950, 500));
 
         JButton addRowBtn = createActionButton("Add Row", COLOR_2);
         addRowBtn.addActionListener(e -> {
@@ -1874,6 +2038,22 @@ public class ZYHInventoryApp extends JFrame {
         buttonPanel.add(removeRowBtn);
         buttonPanel.add(okBtn);
         buttonPanel.add(cancelBtn);
+
+        final boolean[] isMaximized2 = {false};
+        final Dimension[] originalSize2 = {null};
+        JButton maximizeBtn2 = new JButton("Maximize");
+        maximizeBtn2.addActionListener(e -> {
+            if (isMaximized2[0]) {
+                dialog.setSize(originalSize2[0]);
+                maximizeBtn2.setText("Restore");
+            } else {
+                originalSize2[0] = dialog.getSize();
+                dialog.setSize(Toolkit.getDefaultToolkit().getScreenSize());
+                maximizeBtn2.setText("Restore");
+            }
+            isMaximized2[0] = !isMaximized2[0];
+        });
+        buttonPanel.add(maximizeBtn2);
 
         mainPanel.add(topPanel, BorderLayout.NORTH);
         mainPanel.add(tableScroll, BorderLayout.CENTER);
@@ -2028,7 +2208,7 @@ public class ZYHInventoryApp extends JFrame {
 
     private void showBatchOutboundDialog() {
         JDialog dialog = new JDialog(this, "Batch Outbound", true);
-        dialog.setSize(600, 450);
+        dialog.setSize(1000, 650);
         dialog.setLocationRelativeTo(this);
 
         JPanel mainPanel = new JPanel(new BorderLayout(10, 10));
@@ -2044,6 +2224,28 @@ public class ZYHInventoryApp extends JFrame {
             }
         };
         JTable batchTable = new JTable(batchTableModel);
+        batchTable.setAutoResizeMode(JTable.AUTO_RESIZE_SUBSEQUENT_COLUMNS);
+        batchTable.setRowHeight(30);
+        TableColumn col0 = batchTable.getColumnModel().getColumn(0);
+        col0.setMinWidth(200);
+        col0.setMaxWidth(400);
+        col0.setWidth(200);
+        col0.setPreferredWidth(200);
+        TableColumn col1 = batchTable.getColumnModel().getColumn(1);
+        col1.setMinWidth(260);
+        col1.setMaxWidth(460);
+        col1.setWidth(260);
+        col1.setPreferredWidth(260);
+        TableColumn col2 = batchTable.getColumnModel().getColumn(2);
+        col2.setMinWidth(400);
+        col2.setMaxWidth(600);
+        col2.setWidth(400);
+        col2.setPreferredWidth(400);
+        TableColumn col3 = batchTable.getColumnModel().getColumn(3);
+        col3.setMinWidth(160);
+        col3.setMaxWidth(360);
+        col3.setWidth(160);
+        col3.setPreferredWidth(160);
 
         JPanel topPanel = new JPanel();
         topPanel.setLayout(new BoxLayout(topPanel, BoxLayout.Y_AXIS));
@@ -2110,6 +2312,7 @@ public class ZYHInventoryApp extends JFrame {
         batchTable.setRowHeight(28);
         JScrollPane tableScroll = new JScrollPane(batchTable);
         tableScroll.setBorder(BorderFactory.createTitledBorder("Outbound Record List (editable)"));
+        tableScroll.setPreferredSize(new Dimension(950, 500));
 
         JButton addRowBtn = createActionButton("Add Row", COLOR_2);
         addRowBtn.addActionListener(e -> {
@@ -2162,6 +2365,22 @@ public class ZYHInventoryApp extends JFrame {
         buttonPanel.add(removeRowBtn);
         buttonPanel.add(okBtn);
         buttonPanel.add(cancelBtn);
+
+        final boolean[] isMaximized3 = {false};
+        final Dimension[] originalSize3 = {null};
+        JButton maximizeBtn3 = new JButton("Maximize");
+        maximizeBtn3.addActionListener(e -> {
+            if (isMaximized3[0]) {
+                dialog.setSize(originalSize3[0]);
+                maximizeBtn3.setText("Restore");
+            } else {
+                originalSize3[0] = dialog.getSize();
+                dialog.setSize(Toolkit.getDefaultToolkit().getScreenSize());
+                maximizeBtn3.setText("Restore");
+            }
+            isMaximized3[0] = !isMaximized3[0];
+        });
+        buttonPanel.add(maximizeBtn3);
 
         mainPanel.add(topPanel, BorderLayout.NORTH);
         mainPanel.add(tableScroll, BorderLayout.CENTER);
@@ -3190,6 +3409,9 @@ public class ZYHInventoryApp extends JFrame {
         mainPanel.setBackground(BACKGROUND);
 
         // ===== Top: Statistics Summary =====
+        JPanel northWrapper = new JPanel(new BorderLayout());
+        northWrapper.setBackground(BACKGROUND);
+
         JPanel summaryPanel = new JPanel(new GridLayout(1, 4, 15, 0));
         summaryPanel.setBackground(COLOR_WHITE);
         summaryPanel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
@@ -3197,7 +3419,28 @@ public class ZYHInventoryApp extends JFrame {
         summaryPanel.add(createSummaryCard("Abnormal Products", String.valueOf(abnormalCount), new Color(239, 68, 68)));
         summaryPanel.add(createSummaryCard("Backlog Products", String.valueOf(backlogCount), new Color(234, 179, 8)));
         summaryPanel.add(createSummaryCard("Total Stock", String.valueOf(analysisList.stream().mapToInt(d -> d.currentStock).sum()), COLOR_3));
-        mainPanel.add(summaryPanel, BorderLayout.NORTH);
+
+        final boolean[] isMaximized4 = {false};
+        final Dimension[] originalSize4 = {null};
+        JButton maximizeBtn4 = new JButton("Maximize");
+        maximizeBtn4.addActionListener(e -> {
+            if (isMaximized4[0]) {
+                dialog.setSize(originalSize4[0]);
+                maximizeBtn4.setText("Restore");
+            } else {
+                originalSize4[0] = dialog.getSize();
+                dialog.setSize(Toolkit.getDefaultToolkit().getScreenSize());
+                maximizeBtn4.setText("Restore");
+            }
+            isMaximized4[0] = !isMaximized4[0];
+        });
+        JPanel maximizePanel4 = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        maximizePanel4.setBackground(BACKGROUND);
+        maximizePanel4.add(maximizeBtn4);
+
+        northWrapper.add(summaryPanel, BorderLayout.CENTER);
+        northWrapper.add(maximizePanel4, BorderLayout.EAST);
+        mainPanel.add(northWrapper, BorderLayout.NORTH);
 
         // ===== Middle: Top Rankings and Warnings =====
         JPanel centerPanel = new JPanel(new GridLayout(1, 2, 10, 10));
@@ -3242,6 +3485,38 @@ public class ZYHInventoryApp extends JFrame {
         table.setFont(new Font("Segoe UI", Font.PLAIN, 11));
         table.setRowHeight(24);
         table.setAutoCreateRowSorter(true);
+        table.setAutoResizeMode(JTable.AUTO_RESIZE_SUBSEQUENT_COLUMNS);
+        table.setRowHeight(30);
+        TableColumn col0 = table.getColumnModel().getColumn(0);
+        col0.setMinWidth(300);
+        col0.setMaxWidth(500);
+        col0.setWidth(300);
+        col0.setPreferredWidth(300);
+        TableColumn col1 = table.getColumnModel().getColumn(1);
+        col1.setMinWidth(400);
+        col1.setMaxWidth(600);
+        col1.setWidth(400);
+        col1.setPreferredWidth(400);
+        TableColumn col2 = table.getColumnModel().getColumn(2);
+        col2.setMinWidth(200);
+        col2.setMaxWidth(400);
+        col2.setWidth(200);
+        col2.setPreferredWidth(200);
+        TableColumn col3 = table.getColumnModel().getColumn(3);
+        col3.setMinWidth(200);
+        col3.setMaxWidth(400);
+        col3.setWidth(200);
+        col3.setPreferredWidth(200);
+        TableColumn col4 = table.getColumnModel().getColumn(4);
+        col4.setMinWidth(200);
+        col4.setMaxWidth(400);
+        col4.setWidth(200);
+        col4.setPreferredWidth(200);
+        TableColumn col5 = table.getColumnModel().getColumn(5);
+        col5.setMinWidth(240);
+        col5.setMaxWidth(440);
+        col5.setWidth(240);
+        col5.setPreferredWidth(240);
         table.getColumnModel().getColumn(5).setCellRenderer(new StatusCellRenderer());
 
         JScrollPane tableScroll = new JScrollPane(table);
@@ -3257,7 +3532,7 @@ public class ZYHInventoryApp extends JFrame {
 
     private void showStockPredictionDialog() {
         JDialog dialog = new JDialog(this, "Inventory Prediction Analysis", true);
-        dialog.setSize(900, 600);
+        dialog.setSize(1200, 750);
         dialog.setLocationRelativeTo(this);
 
         JPanel mainPanel = new JPanel(new BorderLayout(10, 10));
@@ -3272,6 +3547,22 @@ public class ZYHInventoryApp extends JFrame {
         topPanel.add(weeksCombo);
         JButton predictBtn = createActionButton("Start Prediction", COLOR_1);
         topPanel.add(predictBtn);
+
+        final boolean[] isMaximized5 = {false};
+        final Dimension[] originalSize5 = {null};
+        JButton maximizeBtn5 = new JButton("Maximize");
+        maximizeBtn5.addActionListener(e -> {
+            if (isMaximized5[0]) {
+                dialog.setSize(originalSize5[0]);
+                maximizeBtn5.setText("Restore");
+            } else {
+                originalSize5[0] = dialog.getSize();
+                dialog.setSize(Toolkit.getDefaultToolkit().getScreenSize());
+                maximizeBtn5.setText("Restore");
+            }
+            isMaximized5[0] = !isMaximized5[0];
+        });
+        topPanel.add(maximizeBtn5);
 
         String[] columnNames = {"Barcode", "Product Name", "Current Stock", "Weekly Avg Outbound", "Predicted Weekly Outbound", "Estimated Stockout Date", "Suggested Restock Qty", "Status"};
         java.util.List<Object[]> predictData = new java.util.ArrayList<>();
@@ -3361,6 +3652,48 @@ public class ZYHInventoryApp extends JFrame {
         predictTable.setFont(new Font("Segoe UI", Font.PLAIN, 12));
         predictTable.setRowHeight(28);
         predictTable.setAutoCreateRowSorter(true);
+        predictTable.setAutoResizeMode(JTable.AUTO_RESIZE_SUBSEQUENT_COLUMNS);
+        predictTable.setRowHeight(30);
+        TableColumn col0 = predictTable.getColumnModel().getColumn(0);
+        col0.setMinWidth(260);
+        col0.setMaxWidth(460);
+        col0.setWidth(260);
+        col0.setPreferredWidth(260);
+        TableColumn col1 = predictTable.getColumnModel().getColumn(1);
+        col1.setMinWidth(360);
+        col1.setMaxWidth(560);
+        col1.setWidth(360);
+        col1.setPreferredWidth(360);
+        TableColumn col2 = predictTable.getColumnModel().getColumn(2);
+        col2.setMinWidth(200);
+        col2.setMaxWidth(400);
+        col2.setWidth(200);
+        col2.setPreferredWidth(200);
+        TableColumn col3 = predictTable.getColumnModel().getColumn(3);
+        col3.setMinWidth(260);
+        col3.setMaxWidth(460);
+        col3.setWidth(260);
+        col3.setPreferredWidth(260);
+        TableColumn col4 = predictTable.getColumnModel().getColumn(4);
+        col4.setMinWidth(300);
+        col4.setMaxWidth(500);
+        col4.setWidth(300);
+        col4.setPreferredWidth(300);
+        TableColumn col5 = predictTable.getColumnModel().getColumn(5);
+        col5.setMinWidth(340);
+        col5.setMaxWidth(540);
+        col5.setWidth(340);
+        col5.setPreferredWidth(340);
+        TableColumn col6 = predictTable.getColumnModel().getColumn(6);
+        col6.setMinWidth(300);
+        col6.setMaxWidth(500);
+        col6.setWidth(300);
+        col6.setPreferredWidth(300);
+        TableColumn col7 = predictTable.getColumnModel().getColumn(7);
+        col7.setMinWidth(200);
+        col7.setMaxWidth(400);
+        col7.setWidth(200);
+        col7.setPreferredWidth(200);
 
         predictTable.getColumnModel().getColumn(7).setCellRenderer(new javax.swing.table.DefaultTableCellRenderer() {
             @Override
@@ -3388,6 +3721,7 @@ public class ZYHInventoryApp extends JFrame {
 
         JScrollPane tableScroll = new JScrollPane(predictTable);
         tableScroll.setBorder(BorderFactory.createTitledBorder("Prediction Results (click column header to sort)"));
+        tableScroll.setPreferredSize(new Dimension(1150, 550));
 
         JPanel infoPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         infoPanel.setBackground(BACKGROUND);
@@ -3537,11 +3871,25 @@ public class ZYHInventoryApp extends JFrame {
         warningTable.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         warningTable.setRowHeight(35);
         warningTable.setAutoCreateRowSorter(true);
+        warningTable.setAutoResizeMode(JTable.AUTO_RESIZE_SUBSEQUENT_COLUMNS);
+        warningTable.setRowHeight(30);
 
         // Set column widths
-        warningTable.getColumnModel().getColumn(0).setPreferredWidth(150);
-        warningTable.getColumnModel().getColumn(1).setPreferredWidth(100);
-        warningTable.getColumnModel().getColumn(2).setPreferredWidth(200);
+        TableColumn col0 = warningTable.getColumnModel().getColumn(0);
+        col0.setMinWidth(300);
+        col0.setMaxWidth(500);
+        col0.setWidth(300);
+        col0.setPreferredWidth(300);
+        TableColumn col1 = warningTable.getColumnModel().getColumn(1);
+        col1.setMinWidth(200);
+        col1.setMaxWidth(400);
+        col1.setWidth(200);
+        col1.setPreferredWidth(200);
+        TableColumn col2 = warningTable.getColumnModel().getColumn(2);
+        col2.setMinWidth(400);
+        col2.setMaxWidth(600);
+        col2.setWidth(400);
+        col2.setPreferredWidth(400);
 
         warningTable.getColumnModel().getColumn(1).setCellRenderer(new javax.swing.table.DefaultTableCellRenderer() {
             @Override

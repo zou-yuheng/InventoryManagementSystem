@@ -33,6 +33,9 @@ public class ZYHFilterDialog extends JDialog {
     private JLabel resultCountLabel;
     private JLabel timeCostLabel;
 
+    private boolean isMaximized = false;
+    private Dimension originalSize;
+
     private List<FilterCondition> conditions = new ArrayList<>();
 
     private static final Color COLOR_1 = new Color(59, 130, 246);
@@ -72,7 +75,6 @@ public class ZYHFilterDialog extends JDialog {
         initComponents();
         setSize(1250, 750);
         setLocationRelativeTo(parent);
-        setResizable(false);
     }
 
     private void initComponents() {
@@ -96,13 +98,30 @@ public class ZYHFilterDialog extends JDialog {
         actionButtonsPanel.setBackground(BACKGROUND);
 
         startFilterBtn = createButton("Confirm Filter", COLOR_2);
+        startFilterBtn.setPreferredSize(new Dimension(140, 35));
         startFilterBtn.addActionListener(e -> performFilter());
 
         cancelBtn = createButton("Cancel", COLOR_4);
+        cancelBtn.setPreferredSize(new Dimension(100, 35));
         cancelBtn.addActionListener(e -> dispose());
 
         actionButtonsPanel.add(startFilterBtn);
         actionButtonsPanel.add(cancelBtn);
+
+        JButton maximizeBtn = new JButton("Maximize");
+        maximizeBtn.addActionListener(e -> {
+            if (isMaximized) {
+                setSize(originalSize);
+                maximizeBtn.setText("Restore");
+            } else {
+                originalSize = getSize();
+                setSize(Toolkit.getDefaultToolkit().getScreenSize());
+                maximizeBtn.setText("Restore");
+            }
+            isMaximized = !isMaximized;
+        });
+        actionButtonsPanel.add(maximizeBtn);
+
         titlePanel.add(actionButtonsPanel, BorderLayout.EAST);
 
         topPanel.add(titlePanel, BorderLayout.NORTH);
@@ -190,6 +209,7 @@ public class ZYHFilterDialog extends JDialog {
         leftPanel.add(dayComboBox2);
 
         addConditionBtn = createButton("Add Condition", COLOR_1);
+        addConditionBtn.setPreferredSize(new Dimension(140, 35));
         addConditionBtn.addActionListener(e -> addCondition());
 
         inputPanel.add(leftPanel, BorderLayout.CENTER);
@@ -222,6 +242,7 @@ public class ZYHFilterDialog extends JDialog {
         conditionHeaderPanel.add(conditionTitleLabel, BorderLayout.WEST);
 
         clearAllBtn = createSmallButton("Clear All Conditions", COLOR_3);
+        clearAllBtn.setPreferredSize(new Dimension(140, 35));
         clearAllBtn.addActionListener(e -> clearAllConditions());
         conditionHeaderPanel.add(clearAllBtn, BorderLayout.EAST);
 
@@ -254,8 +275,14 @@ public class ZYHFilterDialog extends JDialog {
         resultTable.setFont(new Font("Segoe UI", Font.PLAIN, 12));
         resultTable.setRowHeight(25);
         resultTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        resultTable.setAutoResizeMode(JTable.AUTO_RESIZE_SUBSEQUENT_COLUMNS);
+        resultTable.setRowHeight(30);
+        for (int i = 0; i < resultTable.getColumnCount(); i++) {
+            resultTable.getColumnModel().getColumn(i).setPreferredWidth(120);
+        }
         JScrollPane resultScrollPane = new JScrollPane(resultTable);
         resultScrollPane.setBorder(BorderFactory.createLineBorder(COLOR_4, 1));
+        resultScrollPane.setPreferredSize(new Dimension(1200, 400));
         resultPanel.add(resultScrollPane, BorderLayout.CENTER);
 
         JPanel resultFooterPanel = new JPanel();
