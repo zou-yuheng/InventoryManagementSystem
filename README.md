@@ -136,15 +136,19 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## System Visualization
 
-### System Overview!
+### System Overview
 
-[System Homepage Screenshot](./images/System_Homepage_Screenshot.png)
+![System Homepage Screenshot](./images/System_Homepage_Screenshot.png)
 
-### Data Analysis & Filtering!
+### Data Analysis & Filtering
 
-[Inventory Data Chart Display](./images/Inventory_data_chart_display.png)![Filter Data](./images/Filter_data.png)
+![Inventory Data Chart Display](./images/Inventory_data_chart_display.png)
 
-### Reports & Predictions!
+![Filter Data](./images/Filter_data.png)
 
-[Inventory Data Analysis Report](./images/Inventory_data_analysis_report.png)![Inventory Prediction Analysis](./images/Inventory_prediction_analysis.png)
+### Reports & Predictions
+
+![Inventory Data Analysis Report](./images/Inventory_data_analysis_report.png)
+
+![Inventory Prediction Analysis](./images/Inventory_prediction_analysis.png)
 
