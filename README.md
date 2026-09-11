@@ -134,3 +134,17 @@ This project is built around custom implementations of the following data struct
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
+## System Visualization
+
+### System Overview!
+
+[System Homepage Screenshot](./images/System_Homepage_Screenshot.png)
+
+### Data Analysis & Filtering!
+
+[Inventory Data Chart Display](./images/Inventory_data_chart_display.png)![Filter Data](./images/Filter_data.png)
+
+### Reports & Predictions!
+
+[Inventory Data Analysis Report](./images/Inventory_data_analysis_report.png)![Inventory Prediction Analysis](./images/Inventory_prediction_analysis.png)
+
